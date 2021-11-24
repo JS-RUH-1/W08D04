@@ -105,6 +105,7 @@ mongoose.connect(
 
 // app.use to using the router
     app.use('/',router);
+    app.use(express.json());
 
 app.listen(3000, ()=>{
     console.log("express has started")

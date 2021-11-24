@@ -15,15 +15,8 @@ app.use('/authors', authors);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
-})
-
-
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
-})
-
-
-
-const Author = require('./models/author');
-const Book = require('./models/book');
+});

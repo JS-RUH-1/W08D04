@@ -8,6 +8,7 @@ const port = 8080;
 mongoose.connect('mongodb+srv://riyadhtickets:T123123123@cluster0.tn6wn.mongodb.net/W08D03HW?authSource=admin&retryWrites=true&w=majority');
 
 app.use(cors());
+app.use(express.json());
 app.use('/books', books);
 app.use('/authors', authors);
 

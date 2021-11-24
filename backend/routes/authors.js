@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 
 // get one author
 router.get('/:id', async (req, res) => {
-  res.json((await author.find({_id: })));
+  res.json((await author.find({_id: req.params.id})));
 });
 
 // add author

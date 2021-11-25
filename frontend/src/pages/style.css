@@ -1,0 +1,82 @@
+.myPage {
+  min-height: calc(100vh - 50px);
+  background-color: rgb(231, 231, 231);
+  padding: 1% 0;
+}
+.authors {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 1% 5%;
+  grid-gap: 15px;
+}
+.cardAuthor {
+  text-align: center;
+  padding: 1%;
+  background-color: rgb(187, 187, 187);
+}
+.cardAuthor:hover {
+  transition: 1s;
+  background-color: rgb(150, 150, 150);
+}
+.desc {
+  display: flex;
+  justify-content: space-around;
+}
+.allBooks {
+  height: 250px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.labels {
+  width: 100px;
+}
+label + input {
+  margin: 2px 0;
+}
+.myTitle {
+  display: block;
+  width: max-content;
+  margin: auto;
+}
+.btns {
+  display: flex;
+  justify-content: space-around;
+}
+.form__add > label {
+  width: 70px;
+}
+.form__add {
+  text-align: center;
+  padding: 5% 0;
+  margin: 1% 0;
+  background-color: rgb(204, 230, 230);
+  border-radius: 70%;
+}
+@media screen and (max-width: 400px) {
+  .authors {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1% 5%;
+    background-color: rgb(231, 231, 231);
+    grid-gap: 5px;
+  }
+}
+@media screen and (min-width: 401px) and (max-width: 700px) {
+  .authors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1% 5%;
+    background-color: rgb(231, 231, 231);
+    grid-gap: 5px;
+  }
+}
+@media screen and (min-width: 701px) and (max-width: 1000px) {
+  .authors {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1% 5%;
+    background-color: rgb(231, 231, 231);
+    grid-gap: 5px;
+  }
+}

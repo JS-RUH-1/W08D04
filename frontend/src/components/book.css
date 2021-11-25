@@ -1,0 +1,159 @@
+.bookBox{
+    /* border: solid #000000; */
+    border-radius:8px;
+    margin: 5ch;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 8px;
+    /* width: 100%; */
+}
+.bookCard{ 
+text-align: center;
+    border: solid #01201e;
+    border-radius:17px;
+    background-color: #fafcfd;
+    margin: 3ch;
+}
+ 
+
+.bookCard>img{
+    padding: 2.5ch;
+    width: 50%;
+}
+ 
+.bookCard>h2 ,h3,h4{
+    font-family: cursive;
+    color: cadetblue;
+
+}
+span{
+    font-family:monospace;
+    font-size: xx-large;
+    color: rgb(7, 53, 54);
+}
+
+.bookForm{
+
+    padding: 4ch;
+    border: #101d97;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius:16px;
+    text-align: center;
+    background-color: #997fe04b;
+}
+.bookForm >input{
+
+    padding: 1ch;
+    border-radius: 8px !important;
+    margin:2ch ;
+    width:60%;
+    color:#0d5761;
+    font-family: cursive;
+}
+
+.bookForm>label{
+    font-family:monospace;
+    font-size: x-large;
+    color:#941010;
+}
+.bookForm>button{
+    padding:1ch;
+    border-radius: 8px;
+    width:30%;
+    background-color:#6033db;
+    color:wheat;
+    font-family: cursive;
+    cursor: pointer;
+    margin:2ch;
+}
+.bookForm>button:hover{ 
+    background:#270980;
+    color:aliceblue;
+    font-weight: bold;
+     
+}
+.bookForm >h2{
+    color:#410fd6dc;
+    font-family:initial;
+    font-size:xx-large;
+    text-decoration: underline;
+}
+.btnDE{ 
+
+    padding: 1ch;
+    margin: 2ch;
+    border-radius:8px;
+    background:#941010;
+    color:white;
+    cursor: pointer;
+    font-family: serif;
+    font-size: larger;
+    font-weight: bolder;
+}
+.btnDE:hover{ 
+    background:#e60b0b;
+    
+}
+  .btnEDIT{ 
+    padding: 1ch;
+    margin: 2ch;
+    border-radius:8px;
+    background:#f3c11c;
+    color:rgb(68, 78, 11);
+    cursor: pointer;
+    font-family: serif;
+    font-size: larger;
+    font-weight: bolder;
+
+  }
+  .btnEDIT:hover{ 
+      background-color: #6ddf39;
+      color:#81660d;
+  }
+/* Tablet */
+@media screen and ( min-width: 768px ) and ( max-width: 1023px ) {
+   
+   
+    .bookBox{
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr ;
+        
+    }
+    .bookForm{
+
+        padding: 4ch;
+         
+        margin-left: 10%;
+        margin-right: 10%;
+        border-radius:16px;
+        text-align: center;
+       
+    }
+
+
+
+}
+
+/* Phone */
+@media screen and ( max-width: 767px ) {
+
+    .bookBox{
+         
+        display: grid;
+        grid-template-columns: 1fr ;
+        
+    }
+    .bookForm{
+
+        padding: 4ch;
+        
+        margin-left: 5%;
+        margin-right: 5%;
+        border-radius:16px;
+        text-align: center;
+       
+    }
+
+}

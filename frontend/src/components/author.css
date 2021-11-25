@@ -1,0 +1,38 @@
+.authorBox{
+ 
+ border-radius:8px;
+ /* margin: 5ch; */
+ display: grid;
+ grid-template-columns: 1fr 1fr 1fr;
+ row-gap: 8px;
+ width:100%
+
+  
+}
+.authorCard{ 
+    width: 80%;
+    text-align: center;
+    border: solid #01201e;
+    border-radius:17px;
+    background-color: #fafcfd;
+    margin: 3ch;
+
+}
+
+/* Tablet */
+@media screen and ( min-width: 768px ) and ( max-width: 1023px ) {
+    .authorBox{
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+}
+
+
+/* Phone */
+@media screen and ( max-width: 767px ) {
+
+    .authorBox{
+        grid-template-columns: 1fr;
+    }
+}

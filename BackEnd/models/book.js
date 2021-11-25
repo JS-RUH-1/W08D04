@@ -5,22 +5,22 @@ const mongoose = require('mongoose')
 
 const BookSchema = new Schema({
 
-title:{
-    type: String,
-    required:[true,"Book title should be provided" ]  
-},
-pages:{
+    title:{
+        type: String,
+        required:[true,"Book title should be provided" ]  
+    },
+    pages:{
+        type:Number,
+        required:"Book pages should be provided"
+    },
+    price:{
     type:Number,
-    required:"Book pages should be provided"
-},
-price:{
-type:Number,
-default:0
-},
-image:{
-    type:String,
-    required:"Book image should be provided"
-}
+    default:0
+    },
+    imagebook:{
+        type:String,
+        required:"Book image should be provided"
+    }
 
 })
 

@@ -1,0 +1,31 @@
+ul {
+    width: 98%;
+   /* position: absolute; */
+   
+   list-style-type: none;
+   
+   overflow: hidden;
+}
+li {
+    float: left;
+    
+  }
+  li a {
+    font-size: 25px;
+  
+    /* margin-right: 1ch; */
+    display: block;
+    color: rgb(3, 65, 85);
+    text-align: center;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-family:serif;
+    font-weight: bold;
+      
+  }
+  li a:hover {
+     
+    color: rgb(201, 13, 22);
+    font-weight: bolder;
+    text-decoration: underline;
+  }

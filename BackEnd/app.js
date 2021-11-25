@@ -1,11 +1,10 @@
 const express = require('express')
-
+const cors = require('cors')
 const mongoose = require("mongoose")
-
-
-app = express()
-
+const app = express()
 const router = require("./routes/index")
+
+app.use(cors())
 
 mongoose.Promise = global.Promise
 

@@ -22,6 +22,6 @@ const UserSchema = new Schema ({
 //plugin to user model 
 //2nd arrgument => authentication اعطيه الايميل كيوزر نيم فيلد لعملية 
 UserSchema.plugin(passportLocalMongoose,{
-    usernameField = 'email'
+    usernameField : 'email'
 })
 module.exports = mongoose.model('User',UserSchema);

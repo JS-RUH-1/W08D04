@@ -2,13 +2,24 @@
 let express = require('express')
 let mongoose = require('mongoose'),
 app = express()
+
+//express session authors , is middleware (to get , res the current info) => signUp , sign in
+const expressSession = require('express-session')
+
+// cookie parser is middleware (تدير السيشن ومتابعة اليوزر)
+const cookieParser = require('cookie-parser')
+
+//passport=>  authentecation تسهل عملية 
+const passport = require('passport')
+
 const router = require ('./routes/index')
 
 const seedBook = require("./book_seed");
 const seedAuthor = require("./author_seed");
+
 const Author = require("./models/author");
 const Book = require("./models/book");
-const book_seed = require('./book_seed');
+const User = require("./models/user");
 
 
  // promise to ensure ... catch error  
@@ -101,12 +112,39 @@ mongoose.connect(
               
               // Book.deleteMany({ price: { $lt: 50 } }, (err, res) => {
               //   console.log("Remove all book that have price less than 50", res);
-              // });   
+              // });  
+              User.find({});
+            ////////////////////////////////
 
 // app.use to using the router
     app.use('/',router);
     app.use(express.json());
+    //use => cookieParser(secretword)
+    app.use(cookieParser('mylibrary'))
 
-app.listen(3000, ()=>{
+    //app.use => expressSession( secret, خصاص السيشن ....)
+    app.use(expressSession({
+        secret:'mylibrary',
+        saveUninitialized: true,   //تحفظ بيانات السيشن في الداتابيس المخصصة لها
+        resave: true, //تعيد حفظ بيانات السيشن بعد الوقت المحدد للسيشن
+        cookie:{maxAge:6000} // maxAge 6 sec  الوقت اللي تنحفظ فيه السيشن
+    }))
+    ////////////////////////////////
+    // اعدادات الباسبورت 
+    //passport.initialize //تعطي قيم افتراضية لللسيشن
+    app.use(passport.initialize())
+    //passport.session => تعني انه الباسبورت يستخدم السيشن
+    app.use(passport.session)
+    ////////////////////////////////
+
+    //User.createStrategy => (user sign in sign up) نعرف لليوزر ستراتيجي ، وهي الطريقة اللي نستخدمها للتعامل مع 
+    passport.use(User.createStrategy)
+    // serializeUser تحفظ بيانات اليوزر في السيشن
+    passport.serializeUser(User.serializeUser())
+    // deserialize تحذف بياانات اليوزر بعد انتهاء السيشن
+    passport.deserializeUser(User.deserializeUser())
+
+
+    app.listen(3000, ()=>{
     console.log("express has started")
 })

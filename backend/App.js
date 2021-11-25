@@ -58,48 +58,48 @@ mongoose.connect(
         // ]);
         //---------------------------
         //Find all male authors => in console
-        Author.find({gender:"male"},(err,authors)=>{
-            //in "male" = array of object 
-            console.log("male",authors);
-        })
+        // Author.find({gender:"male"},(err,authors)=>{
+        //     //in "male" = array of object 
+        //     console.log("male",authors);
+        // })
        
-        // Find all authors that age grater than 44
-        Author.find({age:{$gt: 44}},(err, authors) => {
-            console.log("Authors that age grater than 44", authors);
-          })
+        // // Find all authors that age grater than 44
+        // Author.find({age:{$gt: 44}},(err, authors) => {
+        //     console.log("Authors that age grater than 44", authors);
+        //   })
          
-        // Find all authors in Kuwait country
-        Author.find({nationality:"Kuwit"}, (err, authors) => {
-            console.log("Kuwait", authors);
-        })
+        // // Find all authors in Kuwait country
+        // Author.find({nationality:"Kuwit"}, (err, authors) => {
+        //     console.log("Kuwait", authors);
+        // })
 
-        //--------------------
-        // Find all the books that start with L or l
-        Book.find({name:/^l/i},(err,books)=>{
-            console.log("start with L or l",books);
-        })
+        // //--------------------
+        // // Find all the books that start with L or l
+        // Book.find({name:/^l/i},(err,books)=>{
+        //     console.log("start with L or l",books);
+        // })
 
-        // Find all the books that have pages more than 250Select with OR, AND
-        Book.find({pages:{$gt: 250}},(err,books)=>{
-            console.log("pages more than 250",books);
-        })
-        // Find all authors that in Kuwait or Saudi Arabia
-        Author.find({$or:[{nationality:"Kuwit" },{ nationality: "Saudi Arabia" }]},(err,authors)=>{
-            console.log("Kuwait or Saudi Arabia",authors);
-        })
+        // // Find all the books that have pages more than 250Select with OR, AND
+        // Book.find({pages:{$gt: 250}},(err,books)=>{
+        //     console.log("pages more than 250",books);
+        // })
+        // // Find all authors that in Kuwait or Saudi Arabia
+        // Author.find({$or:[{nationality:"Kuwit" },{ nationality: "Saudi Arabia" }]},(err,authors)=>{
+        //     console.log("Kuwait or Saudi Arabia",authors);
+        // })
         // Find all authors that have 3 books or more and their age grater than 35
         // Author.find({ books: { size: { $gt: 3 } }, age: { $gt: 35 } },
         //     (err, authors) => {
         //       console.log("Authors with +3 books and age +35", authors);
         //     })
 
-            Author.find({ age: { $exists: true } }, (err, authors) => {
-                console.log("do not have a key of age", authors);
-              });
+            // Author.find({ age: { $exists: true } }, (err, authors) => {
+            //     console.log("do not have a key of age", authors);
+            //   });
               
-              Author.find({ nationality: { $not: "Saudi Arabia" } }, (err, authors) => {
-                console.log("are not from Saudi Arabia", authors);
-              });
+            //   Author.find({ nationality: { $not: "Saudi Arabia" } }, (err, authors) => {
+            //     console.log("are not from Saudi Arabia", authors);
+            //   });
               
               // Author.updateOne(
               //   { name: "Osama Al Muslim" },
@@ -115,7 +115,7 @@ mongoose.connect(
             ////////////////////////////////
 
 // app.use to using the router
-    app.use('/',router);
+ 
     app.use(express.json());
     //use => cookieParser(secretword)
     app.use(cookieParser('mylibrary'))
@@ -142,7 +142,8 @@ mongoose.connect(
     // deserialize تحذف بياانات اليوزر بعد انتهاء السيشن
     passport.deserializeUser(Author.deserializeUser())
 
-
+    app.use('/',router);
+    
     app.listen(3000, ()=>{
     console.log("express has started")
 })

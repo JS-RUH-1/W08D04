@@ -7,19 +7,24 @@ router.get('/', async (req, res) => {
   res.json((await book.find({})));
 });
 
-// get one author
+// get one book
 router.get('/:id', async (req, res) => {
-  res.json((await book.find({_id: req.params.id})));
+  res.json((await book.findOne({_id: req.params.id})));
 });
 
-// add author
+// add book
 router.post('/', async (req, res) => {
   res.json((await book.insertOne(req.body)));
 });
 
-// edit author
-router.put('/', async (req, res) => {
-  res.json((await book.updateOne(req.body)));
+// edit book
+router.put('/:id', async (req, res) => {
+  res.json((await book.updateOne({_id: req.params.id},{$set: req.body})));
+});
+
+// delete book
+router.delete('/:id', async (req, res) => {
+  res.json((await book.deleteOne({_id: req.params.id})));
 });
 
 

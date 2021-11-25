@@ -12,6 +12,9 @@ export default function Home({}) {
       setBooks(res[0].data);
       setAuthors(res[1].data);
     });
+    if(window.location.hash === "#authors") {
+      setActive("authors")
+    }
   }, []);
   return (
     <div className="container">
@@ -26,7 +29,7 @@ export default function Home({}) {
         <a
           onClick={() => setActive("authors")}
           className={`nav-link ${active === "authors" ? "active" : ""}`}
-          href="#"
+          href="#authors"
         >
           Authors
         </a>
@@ -45,18 +48,47 @@ export default function Home({}) {
                   <Link href={`/books/${book._id}`}>
                     <button  className="m-1 btn btn-primary">View</button> 
                   </Link>
-                  <a href="#" className="m-1 btn btn-warning" onClick={() => editBook(book._id)}>
+                  <Link href={`/books/${book._id}/edit`}>
+                  <a href="#" className="m-1 btn btn-warning">
                     Edit
                   </a>
-                  <a href="#" className="m-1 btn btn-danger" onClick={() => deleteBook(book._id)}>
+                  </Link>
+                  <Link href={`/books/${book._id}/delete`}>
+                  <a href="#" className="m-1 btn btn-danger" >
                     Delete
                   </a>
+                  </Link>
                 </div>
               </div>
             ))}
           </>
         ) : (
-          <></>
+          <>
+           {authors.map((author) => (
+              <div key={author._id} className=" col card">
+                <img src={author.image} style={{width:"200px", height: "200px"}} className="card-img-top" />
+                <div className="card-body">
+                  <h5 className="card-title">{author.name}</h5>
+                  <p className="card-text">
+                    Nationality : {author.nationality}
+                  </p>
+                  <Link href={`/authors/${author._id}`}>
+                    <button  className="m-1 btn btn-primary">View</button> 
+                  </Link>
+                  <Link href={`/authors/${author._id}/edit`}>
+                  <a href="#" className="m-1 btn btn-warning">
+                    Edit
+                  </a>
+                  </Link>
+                  <Link href={`/authors/${author._id}/delete`}>
+                  <a href="#" className="m-1 btn btn-danger" >
+                    Delete
+                  </a>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </>
         )}
       </div>
     </div>

@@ -11,7 +11,9 @@ router.get('/',AuthorController.index)
 router.get('/:authid', AuthorController.show)
 router.put('/:authid/update', AuthorController.update)
 router.delete('/:authid/delete', AuthorController.delete)
-router.post('/create',AuthorController.create)
+// router.post('/create',AuthorController.create)
+router.post('/signup',AuthorController.signup)
+
 
 //exports to use this router in app
 module.exports = router

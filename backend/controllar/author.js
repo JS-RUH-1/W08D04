@@ -60,23 +60,43 @@ module.exports = {
         })
     },
 
-  create:(req,res)=> {
+  // create:(req,res)=> {
+  //   let newAuthor = new Author({
+  //     name:req.body.name,
+  //     age:req.body.age,
+  //     nationality:req.body.nationality,
+  //     image:req.body.image,
+  //     gender:req.body.gender,
+  //     books:[Book.schema]
+  //   })
+  //   newAuthor.save((error)=>{
+  //     if(error)
+  //     res.json({error:error}) 
+  //     else
+  //     res.json({message:"Author inserted"})
+  //   })
+
+
+  // }
+
+  signup: (req,res)=>{
     let newAuthor = new Author({
-      name:req.body.name,
-      age:req.body.age,
-      nationality:req.body.nationality,
-      image:req.body.image,
-      gender:req.body.gender,
-      books:[Book.schema]
-    })
-    newAuthor.save((error)=>{
-      if(error)
-      res.json({error:error}) 
-      else
-      res.json({message:"Author inserted"})
+        name: req.body.name,
+        age: req.body.age,
+        nationality:req.body.nationality,
+        image:req.body.image,
+        email: req.body.email,
     })
 
+    //2nd arrgument "password" =>   عشان ما يتخزن في الداتا بيس وينحسب له "سولد وهاش " 
+    Author.register(newAuthor,req.body.password,(error,author)=>{
+        if(author){
+            res.json({message:"Author Signed Up",})
+        }else{
+            res.json({error: error})
+        }
+    })
 
-  }
+}
 
 }

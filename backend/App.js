@@ -19,7 +19,6 @@ const seedAuthor = require("./author_seed");
 
 const Author = require("./models/author");
 const Book = require("./models/book");
-const User = require("./models/user");
 
 
  // promise to ensure ... catch error  
@@ -113,7 +112,6 @@ mongoose.connect(
               // Book.deleteMany({ price: { $lt: 50 } }, (err, res) => {
               //   console.log("Remove all book that have price less than 50", res);
               // });  
-              User.find({});
             ////////////////////////////////
 
 // app.use to using the router
@@ -138,11 +136,11 @@ mongoose.connect(
     ////////////////////////////////
 
     //User.createStrategy => (user sign in sign up) نعرف لليوزر ستراتيجي ، وهي الطريقة اللي نستخدمها للتعامل مع 
-    passport.use(User.createStrategy())
+    passport.use(Author.createStrategy())
     // serializeUser تحفظ بيانات اليوزر في السيشن
-    passport.serializeUser(User.serializeUser())
+    passport.serializeUser(Author.serializeUser())
     // deserialize تحذف بياانات اليوزر بعد انتهاء السيشن
-    passport.deserializeUser(User.deserializeUser())
+    passport.deserializeUser(Author.deserializeUser())
 
 
     app.listen(3000, ()=>{

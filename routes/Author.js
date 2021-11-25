@@ -12,6 +12,14 @@ router.get("/", (req, res) => {
   });
   console.log("GET from author");
 });
+// GET details of specific author
+router.get("/:name", (req, res) => {
+  Author.find({name : req.params.name}, (err, authors) => {
+    res.send(authors);
+    console.log("All Authors", authors);
+  });
+  console.log("GET from author");
+});
 
 // ADD Author
 router.post("/", (req, res) => {
@@ -59,7 +67,7 @@ router.delete("/:name", (req, res) => {
     if (err) {
       console.log(err);
     }
-    authors.deletedCount == 0 ?  res.send("Author not found") : res.send("Author deleted")
+    authors.deletedCount == 0 ?  res.send("Author not found") : res.send(authors)
     // mongoose.connection.close();
   });
   // res.send(authName + " deleted");

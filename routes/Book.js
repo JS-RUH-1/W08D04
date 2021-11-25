@@ -26,7 +26,11 @@ router.post("/", (req, res) => {
       console.log(err);
     }
     console.log("added provided Books data", Books);
-    res.send("Book added");
+    // res.send("Book added");
+    Book.find({}, (err, Books) => {
+      res.send(Books);
+      console.log("All Books", Books);
+    });
     // mongoose.connection.close();
   });
 });
@@ -63,11 +67,16 @@ router.delete("/:title", (req, res) => {
     if (err) {
       console.log(err);
     }
-    Books.deletedCount == 0
-      ? res.send("Book not found")
-      : res.send("Book deleted");
+    Book.find({}, (err, Books) => {
+      res.send(Books);
+      console.log("All Books", Books);
+    });
+    // Books.deletedCount == 0
+    //   ? res.send("Book not found")
+    //   : res.send("Book deleted");
     // mongoose.connection.close();
   });
+  
   // res.send(authtitle + " deleted");
 });
 

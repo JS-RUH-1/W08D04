@@ -14,7 +14,9 @@ router.get('/:id', async (req, res) => {
 
 // add book
 router.post('/', async (req, res) => {
-  res.json((await book.insertOne(req.body)));
+  book.create(req.body).then(result =>
+    res.json(result)).catch(err => 
+      res.status(500).json(err)) // pass error to backend
 });
 
 // edit book

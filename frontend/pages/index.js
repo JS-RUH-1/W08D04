@@ -34,6 +34,10 @@ export default function Home({}) {
           Authors
         </a>
       </nav>
+      {active === "books" ?
+       <Link href="/books/add"><button className="btn btn-primary m-3">Add Book</button></Link>
+      :<Link href="/authors/add"><button className="btn btn-primary m-3">Add Author</button></Link>
+      }
       <div class="row row-cols-sm-2 row-cols-md-4">
         {active === "books" ? (
           <>

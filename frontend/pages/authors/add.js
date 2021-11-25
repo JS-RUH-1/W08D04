@@ -3,25 +3,27 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-export default function EditAuthor(){
+export default function AddAuthor(){
     const router = useRouter();
     const { author_id } = router.query
-    const [details, setDetails] = useState(null);
+    const [details, setDetails] = useState({
+        name: "",
+        gender: "",
+        age: "",
+        image: "",
+        nationality: ""
+    });
     const [savedAlert, setSavedAlert] = useState(false);
-    useEffect(() => {
-        if(!author_id) return;
-
-        axios.get(`authors/${author_id}`).then((res) => {
-            setDetails(res.data);
-           // get author details 
-        });
-    }, [author_id]);
 
     const saveChanges = (e) => {
         e.preventDefault();
 
-        axios.put(`authors/${author_id}`, details).then(res => {
-            setSavedAlert(true);
+        axios.post(`authors`, details).then(res => {
+            setSavedAlert({class:"success", message:"Changes has been saved successfuly."});
+        }).catch(err => {
+            setSavedAlert({class:"danger", message: err.response.data.message
+        });
+
         })
     }
 
@@ -31,15 +33,14 @@ export default function EditAuthor(){
             <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><Link href="/#authors">Authors</Link></li>
-                <li class="breadcrumb-item"><Link href={`/authors/${author_id}`}><a href="#">{details.name}</a></Link></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                <li class="breadcrumb-item active" aria-current="page">Add</li>
             </ol>
         </nav>
 
 
         <form>
-            {savedAlert ? <div class="alert alert-success" role="alert">
-  Changes has been saved successfuly.
+            {savedAlert ? <div class={`alert alert-${savedAlert.class}`} role="alert">
+  {savedAlert.message} 
 </div> : <></>}
   <div class="mb-3">
     <label class="form-label">name</label>
@@ -59,7 +60,7 @@ export default function EditAuthor(){
   </div>
   <div class="mb-3">
     <label class="form-label">age</label>
-    <input type="text" class="form-control" value={details.age} onChange={(e) => setDetails({...details, age: e.target.value})} />
+    <input type="number" class="form-control" value={details.age} onChange={(e) => setDetails({...details, age: e.target.value})} />
   </div>
  
   <button class="btn btn-primary" onClick={(e) => saveChanges(e)}>Submit</button>

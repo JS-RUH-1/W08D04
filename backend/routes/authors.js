@@ -14,7 +14,9 @@ router.get('/:id', async (req, res) => {
 
 // add author
 router.post('/', async (req, res) => {
-  res.json((await author.insertOne(req.body)));
+  author.create(req.body).then(result =>
+    res.json(result)).catch(err => 
+      res.status(500).json(err)) // pass error to backend
 });
 
 // edit author

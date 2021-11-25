@@ -134,11 +134,11 @@ mongoose.connect(
     //passport.initialize //تعطي قيم افتراضية لللسيشن
     app.use(passport.initialize())
     //passport.session => تعني انه الباسبورت يستخدم السيشن
-    app.use(passport.session)
+    app.use(passport.session())
     ////////////////////////////////
 
     //User.createStrategy => (user sign in sign up) نعرف لليوزر ستراتيجي ، وهي الطريقة اللي نستخدمها للتعامل مع 
-    passport.use(User.createStrategy)
+    passport.use(User.createStrategy())
     // serializeUser تحفظ بيانات اليوزر في السيشن
     passport.serializeUser(User.serializeUser())
     // deserialize تحذف بياانات اليوزر بعد انتهاء السيشن

@@ -3,6 +3,8 @@
 const express = require('express')
 const router = express.Router(),
 UserController = require('../controllar/user')
+router.use(express.json());
+
 
 //call functions from  UserController by use router obj.
 router.get('/',UserController.index)

@@ -15,10 +15,9 @@ const bookRoute = require('./routes/Book')
 app.use('/author',authorRoute)
 app.use('/book',bookRoute)
 
+const db = require("./database")
 async function main() {
-  await mongoose.connect(
-    "mongodb+srv://Khaled:alh123@cluster0.8jrln.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-  );
+  await mongoose.connect(db.url);
 }
 main().catch((err) => console.log(err));
 

@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
   console.log("GET from author");
 });
 
+// ADD Author
 router.post("/", (req, res) => {
   const author = {
     name: req.body.name,
@@ -29,33 +30,39 @@ router.post("/", (req, res) => {
   });
 });
 
-//   router.put("/:id", (req, res) => {
-//     const id = parseInt(req.params.id);
-//     fs.readFile("blog.json", "utf8", (err, data) => {
-//       let arr = JSON.parse(data);
+router.put("/:name", (req, res) => {
+  const name = req.params.name;
 
-//       if (arr.findIndex((e) => e.id === id) === -1) res.json("id not found");
-//       let index = arr.findIndex((e) => e.id === id);
-//       arr[index] = {
-//         id: id,
-//         title: req.body.title || "post" + (arr.length + 1),
-//         body: req.body.body,
-//         date: req.body.date,
-//       };
+  Author.updateOne(
+    { name: name },
+    {
+      name: req.body.name,
+      nationality: req.body.nationality,
+      image: req.body.image,
+    },
+    (err, authors) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log("updated author", authors);
+      res.send("Author updated");
+      // mongoose.connection.close();
+    }
+  );
+});
 
-//       fs.writeFile("blog.json", JSON.stringify(arr), (err) => {
-//         res.json(arr);
-//       });
-//     });
-//   });
-
+// DELETE Author
 router.delete("/:name", (req, res) => {
   const authName = req.params.name;
 
-  Author.deleteOne({ name: authName }, (err, res) => {
-    console.log("Remove Author", res);
+  Author.deleteOne({ name: authName }, (err, authors) => {
+    if (err) {
+      console.log(err);
+    }
+    authors.deletedCount == 0 ?  res.send("Author not found") : res.send("Author deleted")
+    // mongoose.connection.close();
   });
-  res.send(authName + " deleted");
+  // res.send(authName + " deleted");
 });
 
 module.exports = router;

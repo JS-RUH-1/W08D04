@@ -51,7 +51,7 @@ export default function Book() {
 
             //how can i add object of book ??
 
-          books.
+
           imagebook:Image2, title:Title, pages:Pages, price:Price
      })
        
@@ -84,27 +84,7 @@ const handelDelete=(id)=>{
         setNewAuthor(res.data)
     })
         }
-        ///////////////////////////////
-     ///Edit
-
-    //  const handelEdit=(id)=>{ 
-
-    //     swal({
-    //         title:`you edit a appointment in card ${id}`,
-    //         icon:'success'
-    //       })
-
-    //         axios.put(`http://localhost:3030/books/${id}/update`,
-    //         {image:Image, title:Title, pages:Pages, price:Price }
-    //         )
-    //         .then((res)=>{
-    //             console.log(res.data)
-    //             setNewAuthor(res.data)
-    //         })
-    //  }
-
-
-
+       
 
     return (  
         <>

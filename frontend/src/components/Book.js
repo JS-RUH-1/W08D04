@@ -2,10 +2,13 @@
 import axios from 'axios'
 import './book.css'
 import swal from 'sweetalert';
+import {Link} from 'react-router-dom'
+ 
 
+export default function Book(data) {
 
-export default function Book() {
-
+   console.log(data)
+  
     //all book hear.
     const [book ,setBook] = useState([])
     const [newBook ,setNewBook] = useState({})
@@ -25,7 +28,6 @@ export default function Book() {
     .then((res)=>{
         setBook(res.data)
     })
-    
     },[newBook])
 
     // //////////////////////////////////
@@ -40,37 +42,19 @@ export default function Book() {
         axios.post('http://localhost:3030/books/create', 
         {image:Image, title:Title, pages:Pages, price:Price }
         )
-       
+        
         .then((res)=>{
+
             console.log(res.data)
             setNewBook(res.data)
+            
             // console.log(newBook)
 
-            // setBook(...book, newBook)
+            // setBook(newBook)
         })
     }
 
-     /////////////////////////
-     //Delete
-
-     const handelDelete=(id)=>{ 
-
-        swal({
-            title:'you deleted a appointment',
-            icon:'success'
-          })
-                console.log(id)
-         
-
-        axios.delete(`http://localhost:3030/books/${id}/delete`)
-        .then((res)=>{
-            
-            setNewBook(res.data)
-        })
-            }
-     ///////////////////////////////
-     ///Edit
-
+  
      const handelEdit=(id)=>{ 
 
         swal({
@@ -78,13 +62,13 @@ export default function Book() {
             icon:'success'
           })
 
- axios.put(`http://localhost:3030/books/${id}/update`,
- {image:Image, title:Title, pages:Pages, price:Price }
- )
-.then((res)=>{
-    console.log(res.data)
-    setNewBook(res.data)
-})
+        axios.put(`http://localhost:3030/books/${id}/update`,
+        {image:Image, title:Title, pages:Pages, price:Price }
+        )
+        .then((res)=>{
+            console.log(res.data)
+            setNewBook(res.data)
+        })
      }
      ///////////////////////////////
 
@@ -139,25 +123,18 @@ export default function Book() {
         {
         book.map((get) => {
              return <div className="bookCard">
-               <img src={get.image} alt="" width={250} />
-               <h2>
-                 {" "}
-                 <span>Title:</span> {get.title}
-               </h2>
-               <h3>
-                 <span>Pages:</span> {get.pages}
-               </h3>
-               <h4>
-                 {" "}
-                 <span>Price:</span> {get.price}
-               </h4>
-             
-               <div className="BTN">
 
-             <button className='btnDE' onClick={()=>handelDelete(get._id)}>Delete</button> 
-             <button className='btnEDIT' onClick={()=>handelEdit(get._id)}>Edite</button> 
-               
-            </div>
+              <br></br>
+
+              <img src={get.image} alt="" width={250} />
+             <Link to={`/Book/${get.title}`}>
+             see more </Link>
+             <br></br>
+
+             
+           <div className="BTN">
+        <button className='btnEDIT' onClick={()=>handelEdit(get._id)}>Edite</button> 
+                </div>
              
              </div>;
 

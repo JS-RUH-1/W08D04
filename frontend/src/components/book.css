@@ -111,6 +111,25 @@ span{
       background-color: #6ddf39;
       color:#81660d;
   }
+  .fullCard{
+       margin-top: 20ch;
+      border:solid #0d635dbe;
+      border-width: 3ch;
+      border-radius:8px;
+      background:#0d746d83;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      /* margin:5ch; */
+      padding: 5ch;
+      margin-left: 15ch;
+      margin-right: 15ch;
+      padding-bottom: 20ch ;
+  }
+.fullInfo{
+    margin-top: 4ch;
+}
+   
+
 /* Tablet */
 @media screen and ( min-width: 768px ) and ( max-width: 1023px ) {
    
@@ -131,8 +150,17 @@ span{
         text-align: center;
        
     }
-
-
+.fullCard{
+    
+    width: 80%;
+    margin-left: 3ch;
+}
+    .fullInfo{
+        
+        margin-left: 3ch;
+        width: 100%;
+      
+    }
 
 }
 
@@ -155,5 +183,26 @@ span{
         text-align: center;
        
     }
+    .fullCard{
+
+        border:solid #0d635dbe;
+        border-width: 3ch;
+        border-radius:8px;
+        background:#0d746d83;
+        display: grid;
+        grid-template-columns: 1fr ;
+        text-align: center;
+        /* margin:5ch; */
+        margin-top: 20ch;
+        margin-left: 4ch;
+        margin-right: 0;
+        width: 70%;
+    }
+.fullImage{
+    padding: 3ch;
+}
+.fullInfo{
+    padding-bottom: 10ch;
+}
 
 }

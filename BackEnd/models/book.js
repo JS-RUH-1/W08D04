@@ -17,7 +17,7 @@ const BookSchema = new Schema({
     type:Number,
     default:0
     },
-    imagebook:{
+    image:{
         type:String,
         required:"Book image should be provided"
     }

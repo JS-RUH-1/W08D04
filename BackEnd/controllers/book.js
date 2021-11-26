@@ -25,7 +25,7 @@ module.exports={
             title:req.body.title,
             pages:req.body.pages,
             price:req.body.price,
-            imagebook:req.body.imagebook
+            image:req.body.image
 
                     })
 
@@ -59,7 +59,7 @@ module.exports={
             title:req.body.title,
             pages:req.body.pages,
             price:req.body.price,
-            imagebook:req.body.imagebook
+            image:req.body.image
 
                     })
 
@@ -79,7 +79,7 @@ module.exports={
             title:req.body.title,
             pages:req.body.pages,
             price:req.body.price,
-            imagebook:req.body.imagebook
+            image:req.body.image
 
         }
 Book.findByIdAndUpdate(_id,{$set:bookInfo})

@@ -32,8 +32,12 @@ router.post("/", (req, res) => {
     if (err) {
       console.log(err);
     }
-    console.log("added provided authors data", authors);
-    res.send("Author added");
+    Author.find({}, (err, Authors) => {
+      res.send(Authors);
+      console.log("All Authors", Authors);
+    });
+    // console.log("added provided authors data", authors);
+    // res.send("Author added");
     // mongoose.connection.close();
   });
 });
@@ -67,7 +71,11 @@ router.delete("/:name", (req, res) => {
     if (err) {
       console.log(err);
     }
-    authors.deletedCount == 0 ?  res.send("Author not found") : res.send(authors)
+    Author.find({}, (err, Authors) => {
+      res.send(Authors);
+      console.log("All Authors", Authors);
+    });
+    // authors.deletedCount == 0 ?  res.send("Author not found") : res.send(authors)
     // mongoose.connection.close();
   });
   // res.send(authName + " deleted");

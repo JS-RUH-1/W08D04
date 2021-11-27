@@ -1,7 +1,7 @@
 
-let express = require('express')
-let mongoose = require('mongoose'),
-app = express()
+const express = require('express')
+const mongoose = require('mongoose'),
+app = express();
 
 //express session authors , is middleware (to get , res the current info) => signUp , sign in
 const expressSession = require('express-session')

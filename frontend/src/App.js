@@ -1,12 +1,12 @@
-import './App.css';
+import Navbar from './components/Navbar';
+import Books from './pages/Books';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        
-      </header>
-    </div>
+  <>
+     <Navbar/>
+     <Books/>
+ </>
   );
 }
 

@@ -14,7 +14,13 @@ text-align: center;
     background-color: #fafcfd;
     margin: 3ch;
 }
- 
+ .bookInfo>h2{
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+ color: rgb(150, 118, 15);
+ font-size: xx-large;
+ text-decoration: underline;
+
+}
 
 .bookCard>img{
     padding: 2.5ch;

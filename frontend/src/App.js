@@ -7,6 +7,7 @@ import Author from './components/Author'
 import FullCard from './components/FullCard'
 import { useEffect, useState } from "react";
 import axios from "axios"
+import AuthorFullCard from './components/AuthorFullCard'
 import {BrowserRouter as Router , Routes , Route ,Link} from 'react-router-dom'
  
  import './App.css';
@@ -18,6 +19,10 @@ function App() {
   const [book ,setBook] = useState([])
   const [newBook ,setNewBook] = useState({})
 
+  const [author,setAuthor]=useState([]);
+  const [newAuthor,setNewAuthor]= useState({});
+
+////////////////////////Books////////////
   useEffect(()=>{ 
     
     axios.get('http://localhost:3030/books')
@@ -25,6 +30,20 @@ function App() {
         setBook(res.data)
     })
     },[newBook])
+
+
+
+/////////////Authors////////////////
+    useEffect(()=>{
+
+      axios.get('http://localhost:3030/authors')
+      .then((res)=>{
+          console.log(res.data)
+          setAuthor(res.data)
+      })
+
+  },[newAuthor])
+
 
 
   return (
@@ -43,7 +62,7 @@ function App() {
 <Route exact path='components/Author' element={<Author/>}/>
 
 <Route path='/Book/:title' element={<FullCard data={book}/>}/>
-
+<Route path='/Author/:name' element={<AuthorFullCard data={author}/>}/>
  
 </Routes>
     </Router>

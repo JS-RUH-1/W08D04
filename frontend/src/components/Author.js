@@ -4,6 +4,7 @@
  //edit author 
  import { useEffect, useState } from "react";
  import swal from 'sweetalert';
+ import {Link} from 'react-router-dom'
 
  import axios from 'axios';
  import './author.css'
@@ -66,24 +67,24 @@ export default function Book() {
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //Delete author ****************
 
-const handelDelete=(id)=>{ 
+const handelEdit=(id)=>{ 
 
     swal({
-        title:'you deleted a appointment',
+        title:`you edit a appointment in card ${id}`,
         icon:'success'
       })
-            console.log(id)
 
-            
+    axios.put(`http://localhost:3030/authors/${id}/update`,
+    {image:Image, name:Name, age:Age, nationality:Nationality, gender:Gender,
 
-            
-
-    axios.delete(`http://localhost:3030/authors/${id}/delete`)
+         image:Image, title:Title, pages:Pages, price:Price
+     }
+    )
     .then((res)=>{
-        
+        console.log(res.data)
         setNewAuthor(res.data)
     })
-        }
+ }
        
 
     return (  
@@ -165,43 +166,23 @@ const handelDelete=(id)=>{
         </div>
         </from>
 
-
-
-
-
-
-
          <div className="authorBox">
 
              {author.map((get)=>{
 
                  return <div className="authorCard">
-
-                    <h3> <span>Name:</span>{get.name}</h3>
-                    <h3> <span>Age:</span>{get.age}</h3>
-                    <h3> <span>Nationality:</span>{get.nationality}</h3>
+ 
                     <img src={get.image} alt='' width={200}/>
-                    <h3> <span>Gender:</span>{get.gender}</h3>
+                    <br></br>
+                    <Link to={`/Author/${get.name}`}> see more</Link>
+                     
 
-                    {get.books.map((item)=>{
-           
-                     return  <div>
-                            <h4><span>title of book:</span>{item.title}</h4>
-                            <h4><span>page of book:</span>{item.pages}</h4>
-                            <h4><span>price of book:</span>{item.price}</h4>
-                            <img src={item.image} alt='' width={200}/>
 
-                        </div>
-
-                    })}
  <div className="BTN">
 
-<button className='btnDE'   onClick={()=>handelDelete(get._id)}>Delete</button> 
-{/* <button className='btnEDIT' onClick={()=>handelEdit(get._id)}>Edite</button>  */}
-  
+   
 </div>
-
-                 </div>
+</div>
              })}
 
 

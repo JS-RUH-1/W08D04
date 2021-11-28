@@ -45,7 +45,7 @@ useEffect(()=>{
              <div className="children">
 
              {data.filter(card => card.title === title)
-           .map((card ,index)=>(
+              .map((card ,index)=>(
 
         <div key={index} className="fullCard">
 

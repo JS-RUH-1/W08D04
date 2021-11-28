@@ -9,7 +9,7 @@ router.use(express.json())
 
 main().catch((err) => console.log(err))
 async function main(){
-    await mongoose.connect('mongodb+srv://admin:js-ruh2021@js.cj74d.mongodb.net/W08D04HW?retryWrites=true&w=majority')
+    await mongoose.connect('mongodb+srv://...')
 }
 
 router.get('/', (req, res) => {

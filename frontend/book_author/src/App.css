@@ -1,0 +1,62 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  padding-top: 50px;
+  min-height: 100vh;
+  background: #282c34;
+  color: white;
+}
+
+.active{
+  background: red;
+  color: white;
+}
+.btn{
+  border-radius: 1cm;
+}
+
+.author_card,.book_card{
+  background: #1a1d22;
+  border-radius: 10px;
+  max-width: 100%;
+  padding: 2px;
+  margin: 1px;
+}
+img{
+  max-width: 100%;
+  border-radius: 2px;
+}
+.parent{
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: 45% 45%;
+  column-gap: 5%;
+  justify-content: center;
+}
+h2{
+ font-size: 1.25rem;
+}
+h3{
+  font-size: 1rem;
+}
+form{
+  align-self: center;
+  justify-self: center;
+  max-width: 50%;
+}
+.flex-rows{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.flex-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hidden{
+  display: none;
+}

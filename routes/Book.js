@@ -80,4 +80,17 @@ router.delete("/:title", (req, res) => {
   // res.send(authtitle + " deleted");
 });
 
+// GET ONE Book
+router.get("/:title", (req, res) => {
+  const bookTitle = req.params.title;
+  console.log(bookTitle)
+  
+  Book.find({ title: bookTitle}, (err, Books) => {
+    res.send(Books);
+    console.log("All Books", Books);
+  });
+
+  console.log("GET from Book");
+});
+
 module.exports = router;

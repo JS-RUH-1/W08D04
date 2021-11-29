@@ -11,9 +11,11 @@ app.use(express.json());
 
 const authorRoute = require('./routes/Author')
 const bookRoute = require('./routes/Book')
+const userRoute = require('./routes/User')
 
 app.use('/author',authorRoute)
 app.use('/book',bookRoute)
+app.use('/user',userRoute)
 
 const db = require("./database")
 async function main() {
@@ -23,6 +25,8 @@ main().catch((err) => console.log(err));
 
 const Book = require("./models/bookAndAuthor").Book;
 const Author = require("./models/bookAndAuthor").Author;
+const User = require("./models/user").User;
+
 const seedAuthor = require("./author_seed");
 const seedBook = require("./book_seed");
 

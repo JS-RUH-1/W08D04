@@ -5,7 +5,17 @@ import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Book from "./components/Book";
 import Author from "./components/Author";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Switch,
+   Link 
+} from "react-router-dom";
+import Details from "./components/Details";
+import Navbar from "./components/Navbar";
+import Login from "./components/Login";
 
 function App() {
   const [resource, setResource] = useState("book");
@@ -13,17 +23,41 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <Navbar/>
         <header className="App-header ">
-          <Switch>
-            <Route exact path="/book">
+          <Routes>
+            {/* <Route exact path="/book">
               <Book />
-            </Route>
-            <Route exact path="/author">
+            </Route> */}
+            {/* <Route exact path="/author">
               <Author />
-            </Route>
-          </Switch>
+            </Route> */}
+
+            <Route
+                exact
+                path="/author"
+                element={<Author />}
+              ></Route>
+
+            <Route
+                exact
+                path="/book"
+                element={<Book />}
+              ></Route>
+            <Route
+                exact
+                path="/book/Details/:id"
+                element={<Details />}
+              ></Route>
+              <Route
+                exact
+                path="/login"
+                element={<Login />}
+              ></Route>
+          </Routes>
           <div>
-            <Link to="book">
+
+            {/* <Link to="book">
               <button id="resource" className="btn btn-dark">
                 Book
               </button>
@@ -33,7 +67,8 @@ function App() {
               <button id="resource" className="btn btn-dark">
                 Author
               </button>
-            </Link>
+            </Link> */}
+
           </div>
         </header>
       </div>

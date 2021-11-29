@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 
 const Book = () => {
   const [book, setBook] = useState([]);
@@ -85,7 +87,15 @@ const Book = () => {
                   alt="Card image cap"
                 />
                 <div className="card-body">
-                  <h5 className="card-title">{e?.title}</h5>
+                  <h5 className="card-title">
+                    
+                  <a>
+                                <Link to={`/book/Details/${e.title}`}>
+                                  {e.title}
+                                </Link>{" "}
+                              </a>
+                    {/* {e?.title} */}
+                    </h5>
                   <button
                     onClick={() => deleteItem(e?.title)}
                     className="btn btn-danger"

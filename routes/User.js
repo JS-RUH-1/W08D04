@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   User.find(
     { username: req.body.username, password: req.body.password },
     (err, Users) => {
-        Users.length ? res.send(Users) : res.send("User not found");
+        Users.length ? res.send(Users) : res.status(400).send("Cannot find user");
     //   res.send(Users);
     //   console.log("All Users", Users.length);
     }

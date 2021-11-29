@@ -1,4 +1,6 @@
-const express = require('express')
+const express = require('express');
+const { authenticateToken } = require('../base/jwt');
+const Author = require('../models/author');
 const book = require('../models/book')
 const router = express.Router()
 
@@ -13,19 +15,24 @@ router.get('/:id', async (req, res) => {
 });
 
 // add book
-router.post('/', async (req, res) => {
-  book.create(req.body).then(result =>
-    res.json(result)).catch(err => 
-      res.status(500).json(err)) // pass error to backend
+router.post('/',authenticateToken, async (req, res) => {
+  try {
+    let book = await book.create(req.body);
+    Author.updateOne({_id: req.user._id}, {$push: {books : book._id}});
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // edit book
-router.put('/:id', async (req, res) => {
+router.put('/:id',authenticateToken, async (req, res) => {
+  if(!req.user.books.includes(req.params.id)) return res.status(400).json({error:"Author not allowed to edit this book"})
   res.json((await book.updateOne({_id: req.params.id},{$set: req.body})));
 });
 
 // delete book
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',authenticateToken, async (req, res) => {
+  if(!req.user.books.includes(req.params.id)) return res.status(400).json({error:"Author not allowed to delete this book"})
   res.json((await book.deleteOne({_id: req.params.id})));
 });
 

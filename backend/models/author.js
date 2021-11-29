@@ -2,6 +2,8 @@ const { Schema, model } = require("mongoose");
 const Book = require('./book');
 
 module.exports = model('Author', new Schema({ 
+    email: String,
+    password: String,
     name: {
         type: String,
         required: [true, "Author name should be provided"]

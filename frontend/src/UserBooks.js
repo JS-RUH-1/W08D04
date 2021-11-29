@@ -27,7 +27,7 @@ function UserBooks(){
                         data.map((i, index) => {
                             return (
                                 <div key={index} className="col">
-                                    <div className="card h-100">
+                                    <div className="card h-100 shadow">
                                         <img src={i.image} alt={i.title} className="card-img-top mx-auto" style={{width: "200px"}}/>
                                         <div className="card-body">
                                             <div className="card-title">{i.title}</div>

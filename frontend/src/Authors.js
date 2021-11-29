@@ -17,7 +17,7 @@ function Authors(){
                     data.map((i, index) => {
                         return (
                             <div key={index} className="col">
-                                <div className="card h-100">
+                                <div className="card h-100 shadow">
                                     <img src={i.image} alt={i.name} className="card-img-top mx-auto" style={{height: "200px"}} />
                                     <div className="card-body">
                                         <h5 className="card-title mb-4">{i.name}</h5>

@@ -2,7 +2,8 @@ import axios from 'axios';
 
 function AddAuthor(){
     return(
-        <div className="container mt-5" style={{width: "50vw"}}>
+        <div className="container mt-4 py-3 rounded shadow" id="rc">
+            <h5 className="text-center mb-4">Add an author</h5>
             <form method="post" action="http://localhost:4000/addAuthor">
                 <label for="name" className="form-label">Name:</label>
                 <input type="text" name="name" className="form-control" required/>

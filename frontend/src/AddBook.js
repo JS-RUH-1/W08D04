@@ -2,7 +2,8 @@ import axios from 'axios';
 
 function AddBook(){
     return(
-        <div className="container mt-5" style={{width: "50vw"}}>
+        <div className="container mt-5 py-3 rounded shadow" id="rc">
+            <h5 className="text-center mb-4">Add a book</h5>
             <form method="post" action="http://localhost:4000/addBook">
                 <label for="title" className="form-label">Book title:</label>
                 <input type="text" name="title" className="form-control" required/>

@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 
-
+// Inserting initial data to database for one time only
 /*
 Books.insertMany(BookSeed, (err, res) => {
     if(err){ console.log(err)}

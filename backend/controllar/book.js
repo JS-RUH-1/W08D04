@@ -56,18 +56,20 @@ module.exports = {
       },
   ////////////////////////////////////////////////////////////////
     create:(req,res)=> {
-      let newBook = new Book({
-        title:req.body.title,
-        pages:req.body.pages,
-        price:req.body.price,
-        image:req.body.image
+      // let newBook = new Book({
+      //   title:req.body.title,
+      //   pages:req.body.pages,
+      //   price:req.body.price,
+      //   image:req.body.image
       
-      })
-      newBook.save((error)=>{
-        if(error)
-        res.json({error:error}) 
-        else
-        res.json({message:"Book inserted"})
-      })
-
-}}
+      // })
+      // newBook.save((error)=>{
+      //   if(error)
+      //   res.json({error:error}) 
+      //   else
+      //   res.json({message:"Book inserted"})
+      // })
+      Book.insertMany([req.body]);
+      ;
+}
+}

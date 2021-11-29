@@ -23,12 +23,12 @@ const Book = require("./models/book");
 
  // promise to ensure ... catch error  
  // global ==> access to use db in any file    
-mongoose.Promise = global.Promise
+mongoose.Promise = global.Promise;
 
 // connection DB (url , properties connection)
 mongoose.connect(
 'mongodb+srv://mahadb:maha1312@cluster0.ghbvs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-    )
+    );
     //insert from file
     // Book.insertMany(seedBook, (err, books) => {
     //       if (err){ console.log(err)}
@@ -118,7 +118,7 @@ mongoose.connect(
  
     app.use(express.json());
     //use => cookieParser(secretword)
-    app.use(cookieParser('mylibrary'))
+    app.use(cookieParser('mylibrary'));
 
     //app.use => expressSession( secret, خصاص السيشن ....)
     app.use(expressSession({

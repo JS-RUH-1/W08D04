@@ -18,7 +18,7 @@ export default function Navbar() {
     <div class="relative flex items-center justify-between">
       <div class="flex items-center">
         <a
-          href="/"
+          href=""
           aria-label="Company"
           title="Company"
           class="inline-flex items-center mr-8"
@@ -44,24 +44,24 @@ export default function Navbar() {
         </a>
         <ul class="flex items-center hidden space-x-8 lg:flex">
           <li>
-            <a
-              href="/"
+            <Link
+              to="/books"
               aria-label="Our product"
               title="Our product"
               class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-pink-700"
             >
               Books
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="/"
+            <Link
+              to="/authors"
               aria-label="Our product"
               title="Our product"
               class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-pink-700"
             >
               Authors
-            </a>
+            </Link>
           </li>
         
          

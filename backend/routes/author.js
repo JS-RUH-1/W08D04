@@ -2,8 +2,16 @@ const express =require("express")
 const router=express.Router()
 const Author = require('../Models/AuthorSchema')
 const AuthorSeed = require('../author_seed')
-
+const Book =require('../Models/BookSchema')
 router.use(express.json());
+
+router.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", 'http://localhost:3001');
+  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept');
+
+  next();
+});
 
 //  Author.insertMany(AuthorSeed, (err, authors) => {
 //         if (err){ console.log(err)}
@@ -18,6 +26,12 @@ router.use(express.json());
           // console.log(object)
           res.send(authors)
       })
+      // ___________________________________________________by id
+      router.get("/details/:id", async (req,res)=>{
+        console.log(req.params.id);
+        const author = await Author.findOne({_id: req.params.id})
+          res.send(author)
+      })
       // _____________________________________________________________
       router.post('/post' , async (req,res)=>{
         const auth = new Author({
@@ -26,14 +40,17 @@ router.use(express.json());
           nationality: req.body.nationality,
           image: req.body.image,
           gender: req.body.gender,
-          books: req.body.books
+          // books: req.body.books
         })
-        console.log(Author)
+        // const newBook = new Book ({title:req.body.titel,pages:req.body.pages,price:req.body.price , image: req.body.image})
+        // auth.books.push(newBook)        
+        console.log(auth)
         // Author.push(newAuthor);
         // res.send(Author)
         try {
           await auth.save()
-          res.status(201).send(Author)
+          const authors = await Author.find() 
+          res.status(201).send(authors)
         }
         catch(e){
           console.error(e)

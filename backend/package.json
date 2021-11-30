@@ -4,12 +4,16 @@
   "description": "* Create an express app for library what we made it yesterday.\r * Make a connection for mongoose and express app.\r * Make routes folder, and create 2 files:\r     1. author route.\r     2. book route.\r * endpoints:\r     * Write CRUD for authors and books.\r     * Write an endpoint that: show more details about specific author.",
   "main": "index.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^6.0.13"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",

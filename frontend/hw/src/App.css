@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color:rgb(7, 7, 7);
+  font-family: 'Fruktur', cursive;
 }
 
 .App-logo {
@@ -35,4 +37,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+.photo{
+  width:200px ;
+  height:200px;
+  border-radius: 20%;
+}
+.form1{
+  border: solid 3px;
+  border-radius: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 5%;
+  background-color: whitesmoke;
+}
+.maindiv{
+ border: solid 3px ;
+border-radius: 40px;
+margin-left: 20%;
+margin-right: 20%;
+background-color: rgb(187, 184, 184);
+/* display: flex;
+justify-content: space-around; */
+
 }

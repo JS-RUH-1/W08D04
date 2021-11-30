@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function Home({}) {
+export default function Home({user}) {
   const [active, setActive] = useState("books");
   const [books, setBooks] = useState([]);
   const [authors, setAuthors] = useState([]);
@@ -16,27 +16,22 @@ export default function Home({}) {
       setActive("authors")
     }
   }, []);
+  
+  if (typeof window !== "undefined") {
+    useEffect(() => {
+      if(window.location.hash === "#authors") {
+        setActive("authors")
+      } else {
+        setActive("books")
+      }
+    },[window.location.hash]);
+  }
+
   return (
     <div className="container">
-      <nav className="nav nav-tabs">
-        <a
-          onClick={() => setActive("books")}
-          className={`nav-link ${active === "books" ? "active" : ""}`}
-          href="#"
-        >
-          Books
-        </a>
-        <a
-          onClick={() => setActive("authors")}
-          className={`nav-link ${active === "authors" ? "active" : ""}`}
-          href="#authors"
-        >
-          Authors
-        </a>
-      </nav>
       {active === "books" ?
        <Link href="/books/add"><button className="btn btn-primary m-3">Add Book</button></Link>
-      :<Link href="/authors/add"><button className="btn btn-primary m-3">Add Author</button></Link>
+      :<></>
       }
       <div class="row row-cols-sm-2 row-cols-md-4">
         {active === "books" ? (
@@ -52,7 +47,8 @@ export default function Home({}) {
                   <Link href={`/books/${book._id}`}>
                     <button  className="m-1 btn btn-primary">View</button> 
                   </Link>
-                  <Link href={`/books/${book._id}/edit`}>
+                  {user?.books.some(b => b._id === book._id) ? <>
+                    <Link href={`/books/${book._id}/edit`}>
                   <a href="#" className="m-1 btn btn-warning">
                     Edit
                   </a>
@@ -62,6 +58,8 @@ export default function Home({}) {
                     Delete
                   </a>
                   </Link>
+                  </>
+                  : <></>}
                 </div>
               </div>
             ))}
@@ -79,16 +77,7 @@ export default function Home({}) {
                   <Link href={`/authors/${author._id}`}>
                     <button  className="m-1 btn btn-primary">View</button> 
                   </Link>
-                  <Link href={`/authors/${author._id}/edit`}>
-                  <a href="#" className="m-1 btn btn-warning">
-                    Edit
-                  </a>
-                  </Link>
-                  <Link href={`/authors/${author._id}/delete`}>
-                  <a href="#" className="m-1 btn btn-danger" >
-                    Delete
-                  </a>
-                  </Link>
+
                 </div>
               </div>
             ))}

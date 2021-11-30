@@ -6,7 +6,7 @@ const md5 = require('md5');
 
 // get all Authors
 router.get('/', async (req, res) => {
-  res.json((await Author.find({})));
+  res.json((await Author.find({},{password: 0})));
 });
 
 // get (me) Author
@@ -25,14 +25,14 @@ router.get('/:id', async (req, res) => {
 router.post('/login', async (req, res) => {
 
   if(!req.body.email || !req.body.password) 
-    return res.status(400).json({error:"Missing parameters"});
+    return res.status(400).json({message:"Missing parameters"});
 
   let user = await Author.findOne({email: req.body.email, password: md5(req.body.password)})
   if(user) {
     const generatedToken = await generateAccessToken(`${user._id}`);
     return res.json({token: generatedToken});
   }
-  return res.status(403).json({error: "Wrong Email or Password"});
+  return res.status(403).json({message: "Wrong Email or Password"});
 });
 
 // exchange register with token
@@ -48,8 +48,7 @@ router.post('/register', async function (req, res) {
         return res.json({token: generatedToken});
       } catch (err) {
         console.log("ERROR",err)
-        // error when it's duplicated email -- (email should be "unique index" in the monogdb)
-        return res.status(403).json({error: err.toString()})
+        return res.status(403).json({message: err.toString()})
       }
 
 })

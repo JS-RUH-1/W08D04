@@ -1,0 +1,79 @@
+.signForm{
+    border: solid rgb(3, 45, 70) ;
+    border-radius:8px;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 2ch;
+    background-color: aliceblue;
+
+}
+
+.signForm>label{
+     padding: 10%;
+     margin: 2ch;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(28, 28, 180);
+    font-weight: bold;
+
+}
+
+.signForm>input{
+    width: 90%;
+    padding: 1ch;
+     
+    margin: 1ch;
+    border-radius: 8px;
+     font-family:'Courier New', Courier, monospace;
+     font-weight: bold;
+     color: rgb(28, 189, 90);
+}
+.signForm>h3{
+    text-align: center;
+    font-weight: 900;
+    font-size:200%
+}
+.SUBMIT{
+    width: 25%;
+    color: rgb(235, 235, 187);
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 150%;
+    padding: 1ch;
+    border-radius: 8px;
+    background:rgb(219, 91, 91);
+     margin-left: 17ch;
+     margin-top: 5ch;
+     margin-bottom: 3ch;
+}
+
+/* Tablet */
+@media screen and ( min-width: 768px ) and ( max-width: 1023px ) {
+
+    .signForm{
+        width: 50%;
+        margin-left: 20ch;
+    }
+    .SUBMIT{
+        width: 30%;
+        margin-left: 12ch;
+    }
+
+
+}
+
+
+/* Phone */
+@media screen and ( max-width: 767px ) {
+
+    .signForm{
+        width: 60%;
+        margin-left: 9ch;
+    }
+    .SUBMIT{
+        width: 40%;
+        font-size: 100%;
+        margin-left: 12ch;
+    }
+
+
+}

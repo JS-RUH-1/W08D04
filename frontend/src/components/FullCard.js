@@ -34,6 +34,7 @@ useEffect(()=>{
         
         setNewBook(res.data)
     })
+    
     navigate('/components/Book');
         }
 

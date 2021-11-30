@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 
 export default function Book(data) {
 
-   console.log(data)
+//    console.log(data)
   
     //all book hear.
     const [book ,setBook] = useState([])

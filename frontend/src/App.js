@@ -5,6 +5,8 @@
 import Book from './components/Book'
 import Author from './components/Author'
 import FullCard from './components/FullCard'
+import Sign from './components/Sign'
+import Log from './components/Log'
 import { useEffect, useState } from "react";
 import axios from "axios"
 import AuthorFullCard from './components/AuthorFullCard'
@@ -38,7 +40,7 @@ function App() {
 
       axios.get('http://localhost:3030/authors')
       .then((res)=>{
-          console.log(res.data)
+          // console.log(res.data)
           setAuthor(res.data)
       })
 
@@ -51,15 +53,19 @@ function App() {
     <Router>
 
 <ul>
-<li><Link exact to ='components/Book'>Book</Link></li>
+  
+<li><Link  to ='components/Book'>Book</Link></li>
 <li><Link to='components/Author'>Author</Link></li>
 </ul>
 
 
 {/* ****************** */}
 <Routes>
-<Route exact path='components/Book' element={<Book/>}/>
-<Route exact path='components/Author' element={<Author/>}/>
+
+<Route exact path='/' element={<Sign/>}/>
+<Route path='Login' element={<Log/>}/>
+<Route path='components/Book' element={<Book/>}/>
+<Route path='components/Author' element={<Author/>}/>
 
 <Route path='/Book/:title' element={<FullCard data={book}/>}/>
 <Route path='/Author/:name' element={<AuthorFullCard data={author}/>}/>

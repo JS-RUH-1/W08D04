@@ -29,7 +29,7 @@ create:(req,res)=>{
       if(user)  {
           res.json({message :"User inserted successfully !"})
       }else{
-          res.json({error :error})
+          res.json({error :"Email is taken"})
           console.log(error);
       }
     })
@@ -38,23 +38,23 @@ create:(req,res)=>{
 
 authenticate:(req,res,next)=>{
     passport.authenticate('local',(error,user)=>{
+       
         if(user){
-            console.log(user._id);
              
-            let signedToken = jsonWeb.sign({
- 
+             
+            let signedToken = jsonWebToken.sign({
             data: user._id,
             exp : new Date().setDate(new Date().getDate()+1)
 
-            },'Lacorbi86');
+            },'Locorbi86');
 
             res.json({
+                 
                 success:true,
                 token:signedToken
             });
-        }
-          
-        else{
+            console.log(user);
+        }else{
             res.json({
                 success:false,
                 message:'Could not authenticate user'

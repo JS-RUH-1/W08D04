@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-export default function Book(){
+export default function Book({user}){
     const router = useRouter();
     const { book_id } = router.query
     const [details, setDetails] = useState(null);
@@ -36,7 +36,7 @@ export default function Book(){
             <h2>{details.title}</h2> 
             <h2>Pages: {details.pages}</h2>
             <h2>Price: {details.price}</h2>
-            {user?.books.some(b => b._id === book._id) ?
+            {user?.books.some(b => b._id === book_id) ?
             
         <>
         <Link href={`/books/${book_id}/edit`} passHref>
@@ -49,7 +49,7 @@ export default function Book(){
                     Delete
                   </a>
                   </Link>
-                  
+
         </>: <></>}
                 
             </div>

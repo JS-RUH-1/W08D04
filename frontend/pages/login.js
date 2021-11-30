@@ -13,8 +13,10 @@ export default function Login({user, setUser}) {
         axios.post("/authors/login", loginDetails).then(res => {
             axios.defaults.headers.common['Authorization'] = "Bearer "+res.data.token;
             localStorage.auth = res.data.token;
-            axios.get("/authors/me").then(res => setUser(res.data))
-            router.push("/")
+            axios.get("/authors/me").then(res => {
+                setUser(res.data);
+                router.push("/")
+            });
         }).catch((err) => {
             setError(err.response.data.message);
         });
@@ -26,7 +28,7 @@ export default function Login({user, setUser}) {
     
     <div style={{width: "100vh", marginLeft: "auto", marginRight: "auto"}}>
     
-    {error ? <div class="alert alert-success" role="alert">{error}
+    {error ? <div class="alert alert-danger" role="alert">{error}
     </div> : <></>}
 
 <div class="mb-3">

@@ -13,8 +13,10 @@ export default function Login({user, setUser}) {
         axios.post("/authors/register", loginDetails).then(res => {
             axios.defaults.headers.common['Authorization'] = "Bearer "+res.data.token;
             localStorage.auth = res.data.token;
-            axios.get("/authors/me").then(res => setUser(res.data))
-            router.push("/")
+            axios.get("/authors/me").then(res => {
+                setUser(res.data);
+                router.push("/")
+            });
         }).catch((err) => {
             setError(err.response.data.message);
         });

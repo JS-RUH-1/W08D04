@@ -22,7 +22,7 @@ export default function AddBook({user, setUser}){
             setUser({...user,books:[...user.books, res.data]}); // add book to user cache.
             setTimeout(() => {
               router.push(`/books/${res.data._id}`)
-            }, 1500);
+            }, 1000);
         }).catch(err => {
             setSavedAlert({class:"danger", message: err.response.data.message
         });

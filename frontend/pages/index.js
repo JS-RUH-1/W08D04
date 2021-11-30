@@ -6,7 +6,7 @@ export default function Home({user}) {
   const [active, setActive] = useState("books");
   const [books, setBooks] = useState([]);
   const [authors, setAuthors] = useState([]);
-
+  const [onlyMyBooks, setOnlyMyBooks] = useState(false)
   useEffect(() => {
     Promise.all([axios.get("books"), axios.get("authors")]).then((res) => {
       setBooks(res[0].data);
@@ -29,14 +29,22 @@ export default function Home({user}) {
 
   return (
     <div className="container">
-      {active === "books" ?
-       <Link href="/books/add"><button className="btn btn-primary m-3">Add Book</button></Link>
+      {active === "books" ? <>
+      <Link href="/books/add"><button className="btn btn-primary m-3">Add Book</button></Link>
+      
+        {user ? <div class="mb-3 form-check">
+          <input type="checkbox" id="check1" checked={onlyMyBooks} class="form-check-input" onChange={(e) => setOnlyMyBooks(!onlyMyBooks)}/>
+          <label class="form-check-label" for="check1">Show only my books</label>
+        </div>
+           : <></>}
+
+      </>
       :<></>
       }
       <div class="row row-cols-sm-2 row-cols-md-4">
         {active === "books" ? (
           <>
-            {books.map((book) => (
+            {books.filter((b) => onlyMyBooks ? user?.books.some(c => c._id === b._id) : b).map((book) => (
               <div key={book._id} className=" col card">
                 <img src={book.image} style={{width:"200px", height: "200px"}} className="card-img-top" />
                 <div className="card-body">

@@ -4,17 +4,17 @@ const BookSchema = require("../BookSchema");
 
 
 let router = express.Router();
-main().catch(err => console.log(err));
-async function main() {
-  await mongoose.connect('mongodb://localhost:27017/test');
-}
 const Book = mongoose.model('Book', BookSchema);
 
-
-
 router.get("/", (req, res) => {
-  Book.find({}, (err, books) => {
-    res.send(books)
+  Book.find({}, (err, book) => {
+    res.send(book)
+  }); 
+});
+
+router.get("/:authorId", (req, res) => {
+  Book.find({author_id: req.params.authorId}, (err, book) => {
+    res.send(book)
   }); 
 });
 
@@ -25,17 +25,18 @@ router.post("/", (req, res) => {
   res.send('saved!')
 });
 
-router.delete("/", (req, res) => {
-  Book.deleteMany({ title: req.body.title}, () => {
+router.delete("/:id", (req, res) => {
+  Book.deleteOne({ _id: req.params.id}, () => {
   console.log('deleted')
 }); 
   res.send('deleted!')
 });
 
-router.put("/", (req, res) => {
-  Book.findOneAndUpdate({ title: req.body.title },
+router.patch("/:id", (req, res) => {
+  Book.findOneAndUpdate({ _id: req.params.id },
   { 
     price: req.body.price, 
+    title: req.body.title, 
     pages: req.body.pages,
     image: req.body.image
 

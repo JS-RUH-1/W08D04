@@ -14,4 +14,8 @@ module.exports = new mongoose.Schema({
       type: Number,
       required: [true, 'Book pages should be provided']
     },
+    author_id: {
+      type: String,
+      required: [true, 'Author id should be provided']
+    },
   });

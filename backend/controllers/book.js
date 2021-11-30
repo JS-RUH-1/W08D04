@@ -53,10 +53,10 @@ module.exports = {
 
   create: (req, res) => {
     let book = new Book({
-      title: req.body.title,
-      pages: req.body.pages,
-      price: req.body.price,
-      image: req.body.image,
+      title: req.data.title,
+      pages: req.data.pages,
+      price: req.data.price,
+      image: req.data.image,
     });
     book.save((error) => {
       if (error) res.send({ erorr: erorr });

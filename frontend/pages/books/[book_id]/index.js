@@ -36,7 +36,10 @@ export default function Book(){
             <h2>{details.title}</h2> 
             <h2>Pages: {details.pages}</h2>
             <h2>Price: {details.price}</h2>
-                <Link href={`/books/${book_id}/edit`} passHref>
+            {user?.books.some(b => b._id === book._id) ?
+            
+        <>
+        <Link href={`/books/${book_id}/edit`} passHref>
                   <a href="#" className="m-1 btn btn-warning">
                     Edit
                   </a>
@@ -46,6 +49,9 @@ export default function Book(){
                     Delete
                   </a>
                   </Link>
+                  
+        </>: <></>}
+                
             </div>
         </div>
         

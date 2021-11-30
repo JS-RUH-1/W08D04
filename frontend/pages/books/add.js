@@ -3,16 +3,15 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-export default function AddBook(){
+export default function AddBook({user, setUser}){
     const router = useRouter();
     const { book_id } = router.query
     const [details, setDetails] = useState({
-        name: "",
-        gender: "",
-        age: "",
+        title: "",
         image: "",
-        nationality: ""
-    });
+        price: "",
+        pages: ""
+      });
     const [savedAlert, setSavedAlert] = useState(false);
 
     const saveChanges = (e) => {
@@ -20,6 +19,10 @@ export default function AddBook(){
 
         axios.post(`books`, details).then(res => {
             setSavedAlert({class:"success", message:"Changes has been saved successfuly."});
+            setUser({...user,books:[...user.books, res.data]}); // add book to user cache.
+            setTimeout(() => {
+              router.push(`/books/${res.data._id}`)
+            }, 1500);
         }).catch(err => {
             setSavedAlert({class:"danger", message: err.response.data.message
         });

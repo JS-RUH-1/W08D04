@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-export default function deleteBook(){
+export default function deleteBook({user}){
     const router = useRouter();
     const { book_id } = router.query
     const [details, setDetails] = useState(null);
@@ -27,7 +27,10 @@ export default function deleteBook(){
         <h1>Deleted.</h1>
         <Link href={`/`}><button className="btn btn-lg btn-primary m-1">Go back</button></Link>
 
-    </div>
+    </div>;
+
+    if(!user?.books.some(b => b._id === book_id)) return <h3> Not allowed to edit this book </h3>
+
     return <div className="container">
 
         <nav aria-label="breadcrumb">

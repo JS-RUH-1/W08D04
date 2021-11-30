@@ -30,12 +30,14 @@ export default function Home({user}) {
   return (
     <div className="container">
       {active === "books" ? <>
-      <Link href="/books/add"><button className="btn btn-primary m-3">Add Book</button></Link>
       
-        {user ? <div class="mb-3 form-check">
+        {user ? <>
+          <Link href="/books/add"><button className="btn btn-primary m-3">Add Book</button></Link>
+
+        <div class="mb-3 form-check">
           <input type="checkbox" id="check1" checked={onlyMyBooks} class="form-check-input" onChange={(e) => setOnlyMyBooks(!onlyMyBooks)}/>
           <label class="form-check-label" for="check1">Show only my books</label>
-        </div>
+        </div></>
            : <></>}
 
       </>

@@ -30,6 +30,10 @@ export default function AddBook({user, setUser}){
         })
     }
 
+    if(!user) return <div className="container">
+    You have to login..
+    </div>;
+
     if(!details) return <div></div>;
 
     return <div className="container">

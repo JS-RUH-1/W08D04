@@ -1,5 +1,7 @@
+
 const mongoose = new require('mongoose'),
-{Schema} = mongoose
+{Schema} = mongoose;
+const {isEmail} = require("validator");
 
 
 // passportLocalMongoose is a library in npm (تسهل عملية signup , sign in)  
@@ -29,7 +31,14 @@ const AuthorSchema = new Schema ({
         type: String,
         trim:true,
         unique: true,
-        required: [true, "Email should be provided"]
+        lowercase: true,
+        required: [true, "Email should be provided"],
+        validate:[isEmail,"is invalid"]
+    },
+    password:{
+        type: String,
+        minlength:[6,"pass more than 6"],
+        required:[true,"pass should be provided"]
     }
 })
 

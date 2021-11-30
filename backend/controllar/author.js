@@ -77,91 +77,91 @@ module.exports = {
 
   // }
   // --------------------------------
-  signup: (req, res) => {
-    let newAuthor = new Author({
-      name: req.body.name,
-      age: req.body.age,
-      nationality: req.body.nationality,
-      image: req.body.image,
-      email: req.body.email,
-    });
-    //2nd arrgument "password" =>   عشان ما يتخزن في الداتا بيس وينحسب له "سولد وهاش "
-    Author.register(newAuthor, req.body.password, (error, author) => {
-      if (author) {
-        res.json({ message: "Author Signed Up" });
-      } else {
-        res.json({ error: error });
-      }
-    });
-  },
+  // signup: (req, res) => {
+  //   let newAuthor = new Author({
+  //     name: req.body.name,
+  //     age: req.body.age,
+  //     nationality: req.body.nationality,
+  //     image: req.body.image,
+  //     email: req.body.email,
+  //   });
+  //   //2nd arrgument "password" =>   عشان ما يتخزن في الداتا بيس وينحسب له "سولد وهاش "
+  //   Author.register(newAuthor, req.body.password, (error, author) => {
+  //     if (author) {
+  //       res.json({ message: "Author Signed Up" });
+  //     } else {
+  //       res.json({ error: error });
+  //     }
+  //   });
+  // },
   //------------
   //create a token
   //for Login
-  authenticate: (req, res, next) => {
-    //function authenticate have 2 parameter :
-    //1st parameter => لتحديد انه العملية حتكون لوكال
-    //2nd param.. => if have error
-    //3rd param => keyword token يستخدمها لانشاء
-    passport.authenticate("local", (error, author) => {
-      console.log(" author ", author);
+  // authenticate: (req, res, next) => {
+  //   //function authenticate have 2 parameter :
+  //   //1st parameter => لتحديد انه العملية حتكون لوكال
+  //   //2nd param.. => if have error
+  //   //3rd param => keyword token يستخدمها لانشاء
+  //   passport.authenticate("local", (error, author) => {
+  //     console.log(" author ", author);
    
-      if (author) {
-        //signedToken => من خلالها نتأكد من هوية المستخدم
-        let signedToken = jwt.sign(
-          {
-            //object => includes Token data
-            data: author._id,
-            exp: new Date().setDate(new Date().getDate() + 1), // set expair date for this token " ينتهي بعد يوم من هذا التاريخ +1"
-          },
-          "Lacorbi86"
-        );
-        res.json({
-          success: true,
-          //set a token
-          token: signedToken,
-        });
-      } else {
-        //author في حال حصل ايرور او مالقي
-        res.json({
-          success: false,
-          message: "Could not authenticate author ",
-        });
-      }
-    })(req, res, next);
-  },
+  //     if (author) {
+  //       //signedToken => من خلالها نتأكد من هوية المستخدم
+  //       let signedToken = jwt.sign(
+  //         {
+  //           //object => includes Token data
+  //           data: author._id,
+  //           exp: new Date().setDate(new Date().getDate() + 1), // set expair date for this token " ينتهي بعد يوم من هذا التاريخ +1"
+  //         },
+  //         "Lacorbi86"
+  //       );
+  //       res.json({
+  //         success: true,
+  //         //set a token
+  //         token: signedToken,
+  //       });
+  //     } else {
+  //       //author في حال حصل ايرور او مالقي
+  //       res.json({
+  //         success: false,
+  //         message: "Could not authenticate author ",
+  //       });
+  //     }
+  //   })(req, res, next);
+  // },
 
   //-----------------------------
-  verifyJWT: (req,res, next)=> {
-    //reqنعرف التوكن ناخذه من البودي لل
-    let token = req.body.token
-    // نتحقق هل تم ارسال توكن ام لا 
-    if (token){
-      //params تاخذ 3  jwt من  verify  اذا موجود نتحقق منه عن طريق فنكشن 
-      //payload تمثل => authorid 
-      jwt.verify(token,'Lacorbi86',(error,payload)=>{
-        if(payload){
-          //then حيرجعه في author اذا لقي 
-          Author.findById(payload.data).then(author =>{
-            if(author){
-              //next اذا تحقق حينتقل للفنكشن اللي بعدها عن طريق
-              next()  
-            }
-            else{
-              res.json({ error: error });
-              }
-          })
-        }
-        else{
-          res.json({message:"No author account found",error:true})
-        }
+  // verifyJWT: (req,res, next)=> {
+  //   //reqنعرف التوكن ناخذه من البودي لل
+  //   let token = req.body.token
+  //   // نتحقق هل تم ارسال توكن ام لا 
+  //   if (token){
+  //     //params تاخذ 3  jwt من  verify  اذا موجود نتحقق منه عن طريق فنكشن 
+  //     //payload تمثل => authorid 
+  //     jwt.verify(token,'Lacorbi86',(error,payload)=>{
+  //       if(payload){
+  //         //then حيرجعه في author اذا لقي 
+  //         Author.findById(payload.data).then(author =>{
+  //           if(author){
+  //             //next اذا تحقق حينتقل للفنكشن اللي بعدها عن طريق
+  //             next()  
+  //           }
+  //           else{
+  //             res.json({ error: error });
+  //             }
+  //         })
+  //       }
+  //       else{
+  //         res.json({message:"No author account found",error:true})
+  //       }
 
-      })
-      next()
+  //     })
+  //     next()
     
-    }
+  //   }
     
 
-  }
+  // }
 
 
 };

@@ -4,7 +4,6 @@ const Book = require("../models/book");
 
 module.exports={
 
-
     //index is display all books
     index:(req,res)=>{
         Book.find({})

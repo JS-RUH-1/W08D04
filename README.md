@@ -2,7 +2,7 @@
 
 https://user-images.githubusercontent.com/75578380/144288712-faea4251-ecdd-4095-abee-5a83954e9a0f.mp4
 
-* NOTE: all CRUD operations are working, but in this video I only tried the update..
+* NOTE:  all CRUD operations are working, but in this video I only filmed the update feature..
 
 ## W08D04 CRUD Express App with Mongoose & React Native
 

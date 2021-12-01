@@ -3,11 +3,9 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, RefreshCon
 import * as SecureStore from 'expo-secure-store';
 
 export default function profileScreen({route, navigation}) {
-    const {id, name} = route.params;
+    const API_URL = 'http://192.168.100.16:3001';
 
-    // React.useEffect(()=>{
-    //     console.log(id)
-    // }, []);
+    const {id, name} = route.params;
 
     async function logOut() {
         await SecureStore.deleteItemAsync('token');
@@ -20,7 +18,7 @@ export default function profileScreen({route, navigation}) {
 
     const onRefresh = React.useCallback(() => {
       setRefreshing(true);
-      fetch(`http://localhost:3001/books/${id}`, {
+      fetch(`${API_URL}/books/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -44,7 +42,7 @@ export default function profileScreen({route, navigation}) {
     }, []);
 
       React.useEffect(()=>{
-        fetch(`http://localhost:3001/books/${id}`, {
+        fetch(`${API_URL}/books/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -68,7 +66,7 @@ export default function profileScreen({route, navigation}) {
 
 
       const deleteBook = (id) => {
-        fetch(`http://localhost:3001/books/${id}`, {
+        fetch(`${API_URL}/books/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

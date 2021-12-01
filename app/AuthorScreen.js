@@ -3,12 +3,13 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'rea
 
 export default function AuthorScreen({route}) {
     const {id, name} = route.params;
+    const API_URL = 'http://192.168.100.16:3001';
 
     const [books, setBooks] = React.useState([])
     const [refresh, setRefresh] = React.useState(0)
 
       React.useEffect(()=>{
-        fetch(`http://localhost:3001/books/${id}`, {
+        fetch(`${API_URL}/books/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

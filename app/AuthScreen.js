@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 
-const API_URL = Platform.OS === 'ios' ? 'http://localhost:3001/authors' : 'http://10.0.2.2:3001/authors';
+const API_URL = 'http://192.168.100.16:3001';
 
 const AuthScreen = ({navigation}) => {
 
@@ -25,7 +25,7 @@ const AuthScreen = ({navigation}) => {
       }
 
     const onLoggedIn = (token, id, name) => {
-        fetch(`http://localhost:3001/users/private`, {
+        fetch(`${API_URL}/users/private`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ const AuthScreen = ({navigation}) => {
             name,
             password,
         };
-        fetch(`${API_URL}/${isLogin ? 'login' : 'signup'}`, {
+        fetch(`${API_URL}/authors/${isLogin ? 'login' : 'signup'}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

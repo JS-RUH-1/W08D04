@@ -15,11 +15,7 @@ export default function Author() {
     const [newAuthor,setNewAuthor]= useState({});
 
 
-    // const [Name ,setName]=useState()
-    // const [Age ,setAge]=useState()
-    // const [Nationality ,setNationality]=useState()
-    // const [Image,setImage] =useState()
-    // const [Gender,setGender]=useState()
+     
 
     
 
@@ -43,7 +39,7 @@ export default function Author() {
  
  
 
-         <div className="authorBox">
+    <div className="authorBox">
 
      {author.map((get)=>{
 

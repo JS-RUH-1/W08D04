@@ -7,6 +7,8 @@ const Author = require("../models/author")
 module.exports = {
 
 //method index is bring all data 
+
+//SignUp and Login for author
     index:(req,res)=>{
         Author.find({})
         .then(authors=>{
@@ -27,7 +29,7 @@ module.exports = {
           image:req.body.image,
          gender:req.body.gender,
 
-        //   books:req.body.books
+        
 })
 
 Author.register(newAuthor, req.body.password,(error,user)=>{
@@ -39,28 +41,58 @@ Author.register(newAuthor, req.body.password,(error,user)=>{
     }
   })
 
-
-
- 
     },
 
-     
-             
+    ////////////////////////////////////////////////////////////////
+    
+    authenticate:(req,res,next)=>{
+        passport.authenticate('local',(error,user)=>{
+           
+            if(user){
+                 
+                 
+                let signedToken = jsonWebToken.sign({
+                data: user._id,
+                exp : new Date().setDate(new Date().getDate() +1)
+    
+                },'Locorbi86');
+    
+                res.json({
+                     
+                    success:true,
+                    token:signedToken
+                });
+    
+                console.log(user);
+             }
+           else{
+                res.json({
+                    success:false,
+                    message:'Could not authenticate user'
+                });
+                 
+            }
+        })(req,res,next);
+    },
        
     ////////////////////////////////////////////////////////////////
+    
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+ 
 //Show book by givin id 
 
-// show:(req,res)=>{
-//     let _id=req.params.uid
+show:(req,res)=>{
+    let _id=req.params.uid
 
-//     Author.findById(_id)
-//     .then(author=>{
-//         res.json({author})
-//     })
-//     .catch(error =>{
-//     res.json({error:error})
-//     })
-// },
+    Author.findById(_id)
+    .then(author=>{
+        res.json({author})
+    })
+    .catch(error =>{
+    res.json({error:error})
+    })
+},
 //////////////////////////
 
 // update:(req,res)=>{
@@ -88,36 +120,7 @@ Author.register(newAuthor, req.body.password,(error,user)=>{
  //delete a book
 
 
- authenticate:(req,res,next)=>{
-    passport.authenticate('local',(error,user)=>{
-       
-        if(user){
-             
-             
-            let signedToken = jsonWebToken.sign({
-            data: user._id,
-            exp : new Date().setDate(new Date().getDate()+1)
-
-            },'Locorbi86');
-
-            res.json({
-                 
-                success:true,
-                token:signedToken
-            });
-
-            console.log(user);
-         }
-       else{
-            res.json({
-                success:false,
-                message:'Could not authenticate user'
-            });
-             
-        }
-    })(req,res,next);
-
-
+ 
 
 //  delete:(req,res)=>{
 //     let _id=req.params.uid
@@ -129,5 +132,4 @@ Author.register(newAuthor, req.body.password,(error,user)=>{
 //         res.json({error:error})
 //     })
 // }
-}
 }

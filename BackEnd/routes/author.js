@@ -7,7 +7,7 @@ router.get("/",AuthorController.index)
 
 router.post("/create",AuthorController.create)
 router.post('/login',AuthorController.authenticate)
-// router.get("/:uid",AuthorController.show)
+router.get("/:uid",AuthorController.show)
 // router.put("/:uid/update",AuthorController.update)
 // router.delete("/:uid/delete",AuthorController.delete)
 

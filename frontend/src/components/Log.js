@@ -65,7 +65,7 @@ const handelLogin=(e)=>{
                         <br/>
 
 
-                        <button  className='SUBMIT' onClick={(e)=>handelLogin (e)}>Log In</button>
+                        <button  className='SUBMIT' onClick={(e)=>handelLogin(e)}>Log In</button>
                         <h4>I have account
                             <Link to={`/`}>Signin</Link>
 

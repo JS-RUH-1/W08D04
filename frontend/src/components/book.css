@@ -134,6 +134,24 @@ span{
 .fullInfo{
     margin-top: 4ch;
 }
+.bookInfo{
+    width: 90%;
+     margin: 4ch;
+    display: grid;
+    grid-template-columns: 1fr 1fr  1fr ;
+    row-gap: 8px;
+
+}
+.CardInfo{
+    border: solid rgb(137, 210, 223);
+    background-color: rgb(212, 240, 240);
+    border-radius: 16px;
+    border-width: 2px;
+    padding: 4ch;
+    margin: 5ch;
+    width: 70%;
+    text-align: center;
+}
    
 
 /* Tablet */
@@ -167,7 +185,18 @@ span{
         width: 100%;
       
     }
-
+    .bookInfo{
+        width: 60%;
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr  ;
+        row-gap: 8px;
+    
+    }
+    .CardInfo{
+          width: 60%;
+        
+    }
 }
 
 /* Phone */
@@ -209,6 +238,19 @@ span{
 }
 .fullInfo{
     padding-bottom: 10ch;
+}
+
+.bookInfo{
+    width: 60%;
+    
+   
+    grid-template-columns: 1fr;
+      
+
+}
+.CardInfo{
+      width: 90%;
+      margin-left: 4ch;
 }
 
 }

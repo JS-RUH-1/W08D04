@@ -98,11 +98,15 @@ export default function profileScreen({route, navigation}) {
             onRefresh={onRefresh}
           />
         <View style={styles.container}>
-            <Text style={styles.heading}>{name}</Text>
-            <TouchableOpacity style={styles.button} onPress={() => logOut()}>
-                <Text style={styles.buttonText}>Log out</Text>
+            <View style={styles.buttonsView}>
+                
+            <TouchableOpacity style={styles.buttonAlt} onPress={() => logOut()}>
+                <Text style={styles.buttonAltText}>log out</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('publishModel', { author_id: id})}>
+            <Text style={styles.heading}>{name}</Text>
+
+            </View>
+            <TouchableOpacity style={{...styles.button, width: '80%'}} onPress={() => navigation.navigate('publishModel', { author_id: id})}>
                 <Text style={styles.buttonText}>Publish</Text>
             </TouchableOpacity>
             {books? books.map((book, index)=>(
@@ -111,12 +115,14 @@ export default function profileScreen({route, navigation}) {
                         <Text style={styles.names} >{book.title}</Text>
                         <Text>Pages:{book.pages}</Text>
                         <Text>{book.price}$ </Text>
+                        <View style={styles.buttonsView}>
                         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('publishModel', { book_id: book._id})}>
                             <Text style={styles.buttonText}>Edit</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button} onPress={() => deleteBook(book._id)}>
                             <Text style={styles.buttonText}>Delete</Text>
                         </TouchableOpacity>
+                        </View>
                 </View>
                  )): <Text>Ooops! You have no published books!</Text>}
         </View>
@@ -160,18 +166,39 @@ const styles = StyleSheet.create({
         color: 'black',
         marginHorizontal: '8%'
     },
-    button: {
-        width: '80%',
+    buttonAlt: {
+        width: '10%',
         backgroundColor: 'black',
         height: 40,
         borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
         marginVertical: 10,
+        padding: 5
     },
-    buttonText: {
+    buttonAltText: {
         color: 'white',
-        fontSize: 16,
+        fontSize: 10,
         fontWeight: '400'
     },
+    button: {
+        width: '40%',
+        borderWidth: 1,
+        height: 40,
+        borderRadius: 50,
+        borderColor: 'black',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 10,
+        marginHorizontal: 5,
+    },
+    buttonText: {
+        color: 'black',
+        fontSize: 16,
+        fontWeight: '400',
+    },
+    buttonsView: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    }
   });

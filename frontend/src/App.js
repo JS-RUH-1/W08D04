@@ -54,8 +54,8 @@ function App() {
 
 <ul>
   
-<li><Link  to ='components/Book'>Book</Link></li>
-<li><Link to='components/Author'>Author</Link></li>
+<li><Link  to ='Book'>Book</Link></li>
+<li><Link to='Author'>Author</Link></li>
 </ul>
 
 
@@ -64,11 +64,11 @@ function App() {
 
 <Route exact path='/' element={<Sign/>}/>
 <Route path='Login' element={<Log/>}/>
-<Route path='components/Book' element={<Book/>}/>
-<Route path='components/Author' element={<Author/>}/>
+<Route path='Book' element={<Book/>}/>
+<Route path='Author' element={<Author/>}/>
 
-<Route path='/Book/:title' element={<FullCard data={book}/>}/>
-<Route path='/Author/:name' element={<AuthorFullCard data={author}/>}/>
+<Route path='/Book/:_id' element={<FullCard data={book}/>}/>
+<Route path='/Author/:_id' element={<AuthorFullCard data={author}/>}/>
  
 </Routes>
     </Router>

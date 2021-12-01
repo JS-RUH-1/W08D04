@@ -2,14 +2,14 @@
      import {Link} from 'react-router-dom'
      import {  useState } from "react";
      import { useNavigate } from "react-router-dom";
-
-
+     import jwt from "jwt-decode"
+     import axios from 'axios'
 
 
 
 
   export default  function Log () {
-      
+    const navigate=useNavigate()
     const [Email,setEmail]=useState()
     const [Password,setPassword]=useState()
 
@@ -18,8 +18,27 @@ const handelLogin=(e)=>{
 
     e.preventDefault()
 
+    axios.post('http://localhost:3030/authors/login' ,
+    { email:Email ,password:Password })
+    .then((res)=>{
+
+        console.log(res.data)
     
-}
+        if(res.data.success === true){
+            
+         const token = res.data.token;
+        const authorSign = jwt(token); // decode your token here
+        console.log(token)
+        console.log(authorSign)
+        localStorage.setItem("token", token);
+
+            alert('Welcom '+ " "+ Email)
+            navigate('/Author');
+        }
+        else{
+            alert('Your password or email is incorrect,try again')
+        }
+    })}
 
 
         return ( 
@@ -52,7 +71,8 @@ const handelLogin=(e)=>{
 
                         </h4>
              </form>
-        </>);
+        </>
+        );
     }
 
       

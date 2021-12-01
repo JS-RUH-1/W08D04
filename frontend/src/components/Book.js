@@ -3,7 +3,7 @@ import axios from 'axios'
 import './book.css'
 import swal from 'sweetalert';
 import {Link} from 'react-router-dom'
- 
+ import jwt_decode from 'jwt-decode' 
 
 export default function Book(data) {
 
@@ -18,6 +18,19 @@ export default function Book(data) {
     const [Pages,setPages]=useState()
     const [Price,setPrice]=useState()
         
+////////////////////////////////////
+let decodedData ;
+  const storedToken = localStorage.getItem("token");
+  if (storedToken){
+    decodedData = jwt_decode(storedToken, { payload: true });
+     console.log(decodedData);
+     let expirationDate = decodedData.exp;
+      var current_time = Date.now() / 1000;
+      if(expirationDate < current_time)
+      {
+          localStorage.removeItem("token");
+      }
+   }
 
 
 // ///////////////////////////////////
@@ -127,7 +140,7 @@ export default function Book(data) {
               <br></br>
 
               <img src={get.image} alt="" width={250} />
-             <Link to={`/Book/${get.title}`}>
+             <Link to={`/Book/${get._id}`}>
              see more </Link>
              <br></br>
 

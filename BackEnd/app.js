@@ -7,7 +7,7 @@ const router = require("./routes/index")
 
 app.use(cors())
 
-const User = require('./models/user')
+const Author = require('./models/author')
 const expressSession = require('express-session')
 const cookieParser = require('cookie-parser')
 const passport = require('passport')
@@ -22,9 +22,7 @@ mongoose.connect("mongodb://localhost:27017/blogs",{
 });
 
 
-// mongoose.set('useNewUrlParser',true)
-// mongoose.set('useFindAndModify',false)
-// mongoose.set('useCreateIndex',true)
+ 
 
 
 app.use(cookieParser('myblog'))
@@ -39,9 +37,9 @@ app.use(expressSession({
 app.use(passport.initialize())
 app.use(passport.session())
 
-passport.use(User.createStrategy())
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
+passport.use(Author.createStrategy())
+passport.serializeUser(Author.serializeUser())
+passport.deserializeUser(Author.deserializeUser())
 
 
 

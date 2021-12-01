@@ -2,24 +2,32 @@
   import {  useState } from "react";
   import { useNavigate } from "react-router-dom";
   import {Link} from 'react-router-dom'
- import './sign.css'
- import axios from 'axios'
- export default function Sign () {
+  import './sign.css'
+  import axios from 'axios'
+  export default function Sign () {
 
     const navigate=useNavigate()
-// const [user,setUser]=useState([])
 
-const [Name,setName]=useState()
-const [Age,setAge]=useState()
-const [Email,setEmail]=useState()
-const [Password,setPassword]=useState()
+    const [author,setAuthor]=useState([]);
+    const [newAuthor,setNewAuthor]= useState({});
+
+    const [Name,setName]=useState()
+    const [Age,setAge]=useState()
+    const [Nationality ,setNationality] =useState()
+    const [Image,setImage] = useState()
+    const [Gender ,setGender] = useState()
+    const [Email,setEmail]=useState()
+    const [Password,setPassword]=useState()
 
 ////////////////////////////////
 
     const handelSing=(e)=>{ 
+
     e.preventDefault()
-    axios.post('http://localhost:3030/users/create' ,
-    { name:Name , age:Age ,email:Email ,password:Password })
+
+    axios.post('http://localhost:3030/authors/create' ,
+    { name:Name , age:Age ,email:Email, nationality:Nationality ,image:Image, gender:Gender, password:Password })
+
 
     .then((res)=>{
 
@@ -30,7 +38,8 @@ const [Password,setPassword]=useState()
         alert('This email is already taken')
     }
     else{
-        navigate('/components/Book');
+        setNewAuthor(res.data)
+        navigate('/Author');
     }
      
     //  setUser(res.data)
@@ -65,6 +74,20 @@ const [Password,setPassword]=useState()
                         onChange={e=>setEmail(e.target.value)}/>
                         <br/>
 
+                        <input type="nationality" name="nationality"
+                        placeholder='What is your Nationality.'
+                        onChange={e=>setNationality(e.target.value)}/>
+                        <br/>
+
+                        <input type="text" name="image"
+                        placeholder='Can you give us your image.'
+                        onChange={e=>setImage(e.target.value)}/>
+                        <br/>
+                        
+                        <input type="text" name="gender"
+                        placeholder='Enter Your gender.'
+                        onChange={e=>setGender(e.target.value)}/>
+                        <br/>
                         {/* <label>Password :</label> */}
                         <input type="password" name="password"
                         placeholder='Enter Your Password.'

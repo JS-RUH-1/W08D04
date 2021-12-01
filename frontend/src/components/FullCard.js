@@ -8,14 +8,14 @@ import axios from "axios";
 
 export default function FullCard ({data}){
 
-    const {title} =useParams();
+    const {_id} =useParams();
     const [newBook ,setNewBook] = useState({})
     const navigate=useNavigate()
 
 
  
 useEffect(()=>{
-    console.log(title)
+    console.log(_id)
 })   
 
  //Delete
@@ -45,7 +45,7 @@ useEffect(()=>{
 
              <div className="children">
 
-             {data.filter(card => card.title === title)
+             {data.filter(card => card._id === _id)
               .map((card ,index)=>(
 
         <div key={index} className="fullCard">

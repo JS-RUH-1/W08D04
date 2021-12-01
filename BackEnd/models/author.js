@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
  const Schema= mongoose.Schema
+ const passportLocalMongoose = require('passport-local-mongoose')
 
 const bookSchema= require('./book').schema
 
@@ -9,6 +10,11 @@ const bookSchema= require('./book').schema
         name:{
             type:String,
             required:[true,"Author name should be provided"]
+        },
+        email:{
+            type: String,
+            required:[true,"Email should be provided"],
+            unique: true
         },
         age:{ 
             type:String,
@@ -28,9 +34,12 @@ const bookSchema= require('./book').schema
             type:String,
         },
 
-        books:[bookSchema]
+        // books:[bookSchema]
 
         })
 
+ AuthorSchema.plugin(passportLocalMongoose ,{
+  usernameField:'email'
+        })
 
 module.exports = mongoose.model("Author",AuthorSchema)

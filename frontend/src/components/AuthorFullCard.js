@@ -8,13 +8,13 @@ import axios from "axios";
 
 export default function AuthorFullCard({data}) {
 
-    const {name} =useParams();
+    const {_id} =useParams();
     const [newAuthor,setNewAuthor]= useState({});
     const navigate=useNavigate()
 
 
     useEffect(()=>{
-        console.log(name)
+        console.log(_id)
     })
 
     ////////////////////////////////////////////////////////////////
@@ -40,7 +40,7 @@ export default function AuthorFullCard({data}) {
       <section className='full'>
           <div className='children'>
 
-        {data.filter(card=>card.name ===name)
+        {data.filter(card=>card._id ===_id)
         .map((card,index)=>(
 
         <div key={index} className='fullCard'>

@@ -20,13 +20,14 @@ const handelLogin=(e)=>{
 
     axios.post('http://localhost:3030/authors/login' ,
     { email:Email ,password:Password })
+    
     .then((res)=>{
 
         console.log(res.data)
     
         if(res.data.success === true){
             
-         const token = res.data.token;
+        const token = res.data.token;
         const authorSign = jwt(token); // decode your token here
         console.log(token)
         console.log(authorSign)

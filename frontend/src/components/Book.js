@@ -34,34 +34,11 @@ export default function Book(data) {
  
 
   
-    //  const handelEdit=(id)=>{ 
-
-    //     swal({
-    //         title:`you edit a appointment in card ${id}`,
-    //         icon:'success'
-    //       })
-
-    //     axios.put(`http://localhost:3030/books/${id}/update`,
-    //     {image:Image, title:Title, pages:Pages, price:Price }
-    //     )
-    //     .then((res)=>{
-    //         console.log(res.data)
-    //         setNewBook(res.data)
-    //     })
-    //  }
-     ///////////////////////////////
+    
 
     return (  
         <>
      
-
-
-
- 
-
- 
-
-
         <div className="bookBox">
 
 {/* display all data from database */}
@@ -78,8 +55,7 @@ export default function Book(data) {
 
              
            <div className="BTN">
-          {/* <button className='btnEDIT' onClick={()=>handelEdit(get._id)}>Edite</button>  */}
-                </div>
+                 </div>
              
              </div>;
 

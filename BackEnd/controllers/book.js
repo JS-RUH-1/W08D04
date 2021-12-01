@@ -17,26 +17,7 @@ module.exports={
         })
     },
 ////////////////////////////////////////////////////////////////
-     //create new book 
-    //  create:(req,res)=>{
-
-    //     let newBook = new Book({
-
-    //         title:req.body.title,
-    //         pages:req.body.pages,
-    //         price:req.body.price,
-    //         image:req.body.image
-
-    //                 })
-
-    //        newBook.save((error)=>{
-    //            if(error) 
-    //         res.json({error:error})
-    //         else
-    //         res.json({message:"New Book inserted ."})
-    //        })         
-
-    // },
+     
      ////////////////////////////////////////////////////////////////
     //Show book by givein id
     // show:(req,res)=>{
@@ -96,23 +77,16 @@ module.exports={
             }
 
             console.log(author)
-             await author.books.edit(editBook);
+            await author.books.pull({_id: Bid});
+             await author.books.push(editBook);
              await author.save()
             res.status(200).send(author)
 
             console.log(author)
-            // try{
-            //     await author.save()
-            //     res.status(201).send(author)
-            // }
-            // catch(e){
-            //     console.log(e)
-            // }
+            
      },
+
     //delete a book
-
-
-
     delete:async (req, res)=>{
 
     const Bid =req.params.Bid;

@@ -62,8 +62,25 @@ export default function AuthorFullCard({data}) {
           
         setAuthor(res.data)
       })
-      // navigate('/components/Author');
+       
           }
+          ////Update////////////////////////////////////////////////////////////
+
+          const handelEdit=(id)=>{ 
+            swal({
+              title:'Author is edited ',
+              icon:'success'
+            })
+                  console.log(id)
+    axios.put(`http://localhost:3030/books/book/${_id}/${id} `, 
+    {image:Image, title:Title, pages:Pages, price:Price }  )
+    .then((res)=>{
+                      
+ setAuthor(res.data)
+                  })
+
+          }
+///////////////
 
 
    //add new info about  book
@@ -192,7 +209,7 @@ if(loading){
     {  
     return( <> 
             <button className='btnDE' onClick={()=>handelDelete(item._id)}>Delete</button>
-            <button className='btnEDIT' onClick={()=>handelEdit(get._id)}>Edite</button>  
+            <button className='btnEDIT' onClick={()=>handelEdit(item._id)}>Edite</button>  
             </>
             ) 
                     }

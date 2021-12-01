@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, View, Text, StyleSheet, TouchableOpacity, TextInput, Platform } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
 
 const API_URL = Platform.OS === 'ios' ? 'http://localhost:3001/authors' : 'http://10.0.2.2:3001/authors';
 
@@ -13,12 +14,15 @@ const AuthScreen = ({navigation}) => {
     const [isError, setIsError] = useState(false);
     const [message, setMessage] = useState('');
     const [isLogin, setIsLogin] = useState(true);
-    const [token, setToken] = useState('');
 
     const onChangeHandler = () => {
         setIsLogin(!isLogin);
         setMessage('');
     };
+
+    async function save(key, value) {
+        await SecureStore.setItemAsync(key, value);
+      }
 
     const onLoggedIn = (token, id, name) => {
         fetch(`http://localhost:3001/users/private`, {
@@ -34,7 +38,7 @@ const AuthScreen = ({navigation}) => {
                 console.log(jsonRes);
                 if (res.status === 200) {
                     // setMessage(jsonRes.message);
-                    navigation.navigate('profileScreen', { id: id, name: name})
+                    navigation.replace('profileScreen', { id: id, name: name})
                 }
             } catch (err) {
                 console.log(err);
@@ -66,8 +70,10 @@ const AuthScreen = ({navigation}) => {
                     setMessage(jsonRes.message);
                 } else {
                     onLoggedIn(jsonRes.token, jsonRes.id, jsonRes.name );
+                    save('token', jsonRes.token)
+                    save('id', jsonRes.id)
+                    save('name', jsonRes.name)
                     setIsError(false);
-                    setToken(jsonRes.token)
                     setMessage(jsonRes.message);
                 }
             } catch (err) {

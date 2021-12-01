@@ -20,7 +20,7 @@ export default function AuthorScreen({route}) {
                 const jsonRes = await res.json();
                 if (res.status === 200) {
                     setBooks(jsonRes)
-                    console.log(jsonRes)
+                    // console.log(jsonRes)
                 }
             } catch (err) {
                 console.log(err);

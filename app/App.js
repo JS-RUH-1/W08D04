@@ -7,6 +7,7 @@ import AuthorScreen from './AuthorScreen';
 import BooksScreen from './booksScreen';
 import profileScreen from './profileScreen';
 import publishModel from './publishModel';
+import * as SecureStore from 'expo-secure-store';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -16,11 +17,42 @@ const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function Home() {
+  const [token, setToken] = React.useState();
+  const [id, setID] = React.useState();
+  const [name, setName] = React.useState();
+
+  async function getValueFor(key) {
+    let result = await SecureStore.getItemAsync(key);
+    if (key == 'token') {
+      setToken(result);
+    }else if (key == 'id'){
+      setID(result)
+    }else{
+      setName(result)
+    }
+  }
+
+  React.useEffect(()=>{
+    getValueFor('id')
+    getValueFor('name')
+    getValueFor('token')
+  }, []);
+
   return (
       <Stack.Navigator initialRouteName="DetailsScreen"   barStyle={{ backgroundColor: '#000' }}>
         <Stack.Group>
+          {!token? 
+          <>
           <Stack.Screen name="AuthScreen" component={AuthScreen} options={{headerShown: false, title: 'Login' }}/> 
-          <Stack.Screen name="profileScreen" component={profileScreen} options={{headerShown: false, title: 'profile' }}/>
+          <Stack.Screen name="profileScreen" component={profileScreen}  initialParams={{id:id, name: name}} options={{headerShown: false, title: 'profile' }}/>
+          </>
+          :  
+          <>
+          <Stack.Screen name="profileScreen" component={profileScreen}  initialParams={{id:id, name: name}} options={{headerShown: false, title: 'profile' }}/>
+          <Stack.Screen name="AuthScreen" component={AuthScreen} options={{headerShown: false, title: 'Login' }}/> 
+          </>
+          }
+          
        </Stack.Group>
        <Stack.Group screenOptions={{ presentation: 'modal' }}>
           <Stack.Screen name="publishModel" component={publishModel} options={{ title: 'Publish' }}/> 

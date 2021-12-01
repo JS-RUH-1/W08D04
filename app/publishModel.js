@@ -18,7 +18,7 @@ export default function publishModel({route, navigation}) {
         .then(async res => { 
             try {
                 if (res.status === 200) {
-                    console.log(res)
+                    // console.log(res)
                     navigation.goBack()
                 }
             } catch (err) {
@@ -42,7 +42,7 @@ export default function publishModel({route, navigation}) {
         .then(async res => { 
             try {
                 if (res.status === 200) {
-                    console.log(res)
+                    // console.log(res)
                     navigation.goBack()
                     // setRefresh(refresh+1)
                 }

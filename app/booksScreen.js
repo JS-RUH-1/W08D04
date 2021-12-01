@@ -1,7 +1,36 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, RefreshControl } from 'react-native';
 
 export default function BooksScreen({navigation}) {
+
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        fetch(`http://localhost:3001/books`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${token}`, 
+            },
+        })
+        .then(async res => { 
+            try {
+                const jsonRes = await res.json();
+                if (res.status === 200) {
+                    setBooks(jsonRes);
+                    setRefreshing(false)
+                }
+            } catch (err) {
+                console.log(err);
+            };
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+    }, []);
+  
 
     const [books, setBooks] = React.useState([])
 
@@ -31,6 +60,11 @@ export default function BooksScreen({navigation}) {
       
     return (
         <ScrollView style={{ flex: 1 }}>
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        
             <View style={styles.container}>
             <Text style={styles.heading}>Books:</Text>
             <View style={{alignItems: 'center' }}>

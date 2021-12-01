@@ -54,7 +54,7 @@ router.patch("/:id", (req, res) => {
 ////////////////
 
 
-router.post('/login', (req, res, next) => {
+router.post('/login', (req, res) => {
   Author.findOne({email: req.body.email}, (err, dbUser) => {
       if (!dbUser) {
           return res.status(404).json({message: "user not found"});
@@ -75,7 +75,7 @@ router.post('/login', (req, res, next) => {
 }
 );
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', (req, res) => {
   // checks if email already exists
   Author.findOne({email: req.body.email}, (err, dbUser)=>{
       if (dbUser) {
@@ -106,7 +106,7 @@ router.post('/signup', (req, res, next) => {
   })
 });
 
-router.get('/private', (req, res, next) => {
+router.get('/private', (req, res) => {
   const authHeader = req.get("Authorization");
   if (!authHeader) {
       return res.status(401).json({ message: 'not authenticated' });

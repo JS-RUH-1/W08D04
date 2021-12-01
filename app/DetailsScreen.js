@@ -1,9 +1,35 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
 
 export default function DetailsScreen({navigation}) {
 
     const [authors, setAuthors] = React.useState([])
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        fetch(`http://localhost:3001/authors`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${token}`, 
+            },
+        })
+        .then(async res => { 
+            try {
+                const jsonRes = await res.json();
+                if (res.status === 200) {
+                    setAuthors(jsonRes);
+                    setRefreshing(false)
+                }
+            } catch (err) {
+                console.log(err);
+            };
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }, []);
 
       React.useEffect(()=>{
         fetch(`http://localhost:3001/authors`, {
@@ -29,13 +55,16 @@ export default function DetailsScreen({navigation}) {
       }, [])  
 
       const viewDetails = (id, name) => {
-        console.log(id);
         navigation.navigate('AuthorScreen', { id: id, name: name })
       }
 
       
     return (
         <ScrollView style={{ flex: 1 }}>
+                      <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
             <View style={styles.container}>
             <Text style={styles.heading}>Authors:</Text>
             <View style={{alignItems: 'center' }}>

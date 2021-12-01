@@ -1,11 +1,47 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
 
 export default function profileScreen({route, navigation}) {
     const {id, name} = route.params;
 
+    // React.useEffect(()=>{
+    //     console.log(id)
+    // }, []);
+
+    async function logOut() {
+        await SecureStore.deleteItemAsync('token');
+        navigation.replace('AuthScreen')
+
+      }
+
     const [books, setBooks] = React.useState([])
-    const [refresh, setRefresh] = React.useState(0)
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    const onRefresh = React.useCallback(() => {
+      setRefreshing(true);
+      fetch(`http://localhost:3001/books/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${token}`, 
+        },
+    })
+    .then(async res => { 
+        try {
+            const jsonRes = await res.json();
+            if (res.status === 200) {
+                setBooks(jsonRes)
+                setRefreshing(false)
+            }
+        } catch (err) {
+            console.log(err);
+        };
+    })
+    .catch(err => {
+        console.log(err);
+    });
+    }, []);
 
       React.useEffect(()=>{
         fetch(`http://localhost:3001/books/${id}`, {
@@ -28,7 +64,7 @@ export default function profileScreen({route, navigation}) {
         .catch(err => {
             console.log(err);
         });
-      }, [refresh])  
+      }, [])  
 
 
       const deleteBook = (id) => {
@@ -42,8 +78,7 @@ export default function profileScreen({route, navigation}) {
         .then(async res => { 
             try {
                 if (res.status === 200) {
-                    console.log(res)
-                    setRefresh(refresh+1)
+                    // console.log(res)
                 }
             } catch (err) {
                 console.log(err);
@@ -58,8 +93,15 @@ export default function profileScreen({route, navigation}) {
 
     return (
         <ScrollView>
+        <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
         <View style={styles.container}>
             <Text style={styles.heading}>{name}</Text>
+            <TouchableOpacity style={styles.button} onPress={() => logOut()}>
+                <Text style={styles.buttonText}>Log out</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('publishModel', { author_id: id})}>
                 <Text style={styles.buttonText}>Publish</Text>
             </TouchableOpacity>

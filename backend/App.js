@@ -1,15 +1,8 @@
 
 const express = require('express')
-const mongoose = require('mongoose'),
-app = express();
-
-//express session authors , is middleware (to get , res the current info) => signUp , sign in
-const expressSession = require('express-session')
-
-// cookie parser is middleware (تدير السيشن ومتابعة اليوزر)
-const cookieParser = require('cookie-parser')
-
-//passport=>  authentecation تسهل عملية 
+const cors = require('cors')
+const mongoose = require('mongoose');
+const app = express();
 const passport = require('passport')
 
 const router = require ('./routes/index')
@@ -20,15 +13,21 @@ const seedAuthor = require("./author_seed");
 const Author = require("./models/author");
 const Book = require("./models/book");
 
-
+app.use(express.json());
+app.use(cors());
+app.use('/',router);
  // promise to ensure ... catch error  
  // global ==> access to use db in any file    
 mongoose.Promise = global.Promise;
 
-// connection DB (url , properties connection)
+ // connection DB (url , properties connection)
 mongoose.connect(
 'mongodb+srv://mahadb:maha1312@cluster0.ghbvs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-    );
+     );
+
+
+
+
     //insert from file
     // Book.insertMany(seedBook, (err, books) => {
     //       if (err){ console.log(err)}
@@ -62,13 +61,12 @@ mongoose.connect(
         //     //in "male" = array of object 
         //     console.log("male",authors);
         // })
-       
+
         // // Find all authors that age grater than 44
         // Author.find({age:{$gt: 44}},(err, authors) => {
         //     console.log("Authors that age grater than 44", authors);
         //   })
-         
-        // // Find all authors in Kuwait country
+         // // Find all authors in Kuwait country
         // Author.find({nationality:"Kuwit"}, (err, authors) => {
         //     console.log("Kuwait", authors);
         // })
@@ -114,36 +112,7 @@ mongoose.connect(
               // });  
             ////////////////////////////////
 
-// app.use to using the router
- 
-    app.use(express.json());
-    //use => cookieParser(secretword)
-    app.use(cookieParser('mylibrary'));
 
-    //app.use => expressSession( secret, خصاص السيشن ....)
-    app.use(expressSession({
-        secret:'mylibrary',
-        saveUninitialized: true,   //تحفظ بيانات السيشن في الداتابيس المخصصة لها
-        resave: true, //تعيد حفظ بيانات السيشن بعد الوقت المحدد للسيشن
-        cookie:{maxAge:6000} // maxAge 6 sec  الوقت اللي تنحفظ فيه السيشن
-    }))
-    ////////////////////////////////
-    // اعدادات الباسبورت 
-    //passport.initialize //تعطي قيم افتراضية لللسيشن
-    app.use(passport.initialize())
-    //passport.session => تعني انه الباسبورت يستخدم السيشن
-    app.use(passport.session())
-    ////////////////////////////////
-
-    //User.createStrategy => (user sign in sign up) نعرف لليوزر ستراتيجي ، وهي الطريقة اللي نستخدمها للتعامل مع 
-    passport.use(Author.createStrategy())
-    // serializeUser تحفظ بيانات اليوزر في السيشن
-    passport.serializeUser(Author.serializeUser())
-    // deserialize تحذف بياانات اليوزر بعد انتهاء السيشن
-    passport.deserializeUser(Author.deserializeUser())
-
-    app.use('/',router);
-    
-    app.listen(3000, ()=>{
+    app.listen(8080, ()=>{
     console.log("express has started")
 })

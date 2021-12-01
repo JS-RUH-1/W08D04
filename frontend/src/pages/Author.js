@@ -1,12 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 
 function Author() {
+  const navigate = useNavigate();
   const [authors, setAuthors] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/authors").then((res) => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      console.log("there is token");
+    } else{
+       navigate("/not");}
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/authors").then((res) => {
       console.log(res.data);
       setAuthors(res.data);
     });

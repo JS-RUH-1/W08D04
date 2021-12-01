@@ -9,8 +9,8 @@ router.use(express.json());
 //call functions from  BookController by use router obj.
 router.get('/',BookController.index)
 router.get('/:bookid', BookController.show)
-router.put('/:bookid/update', BookController.update)
-router.delete('/:bookid/delete', BookController.delete)
+router.put('/update/:bookid', BookController.update)
+router.delete('/delete/:bookid', BookController.delete)
 router.post('/create',BookController.create)
 
 //exports to use this router in app

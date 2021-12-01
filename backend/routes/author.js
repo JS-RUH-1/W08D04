@@ -1,69 +1,56 @@
 // router to direction all requests 
 const express = require('express')
+const jwt = require('jsonwebtoken');
 const router = express.Router(),
 AuthorController = require('../controllar/author')
 const Author = require("../models/author");
 const md5 = require('md5');
-const { generateAccessToken, authenticateToken } = require('../jwt');
 
 router.use(express.json());
 
 
 
 //call functions from  AuthorController by use router obj.
-router.put('/:authid/update', AuthorController.update)
-router.delete('/:authid/delete', AuthorController.delete)
+router.put('/update/:authid', AuthorController.update)
+router.delete('/delete/:authid', AuthorController.delete)
 
-
-//--------------------------------
-// get all authors
-router.get('/', authenticateToken, async (req, res) => {
-res.json((await Author,find({},{password : 0})))
+///////get all authors//////
+router.get("/", (req, res) => {
+  Author.find().then((data) => {
+    res.json(data);
+  });
 });
-//--------------------------------
-// get one author
-router.get('/:authid', async (req, res) => {
-    res.json((await Author,findOne({_id:req.params.authid},{password : 0})))
+
+//////////author id//////////
+router.get("/:id", (req, res) => {
+  Author.findById(req.params.id).then((data) => {
+    res.json(data);
+  });
+});
+///////////////////register/////////////////////
+router.post("/register", async (req, res) => {
+  const {name, nationality,image,email,password} = req.body;
+  const passwordHash = md5(password);
+
+  Author.insertMany([{ name: name,nationality:nationality, email: email,image:image, password: passwordHash }])
+    .then(() => {
+      res.send("The Author is a register");
+    })
+    .catch((err) => {
+      console.log(err);
     });
-
-  //--------------------------------
-  // exchange username & password with token //login
-router.post('/login', async (req, res) => {
-
-    if(!req.body.email || !req.body.password) 
-    return res.status(400).json({error:"Missing parameters"});
-
-    let author = await Author.findOne({email: req.body.email, password: md5(req.body.password)})
-    if(author) {
-    const generatedToken = await generateAccessToken(`${author._id}`);
-    return res.json({token: generatedToken});
-    }
-    return res.status(403).json({error: "Wrong Email or Password"});
-})
-  //--------------------------------
-  // Signup
-router.post('/register', async function (req, res) {
-
-        try {
-        const Newauthor = await Author.create({
-            name: req.body.name,
-            nationality:req.body.nationality,
-            image:req.body.image,
-            email: req.body.email,
-            password: md5(req.body.password)
-
-        })
-    
-        const generatedToken = await generateAccessToken(`${Newauthor._id}`)
-        return res.json({token: generatedToken});
-        } catch (err) {
-            console.log("error",err)
-        return res.status(403).json({message: err.toString()});
-        }
-
 });
 
-
+//////////Login /////////////
+router.post("/login", async (req, res) => {
+  let author = await Author.findOne({email: req.body.email, password: md5(req.body.password)})
+  console.log(author);
+  if (author == null) res.send("Invalid Email or Password");
+  if (author) {
+    let authorjwt = jwt.sign(JSON.parse(JSON.stringify(author)), "THIS-IS-JUST-A-SECRET-HOMEWORK-MAHA");
+    res.json(authorjwt);
+  } else res.send("invalid email/password");
+});
 
 //exports to use this router in app
 module.exports = router

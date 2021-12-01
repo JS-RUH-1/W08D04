@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import axios from "axios";
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
 
 function AddBooktoAuthor() {
@@ -12,8 +12,16 @@ function AddBooktoAuthor() {
         price:0,
         pages:0
     });
+    useEffect(() => {
+      let token = localStorage.getItem("token");
+      if (token) {
+        console.log("there is token");
+      } else navigate("/not");
+    }, []);
+
+
     function handleAddNewBook() {
-        axios.post("http://localhost:3000/books/create", newBookInfo)
+        axios.post("http://localhost:8080/books/create", newBookInfo)
           .then((res) => {
             setBooks(res.data);
             setNewBookInfo({
@@ -31,7 +39,7 @@ function AddBooktoAuthor() {
             timer: 1500,
             timerProgressBar: true,
             didClose: () => {
-            // navigate("/books");
+             navigate("/books");
             }})
           
      
@@ -73,10 +81,7 @@ function AddBooktoAuthor() {
                 <span className="relative">Add Book</span>
               </span>
             </h2>
-            {/* <p className=" text-darkblue">
-              We’re excited to talk to you! Fill out the form below and we’ll be
-              in touch.
-            </p> */}
+          
           </div>
           <form
             onSubmit={(e) => {

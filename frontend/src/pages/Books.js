@@ -1,18 +1,42 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import AddBook from "../components/AddBook"
 
 
 function Books() {
   const [books, setBooks] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
-    axios.get("http://localhost:3000/books").then((res) => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      console.log("there is token");}
+      else navigate("/not");
+  }, []);
+
+
+
+  function deleteBook(id) {
+    axios
+      .delete(`http://localhost:8080/books/delete/${id}`)
+      .then((res) => {
+        setBooks(res.data);
+      })
+      .catch((err) => {
+        if (err) console.log(err);
+      });
+  }
+  ////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    axios.get("http://localhost:8080/books").then((res) => {
       console.log(res.data);
       setBooks(res.data);
     });
-  }, []);  return (
+  }, []);  
+  
+  return (
     
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -67,15 +91,18 @@ function Books() {
               <p className="mb-5 text-gray-700">
                 Pages: {book.pages} | Price:{book.price} SAR
               </p>
-              <button
-                type="submit"
+              <Link
+                to={"/update/" + book._id}
                 className="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-pink-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
               >
                 Edit
-              </button>
+              </Link>
               <button
                 type="submit"
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-pink-700 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                onClick ={() =>{
+                  deleteBook(book._id)
+                }}
               >
                 Delete
               </button>

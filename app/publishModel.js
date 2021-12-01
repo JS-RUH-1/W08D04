@@ -63,8 +63,8 @@ export default function publishModel({route, navigation}) {
                 <View style={styles.form}>
                     <View style={styles.inputs}>
                         <TextInput style={styles.input} placeholder="Title" onChangeText={(text) => {setBook({...book, title: text})}}></TextInput>
-                        <TextInput style={styles.input} placeholder="Price" onChangeText={(text) => {setBook({...book, price: parseInt(text)})}}></TextInput>
-                        <TextInput style={styles.input} placeholder="Pages" onChangeText={(text) => {setBook({...book, pages: parseInt(text) })}}></TextInput>
+                        <TextInput style={styles.input} placeholder="Price" keyboardType="numeric" onChangeText={(text) => {setBook({...book, price: parseInt(text)})}}></TextInput>
+                        <TextInput style={styles.input} placeholder="Pages" keyboardType="numeric" onChangeText={(text) => {setBook({...book, pages: parseInt(text) })}}></TextInput>
                         <TextInput style={styles.input} placeholder="Image URL" onChangeText={(text) => {setBook({...book, image: text})}}></TextInput>
                         <TouchableOpacity style={styles.button} onPress={()=> book_id ? updateBook(): publish() }>
                             <Text style={styles.buttonText}>{book_id ? 'Edit':'Publish'}</Text>

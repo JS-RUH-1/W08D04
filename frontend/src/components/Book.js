@@ -10,8 +10,8 @@ export default function Book(data) {
 //    console.log(data)
   
     //all book hear.
-    const [book ,setBook] = useState([])
-    const [newBook ,setNewBook] = useState({})
+    // const [book ,setBook] = useState([])
+    // const [newBook ,setNewBook] = useState({})
 
     
         
@@ -22,13 +22,13 @@ export default function Book(data) {
 
 // ///////////////////////////////////
 //display all data from database
-    useEffect(()=>{ 
+    // useEffect(()=>{ 
     
-    axios.get('http://localhost:3030/books')
-    .then((res)=>{
-        setBook(res.data)
-    })
-    },[newBook])
+    // axios.get('http://localhost:3030/books')
+    // .then((res)=>{
+    //     setBook(res.data)
+    // })
+    // },[newBook])
 
     // //////////////////////////////////
  
@@ -36,35 +36,35 @@ export default function Book(data) {
   
     
 
-    return (  
-        <>
+//     return (  
+//         <>
      
-        <div className="bookBox">
+//         <div className="bookBox">
 
-{/* display all data from database */}
-        {
-        book.map((get) => {
-             return <div className="bookCard">
+// {/* display all data from database */}
+//         {
+//         book.map((get) => {
+//              return <div className="bookCard">
 
-              <br></br>
+//               <br></br>
 
-              <img src={get.image} alt="" width={250} />
-             <Link to={`/Book/${get._id}`}>
-             see more </Link>
-             <br></br>
+//               <img src={get.image} alt="" width={250} />
+//              <Link to={`/Book/${get._id}`}>
+//              see more </Link>
+//              <br></br>
 
              
-           <div className="BTN">
-                 </div>
+//            <div className="BTN">
+//                  </div>
              
-             </div>;
+//              </div>;
 
               
-})}
+// })}
 
-        </div>
-        </>
-    );
+//         </div>
+//         </>
+
 }
 
    

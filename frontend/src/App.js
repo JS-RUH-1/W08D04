@@ -54,8 +54,9 @@ function App() {
 
 <ul>
   
-<li><Link  to ='Book'>Book</Link></li>
+{/* <li><Link  to ='Book'>Book</Link></li> */}
 <li><Link to='Author'>Author</Link></li>
+ 
 </ul>
 
 

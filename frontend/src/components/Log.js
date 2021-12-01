@@ -33,7 +33,7 @@ const handelLogin=(e)=>{
         console.log(authorSign)
         localStorage.setItem("token", token);
 
-            alert('Welcom '+ " "+ Email)
+            alert('Welcom '+" "+Email)
             navigate('/Author');
         }
         else{

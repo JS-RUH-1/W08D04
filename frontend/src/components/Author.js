@@ -14,7 +14,7 @@ export default function Author() {
     const [author,setAuthor]=useState([]);
     const [newAuthor,setNewAuthor]= useState({});
 
-
+     
      
 
     
@@ -40,7 +40,7 @@ export default function Author() {
  
 
     <div className="authorBox">
-
+ 
      {author.map((get)=>{
 
  return <div className="authorCard">

@@ -7,6 +7,13 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const Book = () => {
   const [book, setBook] = useState([]);
+  let token = localStorage.getItem("token");
+  //   if (token) {
+  //     console.log("there is token");
+  // useEffect(() => {
+    
+  //   } else navigate("/noAccess");
+  // }, []);
 
   useEffect(() => {
     Axios.get(`http://localhost:8080/Book`).then((response) => {
@@ -45,7 +52,7 @@ const Book = () => {
     <div>
       <div className="container">
         <div className="row">
-          <form>
+          {token ? <form>
             <label for="exampleFormControlInput1" className="form-label">
               Book Title
             </label>
@@ -76,7 +83,7 @@ const Book = () => {
             <button className="btn btn-success" onClick={(e) => addBook(e)}>
               Add Book
             </button>
-          </form>
+          </form> : ''}
 
           {book.map((e) => (
             <div className="col-lg-3 p-3">
@@ -96,12 +103,12 @@ const Book = () => {
                               </a>
                     {/* {e?.title} */}
                     </h5>
-                  <button
+                  {token ? <button
                     onClick={() => deleteItem(e?.title)}
                     className="btn btn-danger"
                   >
                     Delete
-                  </button>
+                  </button> : ""}
                 </div>
               </div>
             </div>

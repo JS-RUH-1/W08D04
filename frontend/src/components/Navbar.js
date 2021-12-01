@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { LogContext } from "./LogContext";
 
 const Navbar = () => {
+  const log = useContext(LogContext);
+
+  useEffect(() => {
+    console.log(log.logged)
+  }, [log.logged])
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,7 +40,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li class="nav-item">
-                <button className="btn btn-dark">
+                <button  className={log.logged ? "btn btn-success" : "btn btn-dark" }>
                   {" "}
                   <Link className="login" to="/login">
                     Login

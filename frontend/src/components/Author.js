@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Author = () => {
   const [author, setAuthor] = useState([]);
+  let token = localStorage.getItem("token");
+
 
   useEffect(() => {
     Axios.get(`http://localhost:8080/author`).then((response) => {
@@ -43,7 +45,7 @@ const Author = () => {
       {/* // Author ADD  */}
       <div className="container">
         <div className="row">
-          <form>
+          {token ? <form>
             <label for="exampleFormControlInput1" className="form-label">
               Author Name
             </label>
@@ -74,7 +76,7 @@ const Author = () => {
             <button className="btn btn-success" onClick={(e) => addAuthor(e)}>
               Add Author
             </button>
-          </form>
+          </form> : ""}
           {author?.map((e) => (
             <div className="col-lg-3 p-3">
               <div className="card">
@@ -85,12 +87,12 @@ const Author = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{e?.name}</h5>
-                  <button
+                  {token ? <button
                     onClick={() => deleteItem(e?.name)}
                     className="btn btn-danger"
                   >
                     Delete
-                  </button>
+                  </button> : ""}
                 </div>
               </div>
             </div>

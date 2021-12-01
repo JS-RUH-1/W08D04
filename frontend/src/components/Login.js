@@ -1,34 +1,57 @@
-import React from "react";
+import React, { useContext } from "react";
 import Axios from "axios";
+import { useState } from "react";
+import { LogContext } from "./LogContext";
+import { Link , useNavigate} from "react-router-dom";
+import { useEffect } from "react";
 
 const Login = () => {
+  const [logged, setLogged] = useState(false)
+  const log = useContext(LogContext);
+  const navigate = useNavigate();
+  let token = localStorage.getItem("token");
+
+
+
+  const logUser = (e) => {
+    log.setLogged(true);
     
-    const logUser = (e) => {
-        e.preventDefault();
-        //ADDED
-        // console.log(e.target.form[1].value);
-    
-        Axios
-          .get("http://localhost:8080/user", {
-            username: e.target.form[0].value,
-            password: e.target.form[1].value,
-          })
-          .then((res) => {
-            // if(res.data !== undefined){
-            //   log.setLogged(true)
-            //   dispatch(addUser(res.data))
-            //   console.log('res',res.data)
-            // }
-            console.log(res)
-            
-            //const status = res.data == 'Success' ? log.setLogged(true) : log.setLogged(false);
-    
-          });
-      };
+    console.log(log.logged);
+
+    e.preventDefault();
+    //ADDED
+    // console.log(e.target.form[1].value);
+
+    Axios.post("http://localhost:8080/user/login", {
+      username: e.target.form[0].value,
+      password: e.target.form[1].value,
+    })
+      .then((res) => {
+        log.setLogged(true);
+        setLogged(true);
+        // dispatch(addUser(res.data))
+        console.log("res", res.data);
+        localStorage.setItem("token", res.data);
+        // console.log(log.logged);
+        // console.log(logged);
+
+        // console.log(res.status)
+
+        //const status = res.data == 'Success' ? log.setLogged(true) : log.setLogged(false);
+      })
+      .catch((err) => {
+        console.log("Error");
+      });
+  };
+
+  // useEffect(() => { console.log(logged); }, [logged])
 
   return (
     <div>
-      <section class="vh-100">
+
+      {token ? 'you are logged in'
+      //  navigate('../Book', {replace:true})
+      : <section class="vh-100">
         <div class="container-fluid h-custom">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-9 col-lg-6 col-xl-5">
@@ -40,9 +63,10 @@ const Login = () => {
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
               <form>
-                
-
-                <br></br><br></br><br></br><br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
 
                 {/* <!-- Email input --> */}
                 <div class="form-outline mb-4">
@@ -70,11 +94,16 @@ const Login = () => {
                   </label>
                 </div>
 
-                
-
                 <div class="text-center text-lg-start mt-4 pt-2">
-                  <button type="button" class="btn btn-primary btn-lg" onClick={(e) => logUser(e)}>
-                    Login
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-lg"
+                    onClick={(e) => logUser(e)}
+                  >
+                    Login 
+                    {log.logged ? <Link to='/book'></Link> : ''}
+                    {/* {logged? <Link to="/book"></Link> : ""} */}
+
                   </button>
                   {/* <p class="small fw-bold mt-2 pt-1 mb-0">
                     Don't have an account?{" "}
@@ -87,7 +116,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section>}
     </div>
   );
 };

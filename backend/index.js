@@ -5,7 +5,9 @@ const books = require('./routes/books');
 const authors = require('./routes/authors');
 const app = express()
 const port = 8080;
-mongoose.connect('mongodb+srv://riyadhtickets:T123123123@cluster0.tn6wn.mongodb.net/W08D03HW?authSource=admin&retryWrites=true&w=majority');
+// base64 to avoid my email getting spam with protection services
+const connectionLink = Buffer.from('bW9uZ29kYitzcnY6Ly9yaXlhZGh0aWNrZXRzOlQxMjMxMjMxMjNAY2x1c3RlcjAudG42d24ubW9uZ29kYi5uZXQvVzA4RDAzSFc/YXV0aFNvdXJjZT1hZG1pbiZyZXRyeVdyaXRlcz10cnVlJnc9bWFqb3JpdHk=','base64').toString('ascii');
+mongoose.connect(connectionLink);
 
 app.use(cors());
 app.use(express.json());

@@ -16,7 +16,23 @@
     border-radius:17px;
     background-color: #fafcfd;
     margin: 3ch;
+    padding-top: 4ch;
 
+}
+.authorCard>img{
+    border-radius: 50px;
+}
+.authorCard>h2{
+    font-family: 'Times New Roman', Times, serif;
+    color:brown;
+     
+
+}
+.SPAN{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(3, 3, 37);
+    font-size: 100%;
+    font-weight: bolder;
 }
 
 /* Tablet */

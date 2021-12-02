@@ -46,8 +46,9 @@ export default function Author() {
  return <div className="authorCard">
  
      <img src={get.image} alt='' width={200}/>
-     <br></br>
-     <Link to={`/Author/${get._id}`}> see more</Link>
+     <h2><span className="SPAN">Name :</span> {get.name}</h2>
+     
+     <h3> <Link to={`/Author/${get._id}`}> see more</Link></h3>
                      
 
 

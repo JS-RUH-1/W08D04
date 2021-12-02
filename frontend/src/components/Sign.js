@@ -4,6 +4,7 @@
   import {Link} from 'react-router-dom'
   import './sign.css'
   import axios from 'axios'
+  import swal from 'sweetalert';
   export default function Sign () {
 
     const navigate=useNavigate()
@@ -35,10 +36,18 @@
 
     if(res.data.error === "Email is taken"){
         
-        alert('This email is already taken')
+         
+        swal({
+            title:'This email is already taken,please try again .',
+            icon:'error'
+          })
     }
     else{
         setNewAuthor(res.data)
+        swal({
+            title:'Welcome .'+Name,
+            icon:'success'
+          })
         navigate('/Author');
     }
      
@@ -95,7 +104,7 @@
                         <br/>
                         <button  className='SUBMIT' onClick={(e)=>handelSing(e)}>Sign In</button>
                         <h4>I have account
-                            <Link to={`Login`}>Login</Link>
+                            <Link to={`Login`}> Login</Link>
 
                         </h4>
              </form>

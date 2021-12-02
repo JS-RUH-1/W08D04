@@ -3,6 +3,7 @@ import { useParams,useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode' 
 import swal from 'sweetalert';
 import axios from "axios";
+import './book.css'
 
 
 
@@ -183,13 +184,13 @@ if(loading){
                             <br/>
       <h1> Age of Author:<span>{Author.age}.</span> </h1>
                             <br/>
-     <h1> Nationality is:<span>{Author.nationality}.</span> </h1>
+      <h1> Nationality is:<span>{Author.nationality}.</span> </h1>
 
      </div>
      </div >
 
        
-        <h2>About the Book</h2>
+        <h2 className="about">About the Book</h2>
 <div className='bookInfo'>
  
 
@@ -197,10 +198,10 @@ if(loading){
         {Author.books.map((item)=>{
             return  <div className='CardInfo'>
 
-              <img src={item.image} alt='' width={200}/>
-            <p><span>title of book:</span>{item.title}</p>
-            <p><span>page of book:</span>{item.pages}</p>
-            <p><span>price of book:</span>{item.price}</p>
+            <img src={item.image} alt='' width={200}/>
+            <p><span>title of book: </span>{item.title}</p>
+            <p><span>page of book: </span>{item.pages}</p>
+            <p><span>price of book: </span>{item.price}</p>
 
             {(function(){
               if(decodedData!=undefined){

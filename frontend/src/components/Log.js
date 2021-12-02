@@ -4,7 +4,7 @@
      import { useNavigate } from "react-router-dom";
      import jwt from "jwt-decode"
      import axios from 'axios'
-
+     import swal from 'sweetalert';
 
 
 
@@ -33,11 +33,18 @@ const handelLogin=(e)=>{
         console.log(authorSign)
         localStorage.setItem("token", token);
 
-            alert('Welcom '+" "+Email)
+        swal({
+            title:'Welcome .'+Email,
+            icon:'success'
+          })
             navigate('/Author');
         }
         else{
-            alert('Your password or email is incorrect,try again')
+             
+            swal({
+                title:'Your password or email is incorrect,try again .',
+                icon:'error'
+              })
         }
     })}
 
@@ -67,8 +74,8 @@ const handelLogin=(e)=>{
 
 
                         <button  className='SUBMIT' onClick={(e)=>handelLogin(e)}>Log In</button>
-                        <h4>I have account
-                            <Link to={`/`}>Signin</Link>
+                        <h4>I do not have account
+                            <Link to={`/`}> Signin</Link>
 
                         </h4>
              </form>

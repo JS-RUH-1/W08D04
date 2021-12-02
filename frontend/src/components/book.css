@@ -118,7 +118,7 @@ span{
       color:#81660d;
   }
   .fullCard{
-       margin-top: 20ch;
+       margin-top: 10ch;
       border:solid #0d635dbe;
       border-width: 3ch;
       border-radius:8px;
@@ -134,10 +134,21 @@ span{
 .fullInfo{
     margin-top: 4ch;
 }
+
+.fullInfo>h1{
+    font-family: cursive;
+    color:#e3ebec;
+}
+span{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color:rgb(0, 123, 128);
+    font-size: 100%;
+}
 .bookInfo{
     width: 90%;
-     margin: 4ch;
+     margin: 6ch;
     display: grid;
+    gap: 8px;
     grid-template-columns: 1fr 1fr  1fr ;
     row-gap: 8px;
 
@@ -149,10 +160,37 @@ span{
     border-width: 2px;
     padding: 4ch;
     margin: 5ch;
-    width: 70%;
+    width: 80%;
     text-align: center;
 }
-   
+.CardInfo>img{
+    border-radius: 50px;
+
+     
+}
+.CardInfo>p{
+    font-family:'Times New Roman', Times, serif;
+    color: #153605;
+    font-size: 150%;
+    font-weight: bolder;
+     
+     
+}
+.CardInfo>p>span{
+    color: #297ece;
+    text-shadow: 9px 7px 7px rgba(92,125,255,0.66); 
+
+}
+.fullImage>img{
+    border-radius: 50px;
+}
+   .about{
+       font-family:'Courier New', Courier, monospace;
+     text-align: center;
+     font-size: 300%;
+     color: #297ece;
+ 
+     text-shadow: 9px 7px 7px rgba(92,125,255,0.66); }
 
 /* Tablet */
 @media screen and ( min-width: 768px ) and ( max-width: 1023px ) {
@@ -194,7 +232,7 @@ span{
     
     }
     .CardInfo{
-          width: 60%;
+          /* width: 60%; */
         
     }
 }
@@ -249,7 +287,7 @@ span{
 
 }
 .CardInfo{
-      width: 90%;
+      /* width: 90%; */
       margin-left: 4ch;
 }
 

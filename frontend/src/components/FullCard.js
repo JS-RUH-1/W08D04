@@ -64,44 +64,7 @@ export default function FullCard ({data}){
         return(
 
             <>
-    {/* <from >
-
-
-    <div className="bookForm"> 
-    <h2> Add new Book</h2>
-    <label>Image:</label>
-    <input type="text"
-    placeholder="Enter Cover of book .."
-    onChange={e=>setImage(e.target.value)}/>
-    <br>
-    </br>
-
-    <label>Title:</label>
-    <input type="text"
-    placeholder="Enter name of title .."
-    onChange={e=>setTitle(e.target.value)}/>
-    <br>
-    </br>
-
-    <label>Pages:</label>
-    <input type="text"
-    placeholder="Enter number of pages .."
-    onChange={e=>setPages(e.target.value)}/>
-    <br>
-    </br>
-
-    <label>Price:</label>
-    <input type="text"
-    placeholder="Enter the price .."
-    onChange={e=>setPrice(e.target.value)}/>
-    <br>
-
-
-    </br>
-
-    <button onClick={handelAdd}> Add</button>
-    </div>
-    </from> */}
+    
 
             {/* ................................ */}
              <section className="full">

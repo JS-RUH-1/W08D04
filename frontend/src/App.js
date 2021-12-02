@@ -16,6 +16,7 @@ import {
 import Details from "./components/Details";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   const [resource, setResource] = useState("book");
@@ -46,13 +47,18 @@ function App() {
               ></Route>
             <Route
                 exact
-                path="/book/Details/:id"
+                path="/book/Details/:title"
                 element={<Details />}
               ></Route>
               <Route
                 exact
                 path="/login"
                 element={<Login />}
+              ></Route>
+              <Route
+                exact
+                path="/register"
+                element={<Register />}
               ></Route>
           </Routes>
           <div>

@@ -5,19 +5,20 @@ import { LogContext } from "./LogContext";
 
 const Navbar = () => {
   const log = useContext(LogContext);
+  let token = localStorage.getItem("token");
 
-  useEffect(() => {
-    console.log(log.logged)
-  }, [log.logged])
+  // useEffect(() => {
+  //   console.log(log.logged)
+  // }, [token])
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
+          <a className="navbar-brand">
             Library
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -25,25 +26,25 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
                   <Link to="book">Book</Link>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
                 <Link to="author">Author</Link>
                 </a>
               </li>
-              <li class="nav-item">
-                <button  className={log.logged ? "btn btn-success" : "btn btn-dark" }>
+              <li className="nav-item">
+                <button  className={token ? "btn btn-danger" : "btn btn-dark" }>
                   {" "}
                   <Link className="login" to="/login">
-                    Login
+                    {token ? 'logout' : 'login'}
                   </Link>{" "}
                 </button>
               </li>

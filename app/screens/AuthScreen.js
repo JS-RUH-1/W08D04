@@ -26,7 +26,7 @@ const AuthScreen = ({navigation}) => {
       }
 
     const onLoggedIn = (token, id, name) => {
-        fetch(`${API_URL}/auth/private`, {
+        fetch(`${API_URL}/users/private`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const AuthScreen = ({navigation}) => {
                 const jsonRes = await res.json();
                 console.log(jsonRes);
                 if (res.status === 200) {
-                    // setMessage(jsonRes.message);
+                    setMessage(jsonRes.message);
                     navigation.replace('profileScreen', { id: id, name: name})
                 }
             } catch (err) {

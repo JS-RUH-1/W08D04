@@ -4,7 +4,7 @@ const app = express();
 const PORT = 3001;
 const authors = require('./router/authors')
 const books = require('./router/books')
-const auth = require('./router/auth')
+const users = require('./router/users')
 const mongoose = require('mongoose');
 
 
@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.use('/authors', authors)
 app.use('/books', books)
-app.use('/auth', auth)
+app.use('/users', users)
 
 
 app.listen(PORT, () => {

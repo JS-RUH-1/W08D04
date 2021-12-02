@@ -2,7 +2,8 @@ import React from 'react'
 import { StyleSheet, Text, View, Image, ScrollView, RefreshControl } from 'react-native';
 
 export default function BooksScreen({navigation}) {
-    const API_URL = 'http://192.168.100.16:3001';
+    // const API_URL = 'http://192.168.100.16:3001';
+    const API_URL =  'http://localhost:3001'
     const [refreshing, setRefreshing] = React.useState(false);
 
     const onRefresh = React.useCallback(() => {

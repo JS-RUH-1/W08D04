@@ -6,7 +6,7 @@ import DetailsScreen from './screens/DetailsScreen';
 import AuthorScreen from './screens/AuthorScreen';
 import BooksScreen from './screens/booksScreen';
 import profileScreen from './screens/profileScreen';
-import publishModel from './publishModel';
+import publishModel from './screens/publishModel';
 import * as SecureStore from 'expo-secure-store';
 
 import { NavigationContainer } from '@react-navigation/native';

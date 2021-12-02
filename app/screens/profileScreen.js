@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, RefreshCon
 import * as SecureStore from 'expo-secure-store';
 
 export default function profileScreen({route, navigation}) {
-    const API_URL = 'http://192.168.100.16:3001';
+    // const API_URL = 'http://192.168.100.16:3001';
+    const API_URL =  'http://localhost:3001'
 
     const {id, name} = route.params;
 

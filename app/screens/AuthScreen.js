@@ -3,7 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 
-const API_URL = 'http://192.168.100.16:3001';
+// const API_URL = 'http://192.168.100.16:3001';
+const API_URL =  'http://localhost:3001'
 
 const AuthScreen = ({navigation}) => {
 

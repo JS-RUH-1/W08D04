@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform } from 'react-native';
 
 export default function publishModel({route, navigation}) {
-    const API_URL = 'http://192.168.100.16:3001';
+    // const API_URL = 'http://192.168.100.16:3001';
+    const API_URL =  'http://localhost:3001'
 
     const {author_id, book_id} = route.params;
     const [book, setBook] = useState({});

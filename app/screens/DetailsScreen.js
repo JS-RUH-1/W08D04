@@ -2,7 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
 
 export default function DetailsScreen({navigation}) {
-    const API_URL = 'http://192.168.100.16:3001';
+    // const API_URL = 'http://192.168.100.16:3001';
+    const API_URL =  'http://localhost:3001'
+
     const [authors, setAuthors] = React.useState([])
     const [refreshing, setRefreshing] = React.useState(false);
 

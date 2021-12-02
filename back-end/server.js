@@ -6,13 +6,9 @@ const authors = require('./router/authors')
 const books = require('./router/books')
 const users = require('./router/users')
 const mongoose = require('mongoose');
-const seedAuthor = require('./author_seed')
-const AuthorSchema = require("./AuthorSchema");
-const BookSchema = require("./BookSchema");
-const seedBook = require('./book_seed')
+
 
 main().catch(err => console.log(err));
-
 async function main() {
   await mongoose.connect('mongodb://localhost:27017/test');
 }
@@ -31,12 +27,11 @@ app.listen(PORT, () => {
 
 
 
-// main().catch(err => console.log(err));
 
-// async function main() {
-//   await mongoose.connect('mongodb://localhost:27017/test');
-// }
-
+// const seedAuthor = require('./author_seed')
+// const AuthorSchema = require("./AuthorSchema");
+// const BookSchema = require("./BookSchema");
+// const seedBook = require('./book_seed')
 // const Author = mongoose.model('Author', AuthorSchema);
 // const Book = mongoose.model('Book', BookSchema);
 

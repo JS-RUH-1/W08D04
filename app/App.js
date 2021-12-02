@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import AuthScreen from './AuthScreen';
-import DetailsScreen from './DetailsScreen';
-import AuthorScreen from './AuthorScreen';
-import BooksScreen from './booksScreen';
-import profileScreen from './profileScreen';
+import AuthScreen from './screens/AuthScreen';
+import DetailsScreen from './screens/DetailsScreen';
+import AuthorScreen from './screens/AuthorScreen';
+import BooksScreen from './screens/booksScreen';
+import profileScreen from './screens/profileScreen';
 import publishModel from './publishModel';
 import * as SecureStore from 'expo-secure-store';
 
@@ -73,7 +73,7 @@ function Authors() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="DetailsScreen"   barStyle={{ backgroundColor: '#000' }}>
+      <Tab.Navigator initialRouteName="Authors"  barStyle={{ backgroundColor: '#000' }}>
         <Tab.Screen name="Home" component={Home} options={{headerShown: false, title: 'Home' }}/> 
         <Tab.Screen name="Authors" component={Authors} options={{headerShown: false, title: 'Authors' }}/>
         <Tab.Screen name="BooksScreen" component={BooksScreen} options={{headerShown: false, title: 'All Books'}}/> 

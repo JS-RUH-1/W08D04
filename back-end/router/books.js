@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require('mongoose');
-const BookSchema = require("../BookSchema");
+const BookSchema = require("../schema/BookSchema");
 
 
 let router = express.Router();

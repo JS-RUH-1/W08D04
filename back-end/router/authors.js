@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require('mongoose');
-const AuthorSchema = require("../AuthorSchema");
+const AuthorSchema = require("../schema/AuthorSchema");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 

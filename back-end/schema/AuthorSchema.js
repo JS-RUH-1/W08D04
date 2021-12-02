@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const BookSchema = require("./BookSchema");
+const { isEmail } = require("validator");
 
 module.exports =  new mongoose.Schema({
     name: {
@@ -11,7 +11,7 @@ module.exports =  new mongoose.Schema({
       required: [true, 'Author email should be provided'],
       unique: true,
       lowercase: true,
-      // validate: [isEmail, 'is invalid']
+      validate: [isEmail, 'is invalid']
     },
     password: {
       type: String,

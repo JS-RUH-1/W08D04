@@ -51,10 +51,6 @@ const handelLogin=(e)=>{
 
         return ( 
          <>
-        <h3>Login page</h3>
-
-
-
         <form className="signForm">
                         <h3>LogIn</h3>
                         

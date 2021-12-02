@@ -42,25 +42,6 @@ export default function FullCard ({data}){
     navigate('/components/Book');
         }
 
-     //add new info about  book
-    // const handelAdd=()=>{ 
-
-    //     swal({
-    //         title:'Added New Book',
-    //         icon:'success'
-    //       })
-
-    //     axios.post('http://localhost:3030/books/create', 
-    //     {image:Image, title:Title, pages:Pages, price:Price }
-    //     )
-        
-    //     .then((res)=>{
-
-    //         console.log(res.data)
-    //         setNewBook(res.data)
-    //     })
-    // }   
-
         return(
 
             <>

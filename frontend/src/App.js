@@ -6,6 +6,7 @@ import Book from './components/Book'
 import Author from './components/Author'
 import FullCard from './components/FullCard'
 import Sign from './components/Sign'
+import {useNavigate } from "react-router-dom";
 import Log from './components/Log'
 import { useEffect, useState } from "react";
 import axios from "axios"
@@ -16,13 +17,15 @@ import {BrowserRouter as Router , Routes , Route ,Link} from 'react-router-dom'
 
 function App() {
 
-
+  let token = localStorage.getItem("token");
+   const navigate=useNavigate()
 
   const [book ,setBook] = useState([])
   const [newBook ,setNewBook] = useState({})
 
   const [author,setAuthor]=useState([]);
   const [newAuthor,setNewAuthor]= useState({});
+
 
 ////////////////////////Books////////////
   useEffect(()=>{ 
@@ -46,17 +49,39 @@ function App() {
 
   },[newAuthor])
 
-
+const logOut=(e)=>{
+  e.preventDefault()
+  localStorage.removeItem('token')
+  navigate('/Login')
+ }
 
   return (
     <>
-    <Router>
+    {/* <Router> */}
+    {/* We remove tag <Router></Router> to index.js file ,to add navigate  */}
 
-<ul>
+     <ul>
   
-{/* <li><Link  to ='Book'>Book</Link></li> */}
-<li><Link to='Author'>Author</Link></li>
+     <li><Link to='Author'>All Authors</Link></li>
  
+      {token ?(
+      <> 
+      <li><Link to='/' onClick={(e)=>logOut(e)}
+      
+      >
+        LogOut </Link></li>
+    
+      </>
+      ) : null}
+
+
+        {!token ?(
+          <> 
+           <li><Link to='/'>SigUp</Link></li>
+           <li><Link  exact to='/Login'>Login</Link></li>
+          
+          </>
+        ) : null}
 </ul>
 
 
@@ -64,15 +89,15 @@ function App() {
 <Routes>
 
 <Route exact path='/' element={<Sign/>}/>
-<Route path='Login' element={<Log/>}/>
+<Route path='/Login' element={<Log/>}/>
 <Route path='Book' element={<Book/>}/>
 <Route path='Author' element={<Author/>}/>
 
 <Route path='/Book/:_id' element={<FullCard data={book}/>}/>
 <Route path='/Author/:_id' element={<AuthorFullCard data={author}/>}/>
  
-</Routes>
-    </Router>
+    </Routes>
+    {/* </Router> */}
  
     </>
   );

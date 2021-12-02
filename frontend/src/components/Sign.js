@@ -51,8 +51,7 @@
         navigate('/Author');
     }
      
-    //  setUser(res.data)
-    // console.log("nnnnnooooo")
+  
 })
  
   
@@ -64,7 +63,7 @@
      return ( <>
 
                 <form className="signForm">
-                        <h3>SignIn</h3>
+                        <h3>SignUp</h3>
                         {/* <label>Name :</label> */}
                         <input type="text" name="name"
                         placeholder='Enter Your name.'

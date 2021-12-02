@@ -26,7 +26,7 @@ const AuthScreen = ({navigation}) => {
       }
 
     const onLoggedIn = (token, id, name) => {
-        fetch(`${API_URL}/users/private`, {
+        fetch(`${API_URL}/auth/private`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

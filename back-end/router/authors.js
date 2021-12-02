@@ -7,41 +7,19 @@ const jwt = require('jsonwebtoken');
 let router = express.Router();
 const Author = mongoose.model('Author', AuthorSchema);
 
-router.get("/", (req, res) => {
-  Author.find({}, (err, authors) => {
-    res.send(authors)
-  }); 
+router.get("/", async (req, res) => {
+  res.send((await Author.find({})));
 });
-router.get("/:id", (req, res) => {
-  Author.findOne({_id: req.params.id}, (err, author) => {
-    res.send(author)
-  }); 
+router.get("/:id", async (req, res) => {
+  res.send((await Author.findById(req.params.id)));
 });
 
-router.delete("/:id", (req, res) => {
-  Author.deleteMany({ _id: req.params.id}, () => {
-  console.log('deleted')
-}); 
-  res.send('deleted!')
+router.delete("/:id", async (req, res) => {
+  res.send( await Author.findByIdAndDelete(req.params.id))
 });
 
-router.patch("/:id", (req, res) => {
-  Author.findOneAndUpdate({ _id: req.params.id },
-  { 
-    age: req.body.age,
-    nationality: req.body.nationality, 
-    gender: req.body.gender,
-    image: req.body.image,
-    email: req.body.email,
-    password: req.body.password,
-    name: req.body.name
-
-  }, () => {
-      console.log('updated')
-  }); 
-
-
-  res.send('updated!')
+router.patch("/:id", async (req, res) => {
+  res.send( await  Author.findByIdAndUpdate(req.params.id,{...req.body})) 
 });
 
 ////////////////

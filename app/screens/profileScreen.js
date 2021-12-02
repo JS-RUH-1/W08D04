@@ -11,8 +11,7 @@ export default function profileScreen({route, navigation}) {
     async function logOut() {
         await SecureStore.deleteItemAsync('token');
         navigation.replace('AuthScreen')
-
-      }
+    }
 
     const [books, setBooks] = React.useState([])
     const [refreshing, setRefreshing] = React.useState(false);

@@ -4,9 +4,13 @@
   "description": "* Create an express app for library what we made it yesterday.\r * Make a connection for mongoose and express app.\r * Make routes folder, and create 2 files:\r     1. author route.\r     2. book route.\r * endpoints:\r     * Write CRUD for authors and books.\r     * Write an endpoint that: show more details about specific author.",
   "main": "index.js",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^6.0.13"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.13",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

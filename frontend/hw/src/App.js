@@ -1,7 +1,10 @@
 import './App.css';
 import Authors from './components/Authors';
 import Details from './components/Details'
-import { BrowserRouter , Routes, Route  } from "react-router-dom";
+import { Routes, Route  } from "react-router-dom";
+import NavBar from './components/NavBar';
+import Signup from './components/Signup';
+import Login from './components/Login';
 
 
 
@@ -9,14 +12,14 @@ import { BrowserRouter , Routes, Route  } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-    
-      <BrowserRouter>
+    <NavBar/>
       
         <Routes>
-          <Route path="/" element={<Authors/>} />
+          <Route exact path="/" element={<Authors/>} />
           <Route path="/Details/:id" element={<Details/>}/>
+          <Route path ="/Login" element={<Login/>}/>
+          <Route path ="/Signup" element={<Signup/>}/>
         </Routes>
-      </BrowserRouter>
     </div>
   );
 }

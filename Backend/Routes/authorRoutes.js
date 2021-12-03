@@ -1,13 +1,13 @@
 const express = require('express')
-const { Auther} = require('../Models/bookAndAuther')
+const { Auther, Book } = require('../Models/bookAndAuther')
 const authorRouter = express.Router()
 
 
 authorRouter.use(express.json())
 
 authorRouter.get('/getAuthor', async (req, res) => {
-   const allAuthor = await Auther.find()
-   res.send(allAuthor)
+    const allAuthor = await Auther.find()
+    res.send(allAuthor)
 })
 
 authorRouter.post('/postAuthor', (req, res) => {
@@ -21,10 +21,30 @@ authorRouter.post('/postAuthor', (req, res) => {
         // books: []
     })
     newAuthor.save()
-     
-            console.log(res)
-            const allAuthor1 = Auther.find()
-            res.send(allAuthor1)
+
+    console.log(res)
+    const allAuthor1 = Auther.find()
+    res.send(allAuthor1)
+
+})
+
+authorRouter.post('/addBook/:id', async (req, res) => {
+    const authorById = await Auther.findById(req.params.id)
+    const newBook = new Book({
+        title: req.body.title,
+        pages: req.body.pages,
+        price: req.body.price,
+        image: req.body.image
+    })
+    authorById.books.push(newBook)
+    try {
+        await authorById.save()
+        res.status(201).send(authorById)
+    } catch (error) {
+        console.log(error)
+    }
+    
+       
 
 })
 

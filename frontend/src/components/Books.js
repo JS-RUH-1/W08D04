@@ -11,6 +11,19 @@ export default function Books() {
   const [image, setImage] = useState("");
   const [NewBooks, setNewBooks] = useState();
 
+  let decodedData ;
+  const storedToken = localStorage.getItem("token");
+  if (storedToken){
+    decodedData = jwt_decode(storedToken, { payload: true });
+     console.log(decodedData);
+     let expirationDate = decodedData.exp;
+      var current_time = Date.now() / 1000;
+      if(expirationDate < current_time)
+      {
+          localStorage.removeItem("token");
+      }
+   }
+
   useEffect(() => {
     axios
     .get("http://localhost:3001/books/getBooks")
@@ -69,27 +82,37 @@ export default function Books() {
 
     return (
         <div>
-         <h4>Add books:</h4>
+        {(function(){
+          if(decodedData!= undefined){
+            return (
+              <>
+              
+         <h4>Add books</h4>
       <form>
         <input
           placeholder="book title:"
           onChange={(e) => setTitle(e.target.value)}
-        ></input>
+        ></input><br/>
         <input
           placeholder="pages :"
           onChange={(e) => setPages(e.target.value)}
-        ></input>
+        ></input><br/>
         <input
           placeholder="price :"
           onChange={(e) => setPrice(e.target.value)}
-        ></input>
+        ></input><br/>
         <input
           placeholder="Image :"
           onChange={(e) => setImage(e.target.value)}
-        ></input>
+        ></input><br/>
         
-        <button onClick={(e) => addBook(e)}>Add</button>
+        <button className="button-8"  onClick={(e) => addBook(e)}>Add</button>
       </form>
+
+              </>
+            )
+          }
+        })}
       <div className="authors-container">
         {books.map((get) => {
           return (
@@ -101,12 +124,12 @@ export default function Books() {
              
              
 
-              <button 
+              <button className="button-8" 
                onClick={()=>{
                  edit(get._id)}}
                  >Edit</button>
 
-              <button
+              <button className="button-8" 
                 onClick={() => {
                   deleteIn(get._id);
                 }}

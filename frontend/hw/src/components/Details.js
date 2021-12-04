@@ -150,7 +150,7 @@ function editAuthor(e,_id){
       if(decodedData.id==id){
         return(
           <>
-           <button onClick={(e)=>editAuthor(e,id)} style = {{backgroundColor: "black" ,color: "White"}}> Update</button>
+           <button onClick={(e)=>editAuthor(e,id)} className="btnu"> Update</button>
                             </>
         )
       }
@@ -175,8 +175,7 @@ function editAuthor(e,_id){
       if(decodedData.id==id){
         return(
           <>
-           <button style = {{backgroundColor: "black" ,color: "White"}} onClick={(e) =>
-                            {deleteAuther(e,author._id)}}>Delete</button> 
+           <button className="btnd"  onClick={(e) =>{deleteAuther(e,author._id)}}>Delete</button> 
                             </>
         )
       }
@@ -185,9 +184,19 @@ function editAuthor(e,_id){
 
   return (
     <div className="maindiv">
-      {/* _______________________________form update auhtor__________________ */}
+      
+      {console.log(author)}
+      <img src={author.image} className="photo"/>
+      <h3>Name: {author.name}</h3>
+      <h5>Age: {author.age}</h5>
+      <h4>Nationality: {author.nationality}</h4>
+      {decode()}
+      {/* {decode1()} */}
+      {decode2()}
+{/* __________________________________________________________ */}
+{/* _______________________________form update auhtor__________________ */}
 
-      <div>
+<div className="divauth">
         <>
       {(function(){
         if (enableEdit==true){
@@ -208,7 +217,7 @@ function editAuthor(e,_id){
       />
         <br/><br/>
         <input placeholder="Your gender" onChange ={(e)=> setAddGender(e.target.value)}type="text" name="title"></input><br/>
-        <button onClick={(e)=>{handlUpdate(e)}}>Save</button>
+        <br/><button onClick={(e)=>{handlUpdate(e)}}>Save</button>
         </form>
             
           )
@@ -220,15 +229,6 @@ function editAuthor(e,_id){
       
       </div>
     {/* __________________________________________________ */}
-      {console.log(author)}
-      <img src={author.image} className="photo"/>
-      <h3>Name: {author.name}</h3>
-      <h5>Age: {author.age}</h5>
-      <h4>Nationality: {author.nationality}</h4>
-      {decode()}
-      {/* {decode1()} */}
-      {decode2()}
-{/* __________________________________________________________ */}
 
       {author.books?.map((item) => {
         return (
@@ -244,8 +244,8 @@ function editAuthor(e,_id){
     if(decodedData.id==id){
       return(
         <>
-        <button  onClick={(e)=>deleteBook(e,item._id)}> Delete</button>
-        <button onClick={(e)=>updateBook(e,item._id)} style = {{backgroundColor: "black" ,color: "White"}}> Update</button>
+        <button  onClick={(e)=>deleteBook(e,item._id)} className="btnd"> Delete</button>
+        <button onClick={(e)=>updateBook(e,item._id)} className="btnu"> Update</button>
         </>
       )
     }
@@ -263,7 +263,7 @@ function editAuthor(e,_id){
     if(decodedData.id==id){
       return(
         
-      <div>
+      <div className="divbook">
       <input placeholder="Title" onChange ={(e)=> setAddTitle(e.target.value)}type="text" name="title"></input><br/>
         <br/>
         <input placeholder="Pages" onChange ={(e)=> setAddPages(e.target.value)}type="text" name="title"></input><br/>
@@ -279,8 +279,8 @@ function editAuthor(e,_id){
         name="title"
       />
       <br/>
-
-      <button onClick={(e)=>{handlPost(e)}} style = {{backgroundColor: "black" ,color: "White"}}>Save </button>
+      <br/>
+      <button onClick={(e)=>{handlPost(e)}} style = {{backgroundColor: "black" ,color: "White"}}>Add book </button>
             {/* {decode1()} */}
        <br/>
             

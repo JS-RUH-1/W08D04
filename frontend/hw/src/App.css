@@ -61,3 +61,46 @@ background-color: rgb(187, 184, 184);
 justify-content: space-around; */
 
 }
+.naav{
+  display: flex;
+  flex-direction:row;
+justify-content: space-evenly;
+  
+}
+.link{
+    color: black;
+    padding: 5px ;
+    text-decoration: none;
+    /* display: inline-block; */
+    
+}
+.link:hover {
+  background-color: rgb(163, 167, 163);
+  color: white;
+}
+.btnd{
+  border-radius: 50px;
+  background-color: black;
+  color: white;
+}
+.btnd:hover{
+  background-color: rgb(148, 21, 21);
+}
+.btnu{
+  border-radius: 50px;
+  background-color: black;
+  color: white;
+  margin-right: 10px
+}
+.btnu:hover{
+background-color: rgb(46, 78, 46);
+}
+.divbook{
+  margin-top: 10px;
+}
+.divmore{
+  margin-top: 10px;
+}
+.divauth{
+  margin: 10px;
+}

@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import axios from "axios";
 import '../App.css';
 import { form ,Container, Nav} from 'react-bootstrap';
@@ -7,7 +7,6 @@ import {useNavigate} from 'react-router-dom'
 
 
 function Login (){
-
 
   let navigate = useNavigate()
 
@@ -61,7 +60,7 @@ function Login (){
     <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
-  <button type="submit" onClick={(e)=>handlPost(e)}  class="btn btn-primary">Submit</button>
+  <button type="submit" onClick={(e)=>handlPost(e)} class="btn btn-primary">Submit</button>
 </form>
         </div>
     )

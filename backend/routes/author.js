@@ -13,10 +13,10 @@ router.use(function(req, res, next) {
   next();
 });
 
-//  Author.insertMany(AuthorSeed, (err, authors) => {
-//         if (err){ console.log(err)}
-//           console.log("added provided authors data", authors)
-//         });
+ Author.insertMany(AuthorSeed, (err, authors) => {
+        if (err){ console.log(err)}
+          console.log("added provided authors data", authors)
+        });
 
         router.get('/home', async (req , res)=>{
           // اما بهذه الطريقه او استخدم try

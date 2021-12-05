@@ -1,6 +1,6 @@
 import axios  from 'axios';
 import { useEffect, useState } from "react";
-import {BrowserRouter as Router, Routes, Route,Link ,useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Details from './Details';
 
 
@@ -90,11 +90,11 @@ export default function Author (){
     return (
        <div>
 
-          <br/><br/><h2>Welcome To Author Page </h2>
+          <br/><br/><h4>Welcome To Author Page </h4><br/><br/>
 
 
 
-            <br/><br/> <h5>Add Author:</h5> <br/><br/>
+            {/* <br/><br/> <h5>Add Author:</h5> <br/><br/>
                 <input  placeholder="Author Name:"></input><br/>
                 <input  placeholder="Age :"></input><br/>
                 <input  placeholder="Nationality :"></input><br/>
@@ -104,8 +104,8 @@ export default function Author (){
                 <br/><br/><button style = {{backgroundColor: "black" ,color: "White"}} type="submit" 
                 onClick= {(e)=>addAuthor(e)}>Add</button><br/><br/>
 
-     
-                {( function(){
+      */}
+                {/* {( function(){
             if (enableEdit == true){
                 return (
                     <div>
@@ -119,7 +119,7 @@ export default function Author (){
                             onClick={(e)=>{saveEditAuthor(e)}} >save</button><br/><br/>
                       </form>
                 </div>
-                ) }})()}
+                ) }})()} */}
  
          {author.map ( (element) => {
                 return (
@@ -138,14 +138,14 @@ export default function Author (){
                             
                             
                             <div class="card-body">
-                                <p class="card-text">Name : {element.name}</p>
+                                <p class="card-text">Name : {element.name}</p> 
                             </div>
-                        </div>
-                        <br/><button style = {{backgroundColor: "purple" ,color: "White"}} onClick={(e) => 
+                        </div><br/><br/>
+                        {/* <br/><button style = {{backgroundColor: "purple" ,color: "White"}} onClick={(e) => 
                             {deleteAuther(e,element._id)}}>Delete</button>    
                              <button style = {{backgroundColor: "gray" ,color: "White"}} onClick={(e) => 
                              {editAuthor(e,element._id)}}>Edit</button>
-                             <hr/><br/><br/>
+                             <hr/><br/><br/> */}
                     </div>
                )
             })

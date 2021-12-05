@@ -1,3 +1,14 @@
+@import "~bootstrap/scss/bootstrap";
+.autherCards{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+}
+.Card.Img{
+  width: 60px;
+}
+
 .App {
   text-align: center;
 }

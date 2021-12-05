@@ -1,6 +1,7 @@
 let mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+
 const bookSchame = new Schema({
   title: {
     type: String,
@@ -17,9 +18,8 @@ const bookSchame = new Schema({
   bookImage: {
     type: String,
     required: ["Book image should be provided"],
-  }
-})
-
+  },
+});
 
 const authorSchame = new Schema({
   name: {
@@ -40,11 +40,23 @@ const authorSchame = new Schema({
   gender: {
     type: String,
   },
-  books: [bookSchame]
+  books: [bookSchame],
+  
+  email: {
+    type: String,
+    required: [true, "Email should be provided"],
+    unique: true,
+  },
+  password: {
+    type: String,
+    minlength: [6, "pass more then 6"],
+    required: [true, "pass should be provided"],
+  }
 });
 
 
 const Book = mongoose.model("Book", bookSchame);
 const Author = mongoose.model("Author", authorSchame);
+
 
 module.exports = { Book, Author };

@@ -6,33 +6,27 @@ const app = express();
 // const seedAuther = require("./author_seed");
 const autheRoute = require("./router/author");
 const bookRoute = require("./router/book");
+const adminRoute = require('./router/signIn')
 app.use(express.json());
-const cors = require('cors')
+const cors = require("cors");
 
-app.use(cors())
+app.use(cors());
 
 const url =
   "mongodb+srv://yazeed1122:yazeed1122@mangodb.ju3ap.mongodb.net/myFirstdb?retryWrites=true&w=majority";
 
 mongoose
   .connect(url)
-  
+
   .then(() => {
-   
     console.log("Hello Yazeed");
-    
   })
   .catch((e) => {
     console.log("Error");
   });
 
-
-
-  app.use("/api/auther",autheRoute)
-  app.use('/api/book',bookRoute)
-
-
-  
+app.use("/api/auther", autheRoute);
+app.use("/api/book", bookRoute);
 
 // Book.insertMany(seedBook, (err, books) => {
 //   if (err) {

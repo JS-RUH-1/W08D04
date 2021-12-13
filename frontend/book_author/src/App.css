@@ -1,14 +1,155 @@
+
 .App {
+  background-image: linear-gradient(to right,#08063d,#1f1d91);
   text-align: center;
+}
+input::selection{
+  background: rgba(156, 0, 0, 0.541);
+  color:rgb(73, 99, 155)
 }
 
 .App-header {
-  padding-top: 50px;
-  min-height: 100vh;
-  background: #282c34;
+  /* padding-top: 50px; */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-image: linear-gradient(to right,#08063d,#110f6b);
+  color: white;
+}
+.color-inherit{
+  color:inherit;
+}
+.text-decoration-none{
+  text-decoration: none;
+}
+#Navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 5vw;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+}
+#Navbar>ul{
+  width: 30%;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
   color: white;
 }
 
+.nav-item{
+  padding: 3px;
+  text-decoration: none;
+  color: inherit;
+  text-shadow: inherit;
+  position: relative;
+  display: inline-block;
+  overflow: hidden
+};
+.nav-item:hover{
+  color: red;
+  animation: btn-animation 1s linear infinite;
+}
+@keyframes btn-animation {
+  0%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+.nav-item>span{
+  position: absolute;
+  display: block;
+}
+.nav-item:hover>span:nth-child(1){
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg,transparent,#03e9f4);
+  animation: btn-animation1 1s linear infinite;
+}
+
+@keyframes btn-animation1{
+  0%{
+    left: -100%;
+  }
+  50%,100%{
+    left: 100%;
+  }
+}
+
+.nav-item:hover>span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.nav-item:hover>span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.nav-item:hover>span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+.nav-brand{
+  text-transform: Uppercase;
+  color: transparent;
+  background-clip: text;
+  background-size: 100%;
+  font-size: 2rem;
+  color: white;
+  background-image: linear-gradient(to top,#908ef5,#b8b8f7);
+}
 .active{
   background: red;
   color: white;
@@ -16,22 +157,72 @@
 .btn{
   border-radius: 1cm;
 }
+.cancel_btn{
+  background-image: linear-gradient(to top,#c01616,#bd7b7b,#c01616);
+  color: white;
+  border-width: 0ch;
+  border-radius: 10%;
+  margin-left: 1rem;
+}
 
 .author_card,.book_card{
-  background: #1a1d22;
+  background-image: linear-gradient(to top,#8180cc,#6767fd,#8180cc);
   border-radius: 10px;
   max-width: 100%;
   padding: 2px;
   margin: 1px;
+  height: 30rem;
+}
+.image_parent{
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px; 
+  padding-bottom: 500px;
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.432);
+  backdrop-filter: blur(10px);
 }
 img{
+  cursor: pointer;
   max-width: 100%;
-  border-radius: 2px;
+  max-height: 100%;
 }
+.cover{
+  height: 50%;
+  border-radius: 2px;
+  min-width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+.contain{
+  width: 80%;
+  object-fit: contain;
+}
+.close{
+  position: absolute;
+  top:20px;
+  right: 20px;
+  cursor:pointer;
+  font-size:x-large;
+  background-color: red;
+  border-radius: 2px;
+  align-self: center;
+  justify-self: center;
+  padding: 0.1rem 0.3rem;
+}
+/* img:hover {
+    -webkit-transform:scale(1.5);
+  transform:scale(1.5);  
+  
+} */
 .parent{
-  margin-top: 100px;
+  margin-top: 10rem;
   display: grid;
-  grid-template-columns: 45% 45%;
+  grid-template-columns: 25% 25%;
   column-gap: 5%;
   justify-content: center;
 }
@@ -42,9 +233,10 @@ h3{
   font-size: 1rem;
 }
 form{
-  align-self: center;
-  justify-self: center;
-  max-width: 50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 .flex-rows{
   display: flex;
@@ -59,4 +251,153 @@ form{
 }
 .hidden{
   display: none;
+}
+
+
+.row{
+  display: flex;
+  flex-direction: row;
+}
+.input_parent{
+  width: 50%;
+  align-items: flex-end;
+}
+input[type=text]{
+  width: 100%;
+  align-self: right;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* input[type=submit] {
+  box-shadow: 1px 1px rgb(46, 48, 61),-1px -1px rgb(17, 21, 51);
+  background-color: inherit;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  box-shadow: none;
+  background-color: #45a049;
+} */
+
+.container {
+  border-radius: 5px;
+  background-image: linear-gradient(to top,#434268,#282864,#404066);
+  padding: 20px;
+  margin: auto 20vw;
+}
+
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
+.body {
+  /* height: 100vh;;
+  position: relative;
+  overflow: hidden; 
+  these are the properties i took from .wrapper*/
+  color:black;
+  margin: 10rem 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+   /* linear-gradient(45deg, greenyellow, dodgerblue); */
+  font-family: "Sansita Swashed", cursive;
+}
+.center {
+  margin-top: 50px;
+  padding: 50px 50px;
+  background: rgb(222, 226, 245);
+  border-radius: 10px;
+}
+.center h1 {
+  font-size: 2em;
+  border-left: 5px solid rgb(166, 174, 182);
+  padding: 10px;
+  color: #000;
+  letter-spacing: 5px;
+  margin-bottom: 60px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+.center .inputbox {
+  position: relative;
+  width: 300px;
+  height: 50px;
+  margin-bottom: 50px;
+}
+.center .inputbox input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 2px solid #000;
+  outline: none;
+  background: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.2em;
+}
+.center .inputbox:last-child {
+  margin-bottom: 0;
+}
+.center .inputbox span {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-size: 1em;
+  transition: 0.6s;
+  font-family: sans-serif;
+}
+.center .inputbox input:focus ~ span,
+.center .inputbox input:valid ~ span {
+  transform: translateX(-13px) translateY(-35px);
+  font-size: 1em;
+}
+.center .inputbox [type="submit"] {
+  width: 50%;
+  background: #2421ce;
+  color: #fff;
+  border: #fff;
+  transition: all 0.2s ease-in-out;
+}
+.center .inputbox:hover [type="submit"] {
+  background: linear-gradient(45deg, #08063d,#181694,#08063d);
+  /* greenyellow, dodgerblue); */
+  transition: all 0.2s ease-in-out;
 }

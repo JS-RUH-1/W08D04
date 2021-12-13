@@ -9,7 +9,7 @@ function AuthorDetails(props) {
   const [update, setUpdate] = useState(false);
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/authors/${params.id}`)
+      .get(`http://localhost:8000/backend/authors/${params.id}`)
       .then((res) => {
         setCurrAuthor(res.data);
       })
@@ -20,7 +20,7 @@ function AuthorDetails(props) {
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:8080/authors/${params.id}`, {
+    axios.put(`http://localhost:8000/backend/authors/${params.id}`, {
         age: parseInt(e.target[0].value),
       }).then((res) => {
         setUpdate(!update);
@@ -32,13 +32,12 @@ function AuthorDetails(props) {
   };
 
   return (
-    <header className="App-header">
       <div>
         <h1>{currAuthor?.name}</h1>
-        <img src={currAuthor?.image} />
+        <img src={currAuthor?.image} alt="#"/>
         <h2>{currAuthor?.nationality}</h2>
         <div className="flex-rows">
-          <h2>{currAuthor?.age} years old</h2>
+          <h2>{currAuthor?.age?currAuthor.age+" years old":""}</h2>
           <button className={btn ? "hidden" : ""} onClick={() => setBtn(true)}>
             update
           </button>
@@ -72,7 +71,6 @@ function AuthorDetails(props) {
           })} */}
         </div>
       </div>
-    </header>
   );
 }
 export default AuthorDetails;

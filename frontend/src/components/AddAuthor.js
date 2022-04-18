@@ -80,14 +80,14 @@ function AddAuthor() {
 
       {books.map((book, i) => {
         return (
-          <div className="addBookForm2">
+          <div key={i} className="addBookForm2">
             <label htmlFor="title">Enter title here</label>
             <input
               className="input__css2"
               id="title"
               value={book.title}
               onChange={(e) => {
-                book.name = e.target.value;
+                book.title = e.target.value;
                 setBooks([...books]);
               }}
               type="text"
@@ -107,18 +107,18 @@ function AddAuthor() {
             <input
               className="input__css2"
               id="price"
-              value={book.price}
+              value={book.price || ""}
               onChange={(e) => {
                 book.price = e.target.value;
                 setBooks([...books]);
               }}
               type="text"
             />
-            <label htmlFor="pages">Enter pages here</label>
+            <label htmlFor="pages">Enter pages here </label>
             <input
               className="input__css2"
               id="pages"
-              value={book.pages}
+              value={book.pages || ""}
               onChange={(e) => {
                 book.pages = e.target.value;
                 setBooks([...books]);

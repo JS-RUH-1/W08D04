@@ -37,6 +37,16 @@ function EditAuthor() {
       gender: gender,
       books: books,
     };
+    for (let book in books) {
+      if (
+        book.title !== "" &&
+        book.img !== "" &&
+        book.price !== 0 &&
+        book.pages !== 0
+      ) {
+        continue;
+      } else alert("Complete empty fields");
+    }
     axios
       .put("/authors/updateauthor/" + id, data)
       .then((res) => {
@@ -102,14 +112,14 @@ function EditAuthor() {
 
       {books.map((book, i) => {
         return (
-          <div className="addBookForm2">
+          <div key={i} className="addBookForm2">
             <label htmlFor="title">Enter title here</label>
             <input
               className="input__css2"
               id="title"
               defaultValue={book.title}
               onChange={(e) => {
-                book.name = e.target.value;
+                book.title = e.target.value;
                 setBooks([...books]);
               }}
               type="text"
@@ -129,7 +139,7 @@ function EditAuthor() {
             <input
               className="input__css2"
               id="price"
-              defaultValue={book.price}
+              defaultValue={book.price || ""}
               onChange={(e) => {
                 book.price = e.target.value;
                 setBooks([...books]);
@@ -140,7 +150,7 @@ function EditAuthor() {
             <input
               className="input__css2"
               id="pages"
-              defaultValue={book.pages}
+              defaultValue={book.pages || ""}
               onChange={(e) => {
                 book.pages = e.target.value;
                 setBooks([...books]);

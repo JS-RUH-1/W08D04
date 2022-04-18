@@ -66,9 +66,9 @@ function AuthorsPage() {
       </div>
       <div className="continer">
         <div className="main__authors">
-          {authors.map((a) => {
+          {authors.map((a, i) => {
             return (
-              <div className="author__card">
+              <div key={i} className="author__card">
                 <p> {a.name}</p>
                 <img
                   className="img"
@@ -95,7 +95,7 @@ function AuthorsPage() {
           })}
         </div>
         <div className="selected__author">
-          <h2 onClick style={{ display: `${flag2}` }}>
+          <h2 style={{ display: `${flag2}` }}>
             To get more details click any author picture
           </h2>
           <div className="author__card" style={{ display: `${flag}` }}>
@@ -105,9 +105,9 @@ function AuthorsPage() {
             <p> {sGender}</p>
             <p> {sNationality}</p>
             <h4>{sName} Books: </h4>
-            {sBooks.map((book) => {
+            {sBooks.map((book, i) => {
               return (
-                <div className="book__card">
+                <div key={i} className="book__card">
                   <p> {book.title}</p>
                   <img className="img" src={book.image} alt="Author img" />
                   <p> {book.price} $</p>

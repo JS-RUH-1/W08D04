@@ -2,9 +2,13 @@ import React from "react";
 import "./components.css";
 function HomePage() {
   return (
-    <div className="HomePage">
-      <h2 className="imgParagraph">Welcome to home page</h2>
-    </div>
+    <div className="continer_HomePage">
+     <div className="HomePage">
+  </div>
+  <h2 className="imgParagraph">Welcome to home page</h2>
+
+  </div>
+   
   );
 }
 

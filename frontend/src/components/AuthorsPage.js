@@ -57,12 +57,8 @@ function AuthorsPage() {
   return (
     <>
       <div className="second__nav">
-        <h2 className="header__Book"> Welcome to author page</h2>
-        <button className="new__btn">
-          <Link className="Link_SecNav" to="/AddAuthor">
-            Add new author
-          </Link>
-        </button>
+        {/* <h2 className="header__Book"> Welcome to author page</h2> */}
+      
       </div>
       <div className="continer">
         <div className="main__authors">
@@ -95,9 +91,9 @@ function AuthorsPage() {
           })}
         </div>
         <div className="selected__author">
-          <h2 style={{ display: `${flag2}` }}>
+          {/* <h2 style={{ display: `${flag2}` }}>
             To get more details click any author picture
-          </h2>
+          </h2> */}
           <div className="author__card" style={{ display: `${flag}` }}>
             <p> {sName}</p>
             <img className="img" src={sImg} alt="Author img" />
@@ -117,6 +113,12 @@ function AuthorsPage() {
             })}
           </div>
         </div>
+        <button className="new__btnn">
+          <Link className="Link_SecNav" to="/AddAuthor">
+            Add new author
+          </Link>
+        </button>
+        
       </div>
     </>
   );

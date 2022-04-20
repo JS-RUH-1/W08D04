@@ -7,7 +7,7 @@ function BooksPage() {
   const navigate = useNavigate();
   const [Books, setBooks] = useState([]);
   useEffect(() => {
-    axios
+    axios 
       .get("/books")
       .then((res) => {
         setBooks(res.data);

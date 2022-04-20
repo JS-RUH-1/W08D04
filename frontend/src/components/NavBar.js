@@ -14,6 +14,7 @@ function NavBar() {
           Books
         </Link>
       </div>
+      
       <hr />
     </>
   );

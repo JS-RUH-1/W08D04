@@ -36,7 +36,7 @@ function AddBook() {
       />
       <label htmlFor="imgUrl">Enter image url</label>
       <input
-        className="input__css"
+        className="input__css "
         id="imgUrl"
         onChange={(e) => setImgUrl(e.target.value)}
         type="text"

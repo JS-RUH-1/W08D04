@@ -56,7 +56,7 @@ function EditAuthor() {
         if (err) console.log(err);
       });
   }
-
+ 
   function handelNewForm() {
     setBooks([...books, { title: "", img: "", price: 0, pages: 0 }]);
   }

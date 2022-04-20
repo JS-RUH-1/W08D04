@@ -114,7 +114,7 @@ function AuthorsPage() {
           </div>
         </div>
         <button className="new__btnn">
-          <Link className="Link_SecNav" to="/AddAuthor">
+          <Link className="Link_SecNav" to="/AddAuthor" >
             Add new author
           </Link>
         </button>

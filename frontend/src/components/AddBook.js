@@ -26,13 +26,14 @@ function AddBook() {
       });
   }
   return (
-    <div className="addBookForm">
+    <form className="addBookForm">
       <label htmlFor="title">Enter title here</label>
       <input
         className="input__css"
         id="title"
         onChange={(e) => setTitle(e.target.value)}
         type="text"
+        required
       />
       <label htmlFor="imgUrl">Enter image url</label>
       <input
@@ -40,25 +41,28 @@ function AddBook() {
         id="imgUrl"
         onChange={(e) => setImgUrl(e.target.value)}
         type="text"
+        required
       />
       <label htmlFor="price">Enter price here</label>
       <input
         className="input__css"
         id="price"
         onChange={(e) => setPrice(e.target.value)}
-        type="text"
+        type="number"
+        required
       />
       <label htmlFor="pages">Enter pages here</label>
       <input
         className="input__css"
         id="pages"
         onChange={(e) => setPages(e.target.value)}
-        type="text"
+        type="number"
+        required
       />
       <button className="new__btn" onClick={hundleAdd} type="submit">
         Add
       </button>
-    </div>
+    </form>
   );
 }
 

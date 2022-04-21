@@ -22,7 +22,6 @@ function EditBook() {
       });
   }, []);
 
-  
   function hundleUpdate() {
     let data = {
       title: Title,
@@ -40,7 +39,7 @@ function EditBook() {
       });
   }
   return (
-    <div className="addBookForm">
+    <form className="addBookForm">
       <label htmlFor="title">Enter title here</label>
       <input
         className="input__css"
@@ -48,6 +47,7 @@ function EditBook() {
         onChange={(e) => setTitle(e.target.value)}
         defaultValue={book.title}
         type="text"
+        required
       />
       <label htmlFor="imgUrl">Enter image url</label>
       <input
@@ -56,6 +56,7 @@ function EditBook() {
         onChange={(e) => setImgUrl(e.target.value)}
         defaultValue={book.image}
         type="text"
+        required
       />
       <label htmlFor="price">Enter price here</label>
       <input
@@ -63,7 +64,8 @@ function EditBook() {
         id="price"
         onChange={(e) => setPrice(e.target.value)}
         defaultValue={book.price}
-        type="text"
+        type="number"
+        required
       />
       <label htmlFor="pages">Enter pages here</label>
       <input
@@ -71,12 +73,13 @@ function EditBook() {
         id="pages"
         onChange={(e) => setPages(e.target.value)}
         defaultValue={book.pages}
-        type="text"
+        type="number"
+        required
       />
       <button className="edit__btn" onClick={hundleUpdate} type="submit">
         update
       </button>
-    </div>
+    </form>
   );
 }
 

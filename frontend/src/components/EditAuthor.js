@@ -56,7 +56,7 @@ function EditAuthor() {
         if (err) console.log(err);
       });
   }
- 
+
   function handelNewForm() {
     setBooks([...books, { title: "", img: "", price: 0, pages: 0 }]);
   }
@@ -64,7 +64,7 @@ function EditAuthor() {
     setBooks(books.filter((item, index) => index !== i));
   }
   return (
-    <div className="addBookForm">
+    <form className="addBookForm">
       <label htmlFor="name">Enter name here</label>
       <input
         className="input__css"
@@ -75,11 +75,11 @@ function EditAuthor() {
       />
       <label htmlFor="age">Enter age here</label>
       <input
+        type="number"
         className="input__css"
         id="age"
         onChange={(e) => setAge(e.target.value)}
         defaultValue={age}
-        type="text"
       />
       <label htmlFor="nationality">Enter nationality here</label>
       <input
@@ -112,7 +112,7 @@ function EditAuthor() {
 
       {books.map((book, i) => {
         return (
-          <div key={i} className="addBookForm2">
+          <form key={i} className="addBookForm2">
             <label htmlFor="title">Enter title here</label>
             <input
               className="input__css2"
@@ -134,6 +134,7 @@ function EditAuthor() {
                 setBooks([...books]);
               }}
               type="text"
+              minLength={6}
             />
             <label htmlFor="price">Enter price here</label>
             <input
@@ -144,7 +145,7 @@ function EditAuthor() {
                 book.price = e.target.value;
                 setBooks([...books]);
               }}
-              type="text"
+              type="number"
             />
             <label htmlFor="pages">Enter pages here</label>
             <input
@@ -155,7 +156,7 @@ function EditAuthor() {
                 book.pages = e.target.value;
                 setBooks([...books]);
               }}
-              type="text"
+              type="number"
             />
             <button
               type="button"
@@ -166,13 +167,13 @@ function EditAuthor() {
             >
               <h4 className="">delete book</h4>
             </button>
-          </div>
+          </form>
         );
       })}
       <button className="new__btn" onClick={hundleAdd} type="submit">
-        Add
+        Update
       </button>
-    </div>
+    </form>
   );
 }
 

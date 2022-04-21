@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function AddAuthor() { 
+function AddAuthor() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [age, setAge] = useState();
@@ -27,6 +27,16 @@ function AddAuthor() {
       gender: gender,
       books: books,
     };
+    for (let book in books) {
+      if (
+        book.title !== "" &&
+        book.img !== "" &&
+        book.price !== 0 &&
+        book.pages !== 0
+      ) {
+        continue;
+      } else alert("Complete empty fields");
+    }
     axios
       .post("/authors/AddAuthor", data)
       .then((res) => {
@@ -37,13 +47,14 @@ function AddAuthor() {
       });
   }
   return (
-    <div className="addBookForm">
+    <form className="addBookForm">
       <label htmlFor="name">Enter name here</label>
       <input
         className="input__css"
         id="name"
         onChange={(e) => setName(e.target.value)}
         type="text"
+        required
       />
       <label htmlFor="age">Enter age here</label>
       <input
@@ -51,6 +62,7 @@ function AddAuthor() {
         id="age"
         onChange={(e) => setAge(e.target.value)}
         type="text"
+        required
       />
       <label htmlFor="nationality">Enter nationality here</label>
       <input
@@ -58,6 +70,7 @@ function AddAuthor() {
         id="nationality"
         onChange={(e) => setNationality(e.target.value)}
         type="text"
+        required
       />
       <label htmlFor="image">Enter image url here</label>
       <input
@@ -65,6 +78,7 @@ function AddAuthor() {
         id="image"
         onChange={(e) => setImage(e.target.value)}
         type="text"
+        required
       />
       <label htmlFor="gender">Enter gender here</label>
       <input
@@ -72,6 +86,7 @@ function AddAuthor() {
         id="gender"
         onChange={(e) => setGender(e.target.value)}
         type="text"
+        required
       />
 
       <button type="button" className="new__btn" onClick={handelNewForm}>
@@ -80,7 +95,7 @@ function AddAuthor() {
 
       {books.map((book, i) => {
         return (
-          <div key={i} className="addBookForm2">
+          <form key={i} className="addBookForm2">
             <label htmlFor="title">Enter title here</label>
             <input
               className="input__css2"
@@ -91,6 +106,7 @@ function AddAuthor() {
                 setBooks([...books]);
               }}
               type="text"
+              required
             />
             <label htmlFor="imgUrl">Enter image url</label>
             <input
@@ -102,6 +118,7 @@ function AddAuthor() {
                 setBooks([...books]);
               }}
               type="text"
+              required
             />
             <label htmlFor="price">Enter price here</label>
             <input
@@ -113,6 +130,7 @@ function AddAuthor() {
                 setBooks([...books]);
               }}
               type="text"
+              required
             />
             <label htmlFor="pages">Enter pages here </label>
             <input
@@ -124,6 +142,7 @@ function AddAuthor() {
                 setBooks([...books]);
               }}
               type="text"
+              required
             />
             <button
               type="button"
@@ -134,13 +153,13 @@ function AddAuthor() {
             >
               <h4>delete book</h4>
             </button>
-          </div>
+          </form>
         );
       })}
       <button className="new__btn" onClick={hundleAdd} type="submit">
         Add
       </button>
-    </div>
+    </form>
   );
 }
 

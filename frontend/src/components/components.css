@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -44,8 +44,7 @@
 .Link_SecNav {
   text-decoration: none;
   font-weight: bold;
-  color:white;
-
+  color: white;
 }
 
 .delete__btn {
@@ -53,12 +52,12 @@
   height: 50px;
   width: 100px;
   margin-top: 1%; */
-  color:white;
+  color: white;
   width: 90px;
   margin-top: 8px;
   border-radius: 4px;
   color: whitesmoke;
-  background-color:#006669;
+  background-color: #006669;
   padding: 10px;
   cursor: pointer;
 }
@@ -67,27 +66,27 @@
   height: 50px;
   width: 100px;
   margin-top: 1%; */
-  
-  color:white;
+
+  color: white;
   width: 90px;
   margin-top: 8px;
   border-radius: 4px;
   color: whitesmoke;
-  background-color:#006669;
+  background-color: #006669;
   padding: 10px;
   cursor: pointer;
   margin-top: 20%;
 }
-.new__btnn{
-  color:white;
+.new__btnn {
+  color: white;
   width: 90px;
   margin-top: 8px;
   border-radius: 4px;
   color: whitesmoke;
-  background-color:#006669;
+  background-color: #006669;
   padding: 10px;
   cursor: pointer;
-  margin-top: 20%; 
+  margin-top: 20%;
   margin-left: 60%;
 }
 .edit__btn {
@@ -96,19 +95,19 @@
   width: 100px;
   margin-right: 1%;
   margin-top: 1%; */
-  color:white;
+  color: white;
   width: 80px;
   margin-top: 8px;
   border-radius: 4px;
   color: whitesmoke;
-  background-color:#006669;
+  background-color: #006669;
   padding: 10px;
   cursor: pointer;
 }
 /* Add Book Page Css */
-.books_container{
+.books_container {
   border: 2px solid;
-  width:50%;
+  width: 50%;
 
   padding: 5%;
   margin: 5%;
@@ -122,8 +121,6 @@
   margin: 5%;
   text-align: center;
   /*  */
- 
-
 }
 .addBookForm2 {
   display: flex;
@@ -136,7 +133,6 @@
   width: 30%;
   height: 30px;
   border: 2px solid;
-
 }
 .input__css2 {
   width: 100%;
@@ -146,9 +142,8 @@
 .continer__NavBar {
   display: flex;
   background-color: black;
-  padding:18px;
+  padding: 18px;
   justify-content: flex-end;
-
 }
 
 .Link_Nav {
@@ -156,7 +151,7 @@
   font-weight: bold;
   font-size: 20px;
   color: white;
-  padding:7px;
+  padding: 7px;
   margin-right: 80px;
 }
 
@@ -171,15 +166,14 @@
   width: 80%;
   margin: 20px;
 }  */
-.continer_HomePage{
+.continer_HomePage {
   height: 100vh;
-  background-color:rgb(227, 228, 232);
-  padding:200px;
-
+  background-color: rgb(227, 228, 232);
+  padding: 200px;
 }
 
 .imgParagraph {
-  background-color:rgb(150, 181, 181);
+  background-color: rgb(150, 181, 181);
   border: 2px solid rgb(147, 143, 150);
   width: 60%;
   margin: auto;

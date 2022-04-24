@@ -6,14 +6,6 @@ import "./components.css";
 function AuthorsPage() {
   const navigate = useNavigate();
   const [authors, setAuthors] = useState([]);
-  const [sName, setsName] = useState("");
-  const [sAge, setsAge] = useState();
-  const [sNationality, setSNationality] = useState("");
-  const [sImg, setsImg] = useState("");
-  const [sGender, setSGender] = useState("");
-  const [sBooks, setsBooks] = useState([]);
-  const [flag, setflag] = useState("none");
-  const [flag2, setflag2] = useState("block");
 
   useEffect(() => {
     axios
@@ -28,14 +20,7 @@ function AuthorsPage() {
   }, []);
 
   function hundleImg(a) {
-    setflag("block");
-    setflag2("none");
-    setsName(a.name);
-    setsAge(a.age);
-    setSGender(a.gender);
-    setSNationality(a.nationality);
-    setsBooks(a.books);
-    setsImg(a.image);
+    navigate("/AuthorPage/" + a._id);
   }
   function hundleDelete(a) {
     console.log(a);
@@ -58,7 +43,6 @@ function AuthorsPage() {
     <>
       <div className="second__nav">
         {/* <h2 className="header__Book"> Welcome to author page</h2> */}
-      
       </div>
       <div className="continer">
         <div className="main__authors">
@@ -90,35 +74,12 @@ function AuthorsPage() {
             );
           })}
         </div>
-        <div className="selected__author">
-          {/* <h2 style={{ display: `${flag2}` }}>
-            To get more details click any author picture
-          </h2> */}
-          <div className="author__card" style={{ display: `${flag}` }}>
-            <p> {sName}</p>
-            <img className="img" src={sImg} alt="Author img" />
-            <p> {sAge} years</p>
-            <p> {sGender}</p>
-            <p> {sNationality}</p>
-            <h4>{sName} Books: </h4>
-            {sBooks.map((book, i) => {
-              return (
-                <div key={i} className="book__card">
-                  <p> {book.title}</p>
-                  <img className="img" src={book.image} alt="Author img" />
-                  <p> {book.price} $</p>
-                  <p> {book.pages} pages</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+
         <button className="new__btnn">
-          <Link className="Link_SecNav" to="/AddAuthor" >
+          <Link className="Link_SecNav" to="/AddAuthor">
             Add new author
           </Link>
         </button>
-        
       </div>
     </>
   );

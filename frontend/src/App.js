@@ -7,15 +7,16 @@ import AddBook from "./components/AddBook";
 import EditBook from "./components/EditBook";
 import AddAuthor from "./components/AddAuthor";
 import EditAuthor from "./components/EditAuthor";
+import AuthorPage from "./components/AuthorPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
-    
     <div className="App">
       <Router>
         <NavBar />
         <Routes>
           <Route path="/AuthorsPage" element={<AuthorsPage />}></Route>
+          <Route path="/AuthorPage/:id" element={<AuthorPage />}/>
           <Route path="/BooksPage" element={<BooksPage />}></Route>
           <Route path="/AddBook" element={<AddBook />}></Route>
           <Route path="/EditBook/:id" element={<EditBook />}></Route>

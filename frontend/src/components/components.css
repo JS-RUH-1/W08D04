@@ -4,7 +4,7 @@
 }
 .continer {
   display: grid;
-  grid-template-columns: 80% 18%;
+  grid-template-columns: 100%;
   grid-gap: 2%;
 }
 .main__authors {
@@ -31,6 +31,9 @@
   height: 150px;
   object-fit: fill;
   border-radius: 5px;
+}
+.img__div {
+  width: 250px;
 }
 /* Book css */
 .book__card {

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./components.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
+
 function AuthorPage() {
   const [name, setName] = useState("");
   const [age, setAge] = useState();

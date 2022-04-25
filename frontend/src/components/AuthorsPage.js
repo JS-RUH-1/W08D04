@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./components.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 
 function AuthorsPage() {
   const navigate = useNavigate();
@@ -49,7 +51,6 @@ function AuthorsPage() {
           {authors.map((a, i) => {
             return (
               <div key={i} className="author__card">
-                <p> {a.name}</p>
                 <img
                   className="img"
                   onClick={() => {
@@ -59,27 +60,31 @@ function AuthorsPage() {
                   src={a.image}
                   alt="Author img"
                 />
+              <p> {a.name}</p>
+
                 <div style={{ display: "flex" }}>
-                  <button className="edit__btn" onClick={() => hundleEdit(a)}>
+                <div className="test">  <Button className="edit__btn" onClick={() => hundleEdit(a)}>
                     Edit
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     className="delete__btn"
                     onClick={() => hundleDelete(a)}
                   >
                     Delete
-                  </button>
+                  </Button></div>
+                
                 </div>
               </div>
             );
           })}
+          
         </div>
 
-        <button className="new__btnn">
-          <Link className="Link_SecNav" to="/AddAuthor">
+        <Button className="new__btnn">
+          <Link className="Link_SecNavv" to="/AddAuthor">
             Add new author
           </Link>
-        </button>
+        </Button>
       </div>
     </>
   );

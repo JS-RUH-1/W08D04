@@ -9,6 +9,7 @@ import AddAuthor from "./components/AddAuthor";
 import EditAuthor from "./components/EditAuthor";
 import AuthorPage from "./components/AuthorPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 function App() {
   return (
     <div className="App">

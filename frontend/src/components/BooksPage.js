@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./components.css";
 import EditBook from "./EditBook";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 function BooksPage() {
   const navigate = useNavigate();
   const [Books, setBooks] = useState([]);
@@ -36,35 +38,36 @@ function BooksPage() {
   return (
     <div>
       <div className="second__nav">
-        <h2 className="header__Book">Welcome to book page</h2>
-        <button className="new__btn">
-          <Link className="Link_SecNav" to="/AddBook">
-            {" "}
-            Add new book
-          </Link>
-        </button>
+        <h2 >Welcome to book page</h2>
+      
       </div>
       <div className="main__authors">
         {Books.map((book) => {
           return (
             <div className="book__card">
-              <p>{book.title}</p>
               <img className="img" src={book.image} alt="Author img" />
+              <p>{book.title}</p>
               <p> {book.price} $</p>
               <p> {book.pages} pages</p>
-              <button className="edit__btn" onClick={() => hundleEdit(book)}>
+              <Button className="edit__btn" onClick={() => hundleEdit(book)}>
                 Edit
-              </button>
-              <button
+              </Button>
+              <Button
                 className="delete__btn"
                 onClick={() => hundleDelete(book)}
               >
                 Delete
-              </button>
+              </Button>
             </div>
           );
         })}
       </div>
+      <Button >
+          <Link to="/AddBook" className="Add-new-book">
+            {" "}
+            Add new book
+          </Link>
+        </Button>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 
 function AddAuthor() {
   const navigate = useNavigate();
@@ -89,9 +91,7 @@ function AddAuthor() {
         required
       />
 
-      <button type="button" className="new__btn" onClick={handelNewForm}>
-        <h4 className="">add book</h4>
-      </button>
+   
 
       {books.map((book, i) => {
         return (
@@ -144,21 +144,26 @@ function AddAuthor() {
               type="text"
               required
             />
-            <button
+            <Button
               type="button"
               onClick={() => {
                 handelDeleteForm(book, i);
               }}
               className="delete__btn"
             >
-              <h4>delete book</h4>
-            </button>
+              delete book
+            </Button>
           </form>
         );
       })}
-      <button className="new__btn" onClick={hundleAdd} type="submit">
+      <div className="all-btn"> 
+       <Button  onClick={hundleAdd} type="submit">
         Add
-      </button>
+      </Button>
+      <Button type="button" onClick={handelNewForm}>
+        add book
+      </Button></div>
+    
     </form>
   );
 }
